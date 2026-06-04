@@ -1,0 +1,31 @@
+/* Northhaus — shared font declarations.
+   Linked by every page: <link rel="stylesheet" href="assets/fonts.css">
+   url() paths are relative to THIS file (assets/), so they point at assets/fonts/.
+   Because every page references the same WOFF2 URLs, the browser downloads
+   each weight once and reuses it from cache across the whole site. */
+
+@font-face {
+  font-family: "Sharp Sans Display";
+  src: url("fonts/SharpSansDisplay-300.woff2") format("woff2");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Sharp Sans Display";
+  src: url("fonts/SharpSansDisplay-500.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Sharp Sans Display";
+  src: url("fonts/SharpSansDisplay-600.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Sharp Sans Display";
+  src: url("fonts/SharpSansDisplay-700.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Sharp Sans Display";
+  src: url("fonts/SharpSansDisplay-900.woff2") format("woff2");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
