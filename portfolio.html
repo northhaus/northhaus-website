@@ -7,11 +7,11 @@
   <link rel="preload" href="assets/fonts/SharpSansDisplay-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Northhaus — Web Design</title>
-  <meta name="description" content="Northhaus designs and builds high-performance websites with the latest technology, grounded in sound UI fundamentals. From recon to launch, I ship sites that earn out.">
+  <title>Northhaus — Portfolio</title>
+  <meta name="description" content="Selected client and agency work by Northhaus — branding, web design, graphic design and digital product projects.">
   <style>
 /* ──────────────────────────────────────────
-   NORTHHAUS — Web Design
+   NORTHHAUS — Digital Products
    Fixed 3840 design canvas, scaled to viewport.
    Teal #66d1de · Sharp Sans Display
    ────────────────────────────────────────── */
@@ -59,12 +59,6 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
     scroll-behavior: auto !important;
   }
 }
-
-/* Externalised image layers — apply at ALL breakpoints (kept outside media queries) */
-.product-card__bg { position: absolute; inset: 0; z-index: 0; }
-.product-card__bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.product-card .product-card__body { z-index: 1; }
-.product-laptop picture { display: contents; }
 
 /* ═══ DESKTOP — scaled-canvas layout (≥1100px) ═══ */
 @media (min-width: 1100px) {
@@ -348,7 +342,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 .hero__title--reveal.is-revealed .word__inner { transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
-  .js .hero__title--reveal .word__inner { transform: none !important; transition: none !important; }
+  .hero__title--reveal .word__inner { transform: none !important; transition: none !important; }
 }
 
 /* ═══ SCROLL REVEAL — product rows & CTA ═══ */
@@ -360,115 +354,83 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 @media (prefers-reduced-motion: reduce) {
   .product-row, .cta { opacity: 1 !important; transform: none !important; }
 }
+  
+/* ═══════════════════════════════════════════════════════
+   PORTFOLIO — hidden page. Reuses the base design system.
+   Client-name bands reuse .section-head; each project is a
+   single full-width image card (4:3-ish) holding one JPG.
+   ═══════════════════════════════════════════════════════ */
 
-/* ═══ WEB DESIGN — process table ═══ */
+/* Each card = a teal bar (page motif, echoing the topbar) above one image.
+   The exported JPGs are the composition only (no teal bar baked in), ratio ≈ 1.415. */
+.folio-card { width: 100%; }
+.folio-card__bar { width: 100%; aspect-ratio: 27 / 1; background: var(--teal); }
+.folio-card__img { width: 100%; height: auto; display: block; aspect-ratio: 3508 / 2480; object-fit: cover; }
+
+/* Card 08 — live video on the monitor screen (autoplays only while in view). */
+.folio-card__screen-wrap { position: relative; width: 100%; aspect-ratio: 3508 / 2480; }
+.folio-card__screen-wrap > .folio-card__img { height: 100%; object-fit: cover; }
+.folio-card__video {
+  position: absolute; left: 29.78%; top: 10.76%; width: 62.39%; height: 49.33%;
+  object-fit: contain; background: transparent; border: 0; pointer-events: none;
+}
+
+/* Placeholder — sits below the bar; matches the image ratio so filled and
+   empty cards are the same height. Replace .folio-ph with a
+   <img class="folio-card__img" src="…" alt="…" loading="lazy"> when ready. */
+.folio-ph {
+  width: 100%; aspect-ratio: 3508 / 2480; position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; background: #e7e7e9; color: #1d1d1b;
+  border: 4px dashed #b9b9bd; border-top: 0;
+}
+.folio-ph__num {
+  font-weight: 900; letter-spacing: 0.04em; line-height: 1; color: var(--teal); opacity: 0.9;
+}
+.folio-ph__name { font-weight: 700; line-height: 1.25; color: #1d1d1b; }
+.folio-ph__hint { font-weight: 500; color: #8a8a90; text-transform: uppercase; letter-spacing: 0.12em; }
+
+/* ── DESKTOP (≥1100px) — scaled-canvas spacing ── */
 @media (min-width: 1100px) {
-  .process { margin-top: 220px; padding: 0 240px; }
-  .process__table {
-    border-top: 3px solid #ffffff;
-  }
-  .process__row {
-    display: grid;
-    grid-template-columns: 700px 1500px 1fr;
-    align-items: center;
-    column-gap: 0;
-    border-bottom: 3px solid #ffffff;
-    min-height: 560px;
-  }
-  .process__num {
-    font-family: var(--font); font-weight: 500; font-size: 44pt;
-    color: var(--teal); letter-spacing: 0.02em; margin: 0;
-    padding-left: 60px;
-    border-right: 3px solid #ffffff; align-self: stretch;
-    display: flex; align-items: center;
-  }
-  .process__title {
-    font-family: var(--font); font-weight: 900; font-size: 150pt;
-    line-height: 0.86; letter-spacing: 0.02em; margin: 0;
-    text-transform: uppercase; color: #ffffff;
-    padding-left: 80px;
-    border-right: 3px solid #ffffff; align-self: stretch;
-    display: flex; align-items: center;
-  }
-  .process__desc {
-    font-family: var(--font); font-weight: 500; font-size: 34pt;
-    line-height: 1.35; letter-spacing: 0; margin: 0;
-    color: #ffffff; padding-left: 80px; padding-right: 0;
-  }
+  /* Hero is identical to the other pages: fixed-height band, title + lede
+     vertically centred between the header-rule and the first section band,
+     so the layout doesn't jump when navigating between pages. */
+
+  .folio { padding: 0 240px; }
+  /* Client-name band — identical to .section-head; container provides the side inset. */
+  .folio-item .section-head { margin: 240px 0 0; }
+  .folio-list > .folio-item:first-child .section-head { margin-top: 0; }
+  .folio-card { margin: 200px 0 0; }
+
+  .folio-ph { border-width: 4px; }
+  .folio-ph__num  { font-size: 150px; margin-bottom: 40px; }
+  .folio-ph__name { font-size: 64px; max-width: 70%; }
+  .folio-ph__hint { font-size: 34px; margin-top: 40px; }
 }
 
+/* ── MOBILE & TABLET (<1100px) ── */
 @media (max-width: 1099px) {
-  .process { margin-top: var(--section-gap); }
-  .process { padding-left: var(--mobile-pad-x); padding-right: var(--mobile-pad-x); }
-  .process__table { border-top: 1px solid var(--rule); }
-  .process__row {
-    display: grid;
-    grid-template-columns: clamp(36px, 11vw, 64px) 1fr;
-    grid-template-areas:
-      "num title"
-      "num desc";
-    column-gap: clamp(14px, 4vw, 28px);
-    row-gap: clamp(10px, 2vw, 16px);
-    align-items: start;
-    border-bottom: 1px solid var(--rule);
-    padding: clamp(24px, 6vw, 44px) 0;
-  }
-  .process__num {
-    grid-area: num;
-    font-family: var(--font); font-weight: 500;
-    font-size: clamp(15px, 2.6vw, 22px); color: var(--teal);
-    letter-spacing: 0.02em; margin: 0;
-  }
-  .process__title {
-    grid-area: title;
-    font-family: var(--font); font-weight: 900;
-    font-size: clamp(34px, 9.5vw, 80px); line-height: 0.92;
-    letter-spacing: 0.02em; margin: 0; text-transform: uppercase; color: #fff;
-  }
-  .process__desc {
-    grid-area: desc;
-    font-family: var(--font); font-weight: 500;
-    font-size: clamp(14px, 1.9vw, 17px); line-height: 1.4;
-    margin: 0; color: #ffffff; max-width: 52ch; padding-right: clamp(8px, 4vw, 32px);
-  }
+  .hero--folio { padding-top: var(--section-gap); }
+  .folio { padding-left: var(--mobile-pad-x); padding-right: var(--mobile-pad-x); }
+  .folio-item .section-head { margin: var(--section-gap) 0 0; }
+  .folio-list > .folio-item:first-child .section-head { margin-top: var(--section-gap); }
+  .folio-card { margin: clamp(20px,4vw,40px) 0 0; }
+
+  .folio-ph__num  { font-size: clamp(40px, 9vw, 80px); margin-bottom: 12px; }
+  .folio-ph__name { font-size: clamp(15px, 2.6vw, 24px); max-width: 80%; }
+  .folio-ph__hint { font-size: clamp(10px, 1.6vw, 14px); margin-top: 14px; }
 }
 
-/* Process rows — staggered scroll reveal (same easing as product rows) */
-.js .process__row {
-  opacity: 0; transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease; will-change: opacity, transform;
-}
-.process__row.is-revealed { opacity: 1; transform: translateY(0); }
-@media (prefers-reduced-motion: reduce) {
-  .process__row { opacity: 1 !important; transform: none !important; }
-}
-
-/* ═══ WEB DESIGN — project banner titles ═══
-   The banner graphic already bakes in the logo + "WEB DESIGN." box at the
-   top-left, so we only overlay the project name, pinned to the bottom-left
-   in black (matches the reference layout). */
-@media (min-width: 1100px) {
-  .products .product-card__body {
-    top: auto; bottom: 9%; left: 4.46%; right: 4.46%; gap: 0;
-  }
-  .products .product-card__eyebrow {
-    font-size: 64pt; line-height: 0.95;
-  }
-}
-@media (max-width: 1099px) {
-  .products .product-card__body {
-    top: auto; bottom: 8%; left: 4.46%; right: 4.46%;
-    justify-content: flex-end; gap: 0;
-  }
-  .products .product-card__eyebrow {
-    font-size: clamp(14px, 3.4vw, 30px); line-height: 1;
-  }
-}
+/* Scroll reveal — give cards the same motion as product rows. */
+.js .folio-card { opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease; will-change: opacity, transform; }
+.folio-card.is-revealed { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .folio-card { opacity: 1 !important; transform: none !important; } }
 
   </style>
 </head>
 
-<body data-screen-label="02 Web Design">
+<body data-screen-label="06 Portfolio">
 
   <a class="skip-link" href="#main">Skip to main content</a>
 
@@ -492,11 +454,9 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
           </button>
 
           <nav class="primary-nav" id="primary-nav" aria-label="Primary">
-            <a href="index.html">about</a>
-            <a href="web-design.html" aria-current="page">web design</a>
-            <a href="graphic-design.html">graphic design</a>
-            <a href="digital-products.html">digital products</a>
-            <a href="contact.html">contact</a>
+            <a href="index.html">home</a>
+            <!-- Point this at the portfolio PDF (or wherever you host it) when ready. -->
+            <a href="NORTHHAUS_Portfolio.pdf" download>download</a>
           </nav>
         </div>
       </header>
@@ -504,91 +464,324 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
       <div class="header-rule" aria-hidden="true"></div>
 
       <!-- HERO -->
-      <section class="hero" id="main" tabindex="-1" aria-labelledby="hero-h">
+      <section class="hero hero--folio" id="main" tabindex="-1" aria-labelledby="hero-h">
         <h1 class="hero__title hero__title--reveal" id="hero-h">
-          <span class="word"><span class="word__inner"><span class="key">Web</span><wbr>Design<span class="dot">.</span></span></span>
+          <span class="word"><span class="word__inner">Portfolio<span class="dot">.</span></span></span>
         </h1>
         <p class="hero__lede">
-          High-performance interfaces built with the latest technology.
-          I build on the architecture of sound UI fundamentals.
+          Selected work from years spent inside design studios and agencies. Identities, websites,
+          reports, and social ads &ndash; different clients, different challenges, one consistent
+          standard. A quiet showcase of the projects worth sharing.
         </p>
       </section>
 
-      <!-- PROCESS TABLE -->
-      <section class="process" aria-label="My web design process">
-        <div class="process__table">
+      <!-- PORTFOLIO -->
+      <section class="folio" aria-label="Selected portfolio work">
+        <div class="folio-list">
 
-          <div class="process__row">
-            <p class="process__num">01</p>
-            <h3 class="process__title">Recon</h3>
-            <p class="process__desc">Audit, interview, competitive teardown. I walk in with a map, not a pitch deck.</p>
+        
+        <article class="folio-item" aria-labelledby="folio-01">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-01">Aberdeen<span class="dot">.</span></h2>
           </div>
+          <figure class="folio-card" aria-label="Aberdeen — Pulse — Logo &amp; Digi Screens · Internal Staff Survey">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-01.webp" alt="Aberdeen — Pulse — Logo &amp; Digi Screens · Internal Staff Survey" loading="eager" fetchpriority="high">
+          </figure>
+        </article>
 
-          <div class="process__row">
-            <p class="process__num">02</p>
-            <h3 class="process__title">Direct</h3>
-            <p class="process__desc">Two / three aesthetic routes, each fully mocked. You pick one — or I merge the best of two.</p>
+        <article class="folio-item" aria-labelledby="folio-02">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-02">Aberdeen<span class="dot">.</span></h2>
           </div>
+          <figure class="folio-card" aria-label="Aberdeen — Climate Transition Plan">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-02.webp" alt="Aberdeen — Climate Transition Plan" loading="lazy">
+          </figure>
+        </article>
 
-          <div class="process__row">
-            <p class="process__num">03</p>
-            <h3 class="process__title">Build</h3>
-            <p class="process__desc">Design and engineering in one loop. Weekly demos, no dark rooms, no vanishing prototypes.</p>
+        <article class="folio-item" aria-labelledby="folio-03">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-03">Aberdeen<span class="dot">.</span></h2>
           </div>
+          <figure class="folio-card" aria-label="Aberdeen — Event Doughnut Menu">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-03.webp" alt="Aberdeen — Event Doughnut Menu" loading="lazy">
+          </figure>
+        </article>
 
-          <div class="process__row">
-            <p class="process__num">04</p>
-            <h3 class="process__title">Launch</h3>
-            <p class="process__desc">Shipped, measured, iterated. I stay on retainer for the first 90 days so the site earns out.</p>
+        <article class="folio-item" aria-labelledby="folio-04">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-04">Standard Life<span class="dot">.</span></h2>
           </div>
+          <figure class="folio-card" aria-label="Standard Life — Bespoke Brochure for Money Mindset">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-04.webp" alt="Standard Life — Bespoke Brochure for Money Mindset" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-05">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-05">Black Professionals Scotland<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Black Professionals Scotland — Bespoke Flyers for Standard Life">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-05.webp" alt="Black Professionals Scotland — Bespoke Flyers for Standard Life" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-06">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-06">Aberdeen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Aberdeen — Editorial News Article &amp; Podcast Graphics — Illustration &amp; Vector (I)">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-06.webp" alt="Aberdeen — Editorial News Article &amp; Podcast Graphics — Illustration &amp; Vector (I)" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-07">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-07">Aberdeen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Aberdeen — Editorial News Article &amp; Podcast Graphics — Illustration &amp; Vector (II)">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-07.webp" alt="Aberdeen — Editorial News Article &amp; Podcast Graphics — Illustration &amp; Vector (II)" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-08">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-08">Aberdeen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Aberdeen — Animated Social Media Ad — 1200×1200px · One Month To Go">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <div class="folio-card__screen-wrap">
+              <img class="folio-card__img" src="assets/img/folio-08.webp" alt="Aberdeen — Animated Social Media Ad — 1200×1200px · One Month To Go" loading="lazy">
+              <video class="folio-card__video" muted loop playsinline preload="metadata"
+                     poster="assets/img/folio-video-1-poster.jpg"
+                     aria-label="Aberdeen end-of-tax-year animated social ad">
+                <source src="assets/video/folio-video-1.mp4" type="video/mp4">
+              </video>
+            </div>
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-09">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-09">Aberdeen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Aberdeen — Animated Social Media Ad — 1200×1200px · Lunar New Year">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <div class="folio-card__screen-wrap">
+              <img class="folio-card__img" src="assets/img/folio-09.webp" alt="Aberdeen — Animated Social Media Ad — 1200×1200px · Lunar New Year" loading="lazy">
+              <video class="folio-card__video" muted loop playsinline preload="metadata"
+                     poster="assets/img/folio-video-2-poster.jpg"
+                     aria-label="Aberdeen Lunar New Year animated social ad">
+                <source src="assets/video/folio-video-2.mp4" type="video/mp4">
+              </video>
+            </div>
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-10">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-10">Aberdeen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Aberdeen — PowerPoint Presentation 16:9">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-10.webp" alt="Aberdeen — PowerPoint Presentation 16:9" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-11">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-11">Aberdeen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Aberdeen — Global Equity Impact Annual Report 2023">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-11.webp" alt="Aberdeen — Global Equity Impact Annual Report 2023" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-12">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-12">Aberdeen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Aberdeen — Business Performance Update">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-12.webp" alt="Aberdeen — Business Performance Update" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-13">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-13">Aberdeen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Aberdeen — Asia’s Investment Expert Report">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-13.webp" alt="Aberdeen — Asia’s Investment Expert Report" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-14">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-14">Aberdeen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Aberdeen — Global Equity Impact Annual Report 2022">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-14.webp" alt="Aberdeen — Global Equity Impact Annual Report 2022" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-15">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-15">Aberdeen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Aberdeen — Seasons Greetings Card">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-15.webp" alt="Aberdeen — Seasons Greetings Card" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-16">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-16">Aberdeen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Aberdeen — Rebranded Sustainability Report">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-16.webp" alt="Aberdeen — Rebranded Sustainability Report" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-17">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-17">Aberdeen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Aberdeen — abrdn Financial Fairness Trust — Bespoke Rebranded Annual Report">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-17.webp" alt="Aberdeen — abrdn Financial Fairness Trust — Bespoke Rebranded Annual Report" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-18">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-18">Standard Life<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Standard Life — Home Hub Website Layout">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-18.webp" alt="Standard Life — Home Hub Website Layout" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-19">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-19">The University of Edinburgh<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="The University of Edinburgh — 23 Reasons to Study at Edinburgh — Mailer">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-19.webp" alt="The University of Edinburgh — 23 Reasons to Study at Edinburgh — Mailer" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-20">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-20">Biji’s Kitchen<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Biji’s Kitchen — Indian Takeaway Logo, Website &amp; Menu Design &amp; Build">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-20.webp" alt="Biji’s Kitchen — Indian Takeaway Logo, Website &amp; Menu Design &amp; Build" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-21">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-21">Wellness Thai Massage<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Wellness Thai Massage — Logo and Website">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-21.webp" alt="Wellness Thai Massage — Logo and Website" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-22">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-22">Lancaster University<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Lancaster University — Alumni Magazine">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-22.webp" alt="Lancaster University — Alumni Magazine" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-23">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-23">Chartered Banker<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Chartered Banker — Annual Report">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-23.webp" alt="Chartered Banker — Annual Report" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-24">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-24">Newcastle University<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Newcastle University — Postgraduate Study Guide">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-24.webp" alt="Newcastle University — Postgraduate Study Guide" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-25">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-25">Broxap<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Broxap — Sunshine Gym Equipment Catalogue">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-25.webp" alt="Broxap — Sunshine Gym Equipment Catalogue" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-26">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-26">RBS<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="RBS — Royal Bank of Scotland — The Story of 36 St Andrew Square">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-26.webp" alt="RBS — Royal Bank of Scotland — The Story of 36 St Andrew Square" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-27">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-27">De Beers Group<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="De Beers Group — Element Six Online Publication">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-27.webp" alt="De Beers Group — Element Six Online Publication" loading="lazy">
+          </figure>
+        </article>
+
+        <article class="folio-item" aria-labelledby="folio-28">
+          <div class="section-head">
+            <h2 class="section-head__title" id="folio-28">Velux<span class="dot">.</span></h2>
+          </div>
+          <figure class="folio-card" aria-label="Velux — Online Product Brochure">
+            <div class="folio-card__bar" aria-hidden="true"></div>
+            <img class="folio-card__img" src="assets/img/folio-28.webp" alt="Velux — Online Product Brochure" loading="lazy">
+          </figure>
+        </article>
+
+
 
         </div>
       </section>
 
-      <!-- PROJECTS -->
-      <section class="products" aria-label="Selected web design projects">
-
-        <article class="product-row" aria-labelledby="proj-biji">
-          <div class="product-card">
-            <picture class="product-card__bg">
-              <source type="image/webp" srcset="assets/img/web-bijis-card-800.webp 800w, assets/img/web-bijis-card-1400.webp 1400w, assets/img/web-bijis-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
-              <img src="assets/img/web-bijis-card-2000.jpg" srcset="assets/img/web-bijis-card-800.jpg 800w, assets/img/web-bijis-card-1400.jpg 1400w, assets/img/web-bijis-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="Bijis Kitchen Indian Takeaway — web design project" loading="lazy" decoding="async" width="2400" height="1147">
-            </picture>
-            <div class="product-card__body">
-              <h3 class="product-card__eyebrow" id="proj-biji">Bijis Kitchen Indian Takeaway.</h3>
-            </div>
-          </div>
-          <div class="product-laptop">
-            <picture>
-              <source type="image/webp" srcset="assets/img/web-bijis-laptop-480.webp 480w, assets/img/web-bijis-laptop-800.webp 800w, assets/img/web-bijis-laptop-1200.webp 1200w" sizes="(min-width: 1100px) 1100px, calc(100vw - 48px)">
-              <img src="assets/img/web-bijis-laptop-1200.jpg" srcset="assets/img/web-bijis-laptop-480.jpg 480w, assets/img/web-bijis-laptop-800.jpg 800w, assets/img/web-bijis-laptop-1200.jpg 1200w" sizes="(min-width: 1100px) 1100px, calc(100vw - 48px)" alt="Bijis Kitchen Indian Takeaway website shown across desktop, tablet and mobile" loading="lazy" decoding="async" width="1200" height="1200">
-            </picture>
-          </div>
-        </article>
-
-        <article class="product-row" aria-labelledby="proj-sabai">
-          <div class="product-card">
-            <picture class="product-card__bg">
-              <source type="image/webp" srcset="assets/img/web-sabai-card-800.webp 800w, assets/img/web-sabai-card-1400.webp 1400w, assets/img/web-sabai-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
-              <img src="assets/img/web-sabai-card-2000.jpg" srcset="assets/img/web-sabai-card-800.jpg 800w, assets/img/web-sabai-card-1400.jpg 1400w, assets/img/web-sabai-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="Sabai Sabai Thai Massage — web design project" loading="lazy" decoding="async" width="2400" height="1147">
-            </picture>
-            <div class="product-card__body">
-              <h3 class="product-card__eyebrow" id="proj-sabai">Sabai Sabai Thai Massage.</h3>
-            </div>
-          </div>
-          <div class="product-laptop">
-            <picture>
-              <source type="image/webp" srcset="assets/img/web-sabai-laptop-480.webp 480w, assets/img/web-sabai-laptop-800.webp 800w, assets/img/web-sabai-laptop-1200.webp 1200w" sizes="(min-width: 1100px) 1100px, calc(100vw - 48px)">
-              <img src="assets/img/web-sabai-laptop-1200.jpg" srcset="assets/img/web-sabai-laptop-480.jpg 480w, assets/img/web-sabai-laptop-800.jpg 800w, assets/img/web-sabai-laptop-1200.jpg 1200w" sizes="(min-width: 1100px) 1100px, calc(100vw - 48px)" alt="Sabai Sabai Thai Massage website shown across desktop and laptop" loading="lazy" decoding="async" width="1200" height="1200">
-            </picture>
-          </div>
-        </article>
-
-      </section>
-
       <!-- CTA -->
-      <section class="cta" aria-label="Built with the latest tech">
-        <h2 class="cta__head">Built With The<br>Latest Tech<span class="dot">.</span></h2>
+      <section class="cta" aria-label="Let's work together">
+        <h2 class="cta__head">Let&rsquo;s Work<br>Together<span class="dot">.</span></h2>
       </section>
 
       <!-- FOOTER -->
@@ -635,6 +828,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
       const wrap = stage.parentElement;
       const CANVAS_W = 3840;
       const DESKTOP_MIN = 1100;
+      let raf = 0;
       function fit() {
         const vw = window.innerWidth;
         if (vw >= DESKTOP_MIN) {
@@ -646,8 +840,19 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
           wrap.style.height = '';
         }
       }
+      function scheduleFit() { if (raf) cancelAnimationFrame(raf); raf = requestAnimationFrame(fit); }
       window.addEventListener('resize', fit);
       window.addEventListener('load', fit);
+      // Keep the scaled wrapper height in sync as lazy images/videos load and
+      // reflow the stage — otherwise the wrapper stays too short and scrolling locks.
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(scheduleFit).observe(stage);
+      } else {
+        stage.querySelectorAll('img,video').forEach(function (el) {
+          el.addEventListener('load', scheduleFit);
+          el.addEventListener('loadedmetadata', scheduleFit);
+        });
+      }
       fit();
       requestAnimationFrame(() => requestAnimationFrame(fit));
       setTimeout(fit, 500);
@@ -700,7 +905,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   <script>
     // Product rows — staggered scroll reveal (IntersectionObserver).
     (function() {
-      const rows = document.querySelectorAll('.products .product-row');
+      const rows = document.querySelectorAll('.folio .folio-card');
       if (!rows.length) return;
       const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reduced || !('IntersectionObserver' in window)) {
@@ -738,27 +943,19 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   </script>
 
   <script>
-    // Process table rows — staggered scroll reveal (matches product-row easing).
-    (function() {
-      const rows = document.querySelectorAll('.process__row');
-      if (!rows.length) return;
-      const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduced || !('IntersectionObserver' in window)) {
-        rows.forEach(r => r.classList.add('is-revealed')); return;
-      }
-      let i = 0;
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target;
-          setTimeout(() => el.classList.add('is-revealed'), i * 120);
-          i++;
-          obs.unobserve(el);
-        });
-      }, { threshold: 0.15 });
-      rows.forEach(r => obs.observe(r));
+    /* Play card 08's screen video only while it's in view; respect reduced motion. */
+    (function () {
+      var vids = document.querySelectorAll('.folio-card__video');
+      if (!vids.length) return;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;                 // leave paused on the poster frame
+      var play = function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+      if (!('IntersectionObserver' in window)) { vids.forEach(play); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) play(e.target); else e.target.pause(); });
+      }, { threshold: 0.25 });
+      vids.forEach(function (v) { io.observe(v); });
     })();
   </script>
-
 </body>
 </html>
