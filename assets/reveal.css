@@ -1,0 +1,97 @@
+/* ─────────────────────────────────────────────
+   NORTHHAUS — cursor code-reveal (desktop only)
+   Injected into .hero by reveal.js. Fills the band
+   between the two horizontal rules with dim code
+   that the cursor spotlight reveals. All sizes are
+   in 3840-canvas px so they scale with the stage.
+   ───────────────────────────────────────────── */
+
+/* The hero becomes the positioning context + clip box. */
+.reveal-on .hero { position: relative; }
+
+/* Keep the real content above the code. The JS positions an opaque,
+   feathered scrim (.code-scrim) over each text block at z-index 2 —
+   above the code band (z1), below the text (z3) — so the text area is
+   genuinely blocked, with blurred edges blending into the code field. */
+.reveal-on .hero__title,
+.reveal-on .page-title,
+.reveal-on .hero__lede,
+.reveal-on .page-lede {
+  position: relative;
+  z-index: 3;
+}
+.code-scrim {
+  position: absolute;
+  z-index: 2;
+  background: #000;
+  border-radius: 160px;
+  filter: blur(80px);
+  pointer-events: none;
+}
+/* A light edge keeps glyph contours crisp against the scrim. */
+.reveal-on .hero__title,
+.reveal-on .page-title { text-shadow: 0 0 14px #000; }
+.reveal-on .hero__lede,
+.reveal-on .page-lede  { text-shadow: 0 0 14px #000, 0 0 14px #000; }
+
+/* The reveal band — clipped to the hero, so nothing
+   can ever appear above the top rule or below the bottom rule. */
+.code-band {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--reveal-band-h, 2387px);   /* the about-page band, on every page */
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(circle var(--r, 0px) at var(--x, -9999px) var(--y, -9999px),
+    #000 0%, #000 40%, rgba(0,0,0,0.75) 60%, rgba(0,0,0,0.40) 75%, rgba(0,0,0,0.12) 88%, transparent 100%);
+          mask-image: radial-gradient(circle var(--r, 0px) at var(--x, -9999px) var(--y, -9999px),
+    #000 0%, #000 40%, rgba(0,0,0,0.75) 60%, rgba(0,0,0,0.40) 75%, rgba(0,0,0,0.12) 88%, transparent 100%);
+}
+
+.code-cols {
+  display: flex;
+  gap: 120px;
+  height: 100%;
+  padding: 120px 240px;
+}
+.code-col {
+  flex: 1 1 0;
+  min-width: 0;
+  font-family: ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 42px;
+  line-height: 1.7;
+  letter-spacing: 0;
+  color: rgba(255,255,255,0.24);
+  white-space: pre;
+  overflow: hidden;
+}
+.code-band .tag  { color: rgba(102,209,222,0.55); }
+.code-band .attr { color: rgba(255,255,255,0.48); }
+.code-band .str  { color: rgba(102,209,222,0.42); }
+.code-band .com  { color: rgba(255,255,255,0.18); font-style: italic; }
+
+/* Teal wash that brightens inside the spotlight. */
+.code-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--reveal-band-h, 2387px);
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+.code-glow::after {
+  content: "";
+  position: absolute;
+  inset: -600px;
+  background: radial-gradient(circle var(--gr, 0px) at var(--gx, -9999px) var(--gy, -9999px),
+    rgba(102,209,222,0.10) 0%, rgba(102,209,222,0.04) 45%, transparent 70%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .code-glow { display: none; }
+}

@@ -6,6 +6,7 @@
   <link rel="preload" href="assets/fonts/SharpSansDisplay-900.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/SharpSansDisplay-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="assets/reveal.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Northhaus — Contact</title>
   <meta name="description" content="Get in touch with Northhaus. If your brand or organisation needs a distinctive identity, dynamic website, digital tool or impactful communication design, I'd love to hear from you.">
@@ -195,6 +196,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 /* ── Hero ──────────────────────────────────── */
 .hero {
   padding: 400px 240px 0;
+  min-height: 2387px;   /* exact hero band (header-rule → next section) */
 }
 .hero__title {
   font-family: var(--font);
@@ -974,8 +976,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
     margin: 0;
     text-transform: uppercase;
   }
-  .page-title .pt-a { color: var(--teal); }
-  .page-title .pt-b { color: #ffffff; }
+  .page-title .pt-a { color: var(--teal); display: block; }
+  .page-title .pt-b { color: #ffffff; display: block; }
   .page-title .dot  { color: var(--teal); }
 
   .page-lede {
@@ -992,7 +994,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
      mirrors the framing used by the stats grid on
      the homepage. */
   .form-section {
-    margin-top: 400px;
+    margin-top: 0;   /* fixed-height hero sets the band; form follows at the bottom rule */
     padding: 0 240px;
   }
   .form-heading {
@@ -1129,8 +1131,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
     margin: 0;
     text-transform: uppercase;
   }
-  .page-title .pt-a { color: var(--teal); }
-  .page-title .pt-b { color: #ffffff; }
+  .page-title .pt-a { color: var(--teal); display: block; }
+  .page-title .pt-b { color: #ffffff; display: block; }
   .page-title .dot  { color: var(--teal); }
 
   .page-lede {
@@ -1331,7 +1333,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
       <!-- PAGE TITLE -->
       <section class="hero" id="main" tabindex="-1" aria-labelledby="page-title">
         <h1 class="page-title hero__title--reveal" id="page-title">
-          <span class="pt-a"><span class="word"><span class="word__inner">Contact</span></span></span><span class="pt-b"><span class="word"><span class="word__inner">Us<span class="dot">.</span></span></span></span>
+          <span class="pt-a"><span class="word"><span class="word__inner">Start</span></span> <span class="word"><span class="word__inner">your</span></span></span><span class="pt-b"><span class="word"><span class="word__inner">Journey<span class="dot">.</span></span></span></span>
         </h1>
         <p class="page-lede">
           If your brand or organisation needs a distinctive identity, dynamic website,
@@ -1624,5 +1626,6 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
     })();
   </script>
 
+  <script src="assets/reveal.js" defer></script>
 </body>
 </html>
