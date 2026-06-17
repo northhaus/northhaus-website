@@ -140,6 +140,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
    right page edge, exactly like the reference layout. */
 .products { margin-top: 220px; padding: 0 240px; }
 .product-row {
+  position: relative;
   display: grid; grid-template-columns: 2206px 1054px;
   align-items: stretch; column-gap: 100px; margin-bottom: 100px;
   height: 1054px;
@@ -160,6 +161,21 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   margin: 0; font-family: var(--font); font-weight: 700; font-size: 40pt;
   line-height: 1.3; color: #000;
 }
+/* On rows with a buy button, keep the copy clear of the button column */
+.product-row--buy .product-card__copy { max-width: 62%; }
+/* Buy button — sits bottom-right of the card, clear of the baked-in rule.
+   Right offset = laptop column (1054) + gap (100) + card inset (~4.46% of 2206). */
+.product-buy {
+  position: absolute; right: 1252px; bottom: 15.5%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #000; color: #fff;
+  font-family: var(--font); font-weight: 900; font-size: 40pt;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 36px 64px; z-index: 2;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.product-buy .dot { color: var(--teal); }
+.product-buy:hover { background: #fff; color: #000; transform: translateY(-4px); }
 .product-laptop { position: relative; overflow: hidden; }
 .product-laptop img {
   width: 100%; height: 100%; object-fit: cover; display: block;
@@ -309,6 +325,19 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
     margin: 0; font-family: var(--font); font-weight: 700;
     font-size: clamp(10px, 1.8vw, 16px); line-height: 1.3; color: #000;
   }
+  .product-buy {
+    position: static; display: flex; align-items: center; justify-content: center;
+    width: 100%;
+    background: var(--teal); color: #000;
+    font-family: var(--font); font-weight: 900;
+    font-size: clamp(12px, 2.4vw, 18px); letter-spacing: 0.04em;
+    text-transform: uppercase; padding: clamp(12px, 3vw, 20px);
+    z-index: 2;
+  }
+  .product-buy .dot { color: #000; }
+  .product-buy:active { background: #fff; color: #000; }
+  .product-buy:active .dot { color: #000; }
+  .product-buy .dot { color: var(--teal); }
   .product-laptop img { width: 100%; height: auto; display: block; }
 
   /* CTA */
@@ -424,7 +453,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
       <!-- PRODUCTS -->
       <section class="products" aria-label="HTML products">
 
-        <article class="product-row" aria-labelledby="prod-wedding">
+        <article class="product-row product-row--buy" aria-labelledby="prod-wedding">
           <div class="product-card">
             <picture class="product-card__bg">
               <source type="image/webp" srcset="assets/img/dp-wedding-card-800.webp 800w, assets/img/dp-wedding-card-1400.webp 1400w, assets/img/dp-wedding-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
@@ -435,6 +464,10 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
               <p class="product-card__copy">Planning a UK wedding means juggling dozens of moving pieces – suppliers, budgets, guests, RSVPs, dates, deposits. This organiser brings it all into one calm, private place that lives on your computer, so you can spend less time on spreadsheets.</p>
             </div>
           </div>
+          <!-- LEMON SQUEEZY: UK Wedding Planner checkout. -->
+          <a class="product-buy lemonsqueezy-button"
+             href="https://northhaus-store.lemonsqueezy.com/checkout/buy/13bf4d6e-67c8-4f4d-a390-473376bb1765?embed=1&logo=0"
+             aria-label="Buy UK Wedding Planner for £4.99">Buy now – £4.99</a>
           <div class="product-laptop">
             <picture>
               <source type="image/webp" srcset="assets/img/dp-wedding-laptop-480.webp 480w, assets/img/dp-wedding-laptop-800.webp 800w, assets/img/dp-wedding-laptop-1200.webp 1200w" sizes="(min-width: 1100px) 1100px, calc(100vw - 48px)">
@@ -443,7 +476,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
           </div>
         </article>
 
-        <article class="product-row" aria-labelledby="prod-fit">
+        <article class="product-row product-row--buy" aria-labelledby="prod-fit">
           <div class="product-card">
             <picture class="product-card__bg">
               <source type="image/webp" srcset="assets/img/dp-fitphrase-card-800.webp 800w, assets/img/dp-fitphrase-card-1400.webp 1400w, assets/img/dp-fitphrase-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
@@ -454,6 +487,10 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
               <p class="product-card__copy">Fit Phrase transforms phrases into movement – every letter linked to a corresponding exercise, creating quick, engaging workouts you can do anywhere. A simple, playful way to stay active, build consistency, and make fitness feel less like a chore.</p>
             </div>
           </div>
+          <!-- LEMON SQUEEZY: FitPhrase Generator checkout. -->
+          <a class="product-buy lemonsqueezy-button"
+             href="https://northhaus-store.lemonsqueezy.com/checkout/buy/7554b8f1-7cba-4f18-a0b3-fe0a00b4e007?embed=1&logo=0"
+             aria-label="Buy FitPhrase Generator for £4.99">Buy now – £4.99</a>
           <div class="product-laptop">
             <picture>
               <source type="image/webp" srcset="assets/img/dp-fitphrase-laptop-480.webp 480w, assets/img/dp-fitphrase-laptop-800.webp 800w, assets/img/dp-fitphrase-laptop-1200.webp 1200w" sizes="(min-width: 1100px) 1100px, calc(100vw - 48px)">
@@ -462,7 +499,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
           </div>
         </article>
 
-        <article class="product-row" aria-labelledby="prod-budget">
+        <article class="product-row product-row--buy" aria-labelledby="prod-budget">
           <div class="product-card">
             <picture class="product-card__bg">
               <source type="image/webp" srcset="assets/img/dp-budget-card-800.webp 800w, assets/img/dp-budget-card-1400.webp 1400w, assets/img/dp-budget-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
@@ -473,10 +510,60 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
               <p class="product-card__copy">A simple, well-designed UK Budget Tracker that helps you take control of your monthly finances – track bills, debt and investments in one calm, considered place.</p>
             </div>
           </div>
+          <!-- LEMON SQUEEZY: UK Monthly Budget Tracker checkout. -->
+          <a class="product-buy lemonsqueezy-button"
+             href="https://northhaus-store.lemonsqueezy.com/checkout/buy/aaa7bf44-7be8-44d6-8723-bc6db3ec3801?embed=1&logo=0"
+             aria-label="Buy UK Monthly Budget Tracker for £4.99">Buy now – £4.99</a>
           <div class="product-laptop">
             <picture>
               <source type="image/webp" srcset="assets/img/dp-budget-laptop-480.webp 480w, assets/img/dp-budget-laptop-800.webp 800w, assets/img/dp-budget-laptop-1200.webp 1200w" sizes="(min-width: 1100px) 1100px, calc(100vw - 48px)">
               <img src="assets/img/dp-budget-laptop-1200.jpg" srcset="assets/img/dp-budget-laptop-480.jpg 480w, assets/img/dp-budget-laptop-800.jpg 800w, assets/img/dp-budget-laptop-1200.jpg 1200w" sizes="(min-width: 1100px) 1100px, calc(100vw - 48px)" alt="UK Budget Tracker dashboard" loading="lazy" decoding="async" width="1200" height="1200">
+            </picture>
+          </div>
+        </article>
+
+        <article class="product-row product-row--buy" aria-labelledby="prod-divorce">
+          <div class="product-card">
+            <picture class="product-card__bg">
+              <source type="image/webp" srcset="assets/img/dp-divorce-card-800.webp 800w, assets/img/dp-divorce-card-1400.webp 1400w, assets/img/dp-divorce-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
+              <img src="assets/img/dp-divorce-card-2000.jpg" srcset="assets/img/dp-divorce-card-800.jpg 800w, assets/img/dp-divorce-card-1400.jpg 1400w, assets/img/dp-divorce-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="Northhaus Divorce Organiser" loading="lazy" decoding="async" width="2400" height="1147">
+            </picture>
+            <div class="product-card__body">
+              <h3 class="product-card__eyebrow" id="prod-divorce">A QUIET, ORGANISED PLACE TO HOLD EVERYTHING</h3>
+              <p class="product-card__copy">Going through a divorce in the UK means tracking dozens of moving pieces at once — paperwork, finances, dates, contacts, costs. This organiser brings it all into one calm, private place that lives on your computer.</p>
+            </div>
+          </div>
+          <!-- LEMON SQUEEZY: UK Divorce Organiser checkout. -->
+          <a class="product-buy lemonsqueezy-button"
+             href="https://northhaus-store.lemonsqueezy.com/checkout/buy/037cea55-ff8a-4a95-b879-12fdbc6ad3d4?embed=1&logo=0"
+             aria-label="Buy UK Divorce Organiser for £4.99">Buy now – £4.99</a>
+          <div class="product-laptop">
+            <picture>
+              <source type="image/webp" srcset="assets/img/dp-divorce-laptop-480.webp 480w, assets/img/dp-divorce-laptop-800.webp 800w, assets/img/dp-divorce-laptop-1200.webp 1200w" sizes="(min-width: 1100px) 1100px, calc(100vw - 48px)">
+              <img src="assets/img/dp-divorce-laptop-1200.jpg" srcset="assets/img/dp-divorce-laptop-480.jpg 480w, assets/img/dp-divorce-laptop-800.jpg 800w, assets/img/dp-divorce-laptop-1200.jpg 1200w" sizes="(min-width: 1100px) 1100px, calc(100vw - 48px)" alt="UK Divorce Organiser dashboard" loading="lazy" decoding="async" width="1200" height="1200">
+            </picture>
+          </div>
+        </article>
+
+        <article class="product-row product-row--buy" aria-labelledby="prod-funeral">
+          <div class="product-card">
+            <picture class="product-card__bg">
+              <source type="image/webp" srcset="assets/img/dp-funeral-card-800.webp 800w, assets/img/dp-funeral-card-1400.webp 1400w, assets/img/dp-funeral-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
+              <img src="assets/img/dp-funeral-card-2000.jpg" srcset="assets/img/dp-funeral-card-800.jpg 800w, assets/img/dp-funeral-card-1400.jpg 1400w, assets/img/dp-funeral-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="Northhaus Funeral Planner" loading="lazy" decoding="async" width="2400" height="1147">
+            </picture>
+            <div class="product-card__body">
+              <h3 class="product-card__eyebrow" id="prod-funeral">A QUIET, ORGANISED PLACE TO HOLD EVERYTHING</h3>
+              <p class="product-card__copy">Losing someone is hard enough without drowning in paperwork. Registering the death, arranging the funeral, finding the will — it's a lot to carry, often while you're grieving. This UK organiser brings it all into one private place that lives on your computer.</p>
+            </div>
+          </div>
+          <!-- LEMON SQUEEZY: UK Funeral Planner checkout. -->
+          <a class="product-buy lemonsqueezy-button"
+             href="https://northhaus-store.lemonsqueezy.com/checkout/buy/5133d1fe-ae24-4a26-821e-8d06dd552b7f?embed=1&logo=0"
+             aria-label="Buy UK Funeral Planner for £4.99">Buy now – £4.99</a>
+          <div class="product-laptop">
+            <picture>
+              <source type="image/webp" srcset="assets/img/dp-funeral-laptop-480.webp 480w, assets/img/dp-funeral-laptop-800.webp 800w, assets/img/dp-funeral-laptop-1200.webp 1200w" sizes="(min-width: 1100px) 1100px, calc(100vw - 48px)">
+              <img src="assets/img/dp-funeral-laptop-1200.jpg" srcset="assets/img/dp-funeral-laptop-480.jpg 480w, assets/img/dp-funeral-laptop-800.jpg 800w, assets/img/dp-funeral-laptop-1200.jpg 1200w" sizes="(min-width: 1100px) 1100px, calc(100vw - 48px)" alt="UK Funeral Planner dashboard" loading="lazy" decoding="async" width="1200" height="1200">
             </picture>
           </div>
         </article>
@@ -634,5 +721,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   </script>
 
   <script src="assets/reveal.js" defer></script>
+
+  <!-- Lemon Squeezy — powers the checkout overlay for every .lemonsqueezy-button on this page -->
+  <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
 </body>
 </html>
