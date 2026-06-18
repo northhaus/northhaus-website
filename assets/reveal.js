@@ -12,6 +12,9 @@
   var SPOTLIGHT_SCREEN_R = 260;   // on-screen radius in CSS px
   var EASE = 0.12;                // cursor smoothing
   var ACTIVE = "(min-width: 1100px) and (pointer: fine)";
+  /* Mobile / coarse-pointer: no cursor, so we reveal the same code band
+     in a handful of fixed spots instead of a moving spotlight. */
+  var STATIC = "(max-width: 1099px), (pointer: coarse)";
 
   /* Per-page code. Keyed off the filename. Two columns each:
      left = markup, right = styles / logic. Purely decorative,
@@ -400,6 +403,45 @@
     built = false;
   }
 
+  /* ── Static mobile reveal ───────────────────────────────
+     Same code band, but no cursor loop, no scrims, no glow.
+     A fixed multi-spot mask (in reveal.css) shows the code
+     through in several set positions. ─────────────────── */
+  var staticBuilt = false;
+  var staticBand = null;
+  function buildStatic() {
+    if (staticBuilt) return;
+    var hero = document.querySelector(".hero");
+    if (!hero) return;
+    var snip = SNIPPETS[pageKey()] || SNIPPETS.about;
+
+    staticBand = document.createElement("div");
+    staticBand.className = "code-band code-band--static";
+    staticBand.setAttribute("aria-hidden", "true");
+    var cols = document.createElement("div");
+    cols.className = "code-cols";
+    var keys = ["left", "right", "third"].filter(function (k) { return snip[k]; });
+    var COL_COUNT = 5;
+    for (var i = 0; i < COL_COUNT; i++) {
+      var col = document.createElement("div");
+      col.className = "code-col";
+      col.innerHTML = fill(snip[keys[i % keys.length]]);
+      cols.appendChild(col);
+    }
+    staticBand.appendChild(cols);
+    hero.insertBefore(staticBand, hero.firstChild);
+    document.body.classList.add("reveal-on", "reveal-static");
+    staticBuilt = true;
+  }
+  function teardownStatic() {
+    if (!staticBuilt) return;
+    if (staticBand) staticBand.remove();
+    staticBand = null;
+    document.body.classList.remove("reveal-static");
+    if (!built) document.body.classList.remove("reveal-on");
+    staticBuilt = false;
+  }
+
   function onMove(e) {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
@@ -455,13 +497,20 @@
   }
 
   var mq = window.matchMedia(ACTIVE);
-  function sync() { if (mq.matches) start(); else stop(); }
+  var mqStatic = window.matchMedia(STATIC);
+  function sync() {
+    if (mq.matches) { teardownStatic(); start(); }
+    else {
+      stop();
+      if (mqStatic.matches) buildStatic(); else teardownStatic();
+    }
+  }
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", sync);
   } else {
     sync();
   }
-  if (mq.addEventListener) mq.addEventListener("change", sync);
-  else if (mq.addListener) mq.addListener(sync);
+  if (mq.addEventListener) { mq.addEventListener("change", sync); mqStatic.addEventListener("change", sync); }
+  else if (mq.addListener) { mq.addListener(sync); mqStatic.addListener(sync); }
 })();

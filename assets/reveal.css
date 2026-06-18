@@ -95,3 +95,39 @@
 @media (prefers-reduced-motion: reduce) {
   .code-glow { display: none; }
 }
+
+/* ─────────────────────────────────────────────
+   Static mobile reveal — same code band, but the
+   cursor spotlight is replaced by a fixed set of
+   5 feathered spots so the code peeks through in
+   set places. No JS animation, no cursor needed.
+   ───────────────────────────────────────────── */
+.code-band--static {
+  /* on mobile the band must hug the hero, not the 2387px desktop canvas */
+  height: 100%;
+  /* override the cursor-driven single-circle mask with 5 fixed spots */
+  -webkit-mask-image:
+    radial-gradient(circle 18vmin at 14% 16%,  #000 0%, #000 32%, rgba(0,0,0,0.35) 64%, transparent 100%),
+    radial-gradient(circle 22vmin at 88% 40%,  #000 0%, #000 34%, rgba(0,0,0,0.35) 66%, transparent 100%),
+    radial-gradient(circle 19vmin at 60% 64%,  #000 0%, #000 32%, rgba(0,0,0,0.35) 64%, transparent 100%),
+    radial-gradient(circle 12vmin at 10% 72%,  #000 0%, #000 28%, rgba(0,0,0,0.28) 60%, transparent 100%),
+    radial-gradient(circle 16vmin at 84% 82%,  #000 0%, #000 30%, rgba(0,0,0,0.32) 63%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+          mask-image:
+    radial-gradient(circle 18vmin at 14% 16%,  #000 0%, #000 32%, rgba(0,0,0,0.35) 64%, transparent 100%),
+    radial-gradient(circle 22vmin at 88% 40%,  #000 0%, #000 34%, rgba(0,0,0,0.35) 66%, transparent 100%),
+    radial-gradient(circle 19vmin at 60% 64%,  #000 0%, #000 32%, rgba(0,0,0,0.35) 64%, transparent 100%),
+    radial-gradient(circle 12vmin at 10% 72%,  #000 0%, #000 28%, rgba(0,0,0,0.28) 60%, transparent 100%),
+    radial-gradient(circle 16vmin at 84% 82%,  #000 0%, #000 30%, rgba(0,0,0,0.32) 63%, transparent 100%);
+          mask-repeat: no-repeat;
+}
+/* Mobile column sizing: the desktop canvas padding/font would collapse
+   the columns on a phone, so reset them to viewport-appropriate values. */
+.code-band--static .code-cols {
+  gap: 24px;
+  padding: 28px 20px;
+}
+.code-band--static .code-col {
+  font-size: 11px;
+  line-height: 1.6;
+}
