@@ -327,17 +327,16 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   }
   .product-buy {
     position: static; display: flex; align-items: center; justify-content: center;
-    width: 100%;
-    background: var(--teal); color: #000;
+    width: 65%; margin: 0 auto;
+    background: #ffffff; color: #000;
     font-family: var(--font); font-weight: 900;
     font-size: clamp(12px, 2.4vw, 18px); letter-spacing: 0.04em;
     text-transform: uppercase; padding: clamp(12px, 3vw, 20px);
     z-index: 2;
   }
-  .product-buy .dot { color: #000; }
-  .product-buy:active { background: #fff; color: #000; }
-  .product-buy:active .dot { color: #000; }
   .product-buy .dot { color: var(--teal); }
+  .product-buy:active { background: var(--teal); color: #000; }
+  .product-buy:active .dot { color: #000; }
   .product-laptop img { width: 100%; height: auto; display: block; }
 
   /* CTA */
@@ -393,6 +392,44 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 @media (prefers-reduced-motion: reduce) {
   .product-row, .cta { opacity: 1 !important; transform: none !important; }
 }
+/* ═══════════════════════════════════════════════
+   CASCADE TEXT — stagger character slide on hover
+   Applied to .section-head__title--cascade
+   ═══════════════════════════════════════════════ */
+.section-head__title--cascade { cursor: default; white-space: nowrap; }
+.cascade-chars {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1;
+  height: 1em;
+}
+/* Default chars (white): teal ghost slides up from below */
+.cascade-char {
+  display: inline-block;
+  position: relative;
+  will-change: transform;
+  color: #ffffff;
+  text-shadow: 0 1em var(--teal);
+  transition: transform 250ms ease-in-out;
+}
+/* Key chars (teal): white ghost slides up from below */
+.cascade-char--key {
+  color: var(--teal);
+  text-shadow: 0 1em #ffffff;
+}
+/* Space chars: no shadow needed */
+.cascade-char--space { text-shadow: none; }
+.section-head__title--cascade:hover .cascade-char {
+  transform: translateY(-1em);
+}
+/* Dot: teal at rest, white on hover */
+.section-head__title--cascade .dot { transition: color 250ms ease-in-out; }
+.section-head__title--cascade:hover .dot { color: #ffffff; }
+@media (prefers-reduced-motion: reduce) {
+  .cascade-char { transition: none !important; }
+  .section-head__title--cascade .dot { transition: none !important; }
+}
   </style>
 </head>
 
@@ -447,7 +484,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
       <!-- SECTION HEADING -->
       <div class="section-head">
-        <h2 class="section-head__title"><span class="key">HTML</span><wbr>Products<span class="dot">.</span></h2>
+        <h2 class="section-head__title section-head__title--cascade" aria-label="HTML Products."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char cascade-char--key" style="transition-delay:0ms">H</span><span class="cascade-char cascade-char--key" style="transition-delay:30ms">T</span><span class="cascade-char cascade-char--key" style="transition-delay:60ms">M</span><span class="cascade-char cascade-char--key" style="transition-delay:90ms">L</span><span class="cascade-char cascade-char--space" style="transition-delay:0ms">&nbsp;</span><span class="cascade-char" style="transition-delay:0ms">P</span><span class="cascade-char" style="transition-delay:30ms">r</span><span class="cascade-char" style="transition-delay:60ms">o</span><span class="cascade-char" style="transition-delay:90ms">d</span><span class="cascade-char" style="transition-delay:120ms">u</span><span class="cascade-char" style="transition-delay:150ms">c</span><span class="cascade-char" style="transition-delay:180ms">t</span><span class="cascade-char" style="transition-delay:210ms">s</span></span><span class="dot">.</span></h2>
       </div>
 
       <!-- PRODUCTS -->

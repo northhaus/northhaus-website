@@ -421,17 +421,44 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   .folio-ph__hint { font-size: clamp(10px, 1.6vw, 14px); margin-top: 14px; }
 }
 
-/* Scroll reveal — give cards the same motion as product rows. */
-.js .folio-card { opacity: 0; transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease; will-change: opacity, transform; }
-.folio-card.is-revealed { opacity: 1; transform: translateY(0); }
-@media (prefers-reduced-motion: reduce) { .folio-card { opacity: 1 !important; transform: none !important; } }
+/* ═══════════════════════════════════════════════
+   FOLIO STACK — sticky card stacking effect.
+   Each .folio-card sticks to the top of the
+   viewport as you scroll; the next card slides
+   up over it. Heading sits above, scrolls away.
+   ═══════════════════════════════════════════════ */
+
+/* The list needs to establish a stacking context */
+.folio-list {
+  position: relative;
+}
+
+/* Each item is a normal block — heading scrolls, card sticks */
+.folio-item {
+  position: relative;
+}
+
+/* The card itself goes sticky */
+.folio-card {
+  position: sticky;
+  top: 60px;   /* small gap from top of viewport */
+  z-index: 1;  /* base; JS will set per-item z-index */
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.5);
+}
+
+/* On mobile sticky top is tighter */
+@media (max-width: 1099px) {
+  .folio-card {
+    top: 12px;
+  }
+}
+
 
 /* ═══════════════════════════════════════════════
    CASCADE TEXT — stagger character slide on hover
    Applied to .section-head__title--cascade
    ═══════════════════════════════════════════════ */
-.section-head__title--cascade { cursor: default; }
+.section-head__title--cascade { cursor: default; white-space: nowrap; }
 .cascade-chars {
   display: inline-block;
   overflow: hidden;
@@ -934,26 +961,17 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
     })();
   </script>
 
+
+
   <script>
-    // Product rows — staggered scroll reveal (IntersectionObserver).
+    // Folio stack — assign ascending z-index to each card so later
+    // cards stack on top of earlier ones as they slide up.
     (function() {
-      const rows = document.querySelectorAll('.folio .folio-card');
-      if (!rows.length) return;
-      const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduced || !('IntersectionObserver' in window)) {
-        rows.forEach(r => r.classList.add('is-revealed')); return;
-      }
-      let i = 0;
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target;
-          setTimeout(() => el.classList.add('is-revealed'), i * 150);
-          i++;
-          obs.unobserve(el);
-        });
-      }, { threshold: 0.15 });
-      rows.forEach(r => obs.observe(r));
+      const items = document.querySelectorAll('.folio-item');
+      items.forEach(function(item, i) {
+        const card = item.querySelector('.folio-card');
+        if (card) card.style.zIndex = i + 1;
+      });
     })();
   </script>
 
