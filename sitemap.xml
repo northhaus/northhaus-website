@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://northhaus.io/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://northhaus.io/web-design.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://northhaus.io/graphic-design.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://northhaus.io/digital-products.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://northhaus.io/assets/img/dp-wedding-card-2000.jpg</image:loc>
+      <image:title>Northhaus UK Wedding Planner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://northhaus.io/assets/img/dp-fitphrase-card-2000.jpg</image:loc>
+      <image:title>Northhaus Fit Phrase Generator</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://northhaus.io/assets/img/dp-budget-card-2000.jpg</image:loc>
+      <image:title>Northhaus UK Monthly Budget Tracker</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://northhaus.io/assets/img/dp-divorce-card-2000.jpg</image:loc>
+      <image:title>Northhaus UK Divorce Organiser</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://northhaus.io/assets/img/dp-funeral-card-2000.jpg</image:loc>
+      <image:title>Northhaus UK Funeral Planner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://northhaus.io/assets/img/dp-incorporated-card-2000.jpg</image:loc>
+      <image:title>Northhaus Incorporated — UK Limited Company Guide</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://northhaus.io/assets/img/dp-selfemployed-card-2000.jpg</image:loc>
+      <image:title>Northhaus Self-Employed — UK Sole Trader Guide</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://northhaus.io/guides/uk-wedding-budget-2026.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://northhaus.io/contact.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

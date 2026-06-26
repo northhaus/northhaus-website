@@ -1,0 +1,36 @@
+# Northhaus
+
+> Northhaus is a UK-based solo design studio founded by John, building bespoke websites, digital products and graphic design. The studio's flagship output is a range of single-file HTML planners and ebooks built for UK life events — weddings, divorce, funerals, monthly budgeting, going self-employed and incorporating a limited company.
+
+Northhaus products are designed and hand-coded by one person with 21+ years of design industry experience. Every digital product is a single HTML file that runs locally in the buyer's browser, stores data privately on their own device via localStorage, and requires no account, subscription or cloud service. Files are sold once and owned forever.
+
+The studio operates from the UK and prices all products in GBP. Products are distributed via the Northhaus store (powered by Lemon Squeezy as merchant of record for VAT) and via Etsy.
+
+## Services
+
+- [Web Design](https://northhaus.io/web-design.html): Bespoke single-file HTML websites and landing pages, hand-coded with a focus on performance, type and considered detail.
+- [Graphic Design](https://northhaus.io/graphic-design.html): Brand identity, logos, visual systems and tone of voice for studios, founders and small teams.
+- [Digital Products](https://northhaus.io/digital-products.html): Downloadable HTML planners and PDF ebooks for UK life events and personal finance.
+
+## Digital Products
+
+- [UK Wedding Planner](https://northhaus.io/digital-products.html): Single-file HTML organiser for UK weddings. Tracks budget, suppliers, deposits, guest list, RSVPs and key dates. £4.99.
+- [Fit Phrase Generator](https://northhaus.io/digital-products.html): Turns any phrase into a workout by mapping each letter A–Z to an exercise. Single-file HTML app with PDF export and custom alphabet import. £4.99.
+- [UK Monthly Budget Tracker](https://northhaus.io/digital-products.html): Single-file HTML tracker for UK monthly bills, debt and investments with CSV import/export and local backup. £4.99.
+- [UK Divorce Organiser](https://northhaus.io/digital-products.html): Single-file HTML organiser for UK divorce covering paperwork, finances, dates and contacts. Supports England & Wales, Scotland and Northern Ireland. PDF and Excel export. £4.99.
+- [UK Funeral Planner](https://northhaus.io/digital-products.html): Single-file HTML organiser for registering a death, arranging a UK funeral and handling the will and estate. £4.99.
+- [Incorporated — UK Limited Company Guide](https://northhaus.io/digital-products.html): 25-page designed ebook covering the decision to incorporate, Companies House registration and post-incorporation obligations. Figures verified against 2026/27 UK tax data. £1.99.
+- [Self-Employed — UK Sole Trader Guide](https://northhaus.io/digital-products.html): 26-page designed ebook covering HMRC registration, Self Assessment, National Insurance, VAT and Making Tax Digital for UK sole traders. £1.99.
+
+## Guides
+
+- [UK Wedding Budget 2026](https://northhaus.io/guides/uk-wedding-budget-2026.html): How much a UK wedding really costs in 2026. Real figures from Hitched, Bridebook and industry data — averages, per-guest spend, regional variation, day-of-week impact and sample budgets at £15k, £20k and £30k. Includes FAQ and a category-by-category breakdown.
+
+## About
+
+- [About Northhaus and John](https://northhaus.io/): Founder background, studio philosophy and approach. Over two decades across agencies, in-house creative teams and independent studio work.
+- [Contact](https://northhaus.io/contact.html): Get in touch about web design, graphic design or commissioned work.
+
+## Optional
+
+- [Northhaus on Etsy](https://www.etsy.com/shop/northhaus): Secondary distribution channel for the digital product range.
