@@ -427,6 +427,38 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .folio-card.is-revealed { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) { .folio-card { opacity: 1 !important; transform: none !important; } }
 
+/* ═══════════════════════════════════════════════
+   CASCADE TEXT — stagger character slide on hover
+   Applied to .section-head__title--cascade
+   ═══════════════════════════════════════════════ */
+.section-head__title--cascade { cursor: default; }
+.cascade-chars {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1;
+  height: 1em;
+}
+.cascade-char {
+  display: inline-block;
+  position: relative;
+  will-change: transform;
+  text-shadow: 0 1em var(--teal);
+  transition: transform 250ms ease-in-out;
+}
+.cascade-char--space { text-shadow: none; }
+.section-head__title--cascade:hover .cascade-char {
+  transform: translateY(-1em);
+}
+/* Dot: teal at rest, white on hover */
+.section-head__title--cascade .dot {
+  transition: color 250ms ease-in-out;
+}
+.section-head__title--cascade:hover .dot { color: #ffffff; }
+@media (prefers-reduced-motion: reduce) {
+  .cascade-char { transition: none !important; }
+  .section-head__title--cascade .dot { transition: none !important; }
+}
   </style>
 </head>
 
@@ -482,7 +514,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
         
         <article class="folio-item" aria-labelledby="folio-01">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-01">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-01" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Pulse — Logo &amp; Digi Screens · Internal Staff Survey">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -492,7 +524,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-02">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-02">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-02" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Climate Transition Plan">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -502,7 +534,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-03">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-03">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-03" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Event Doughnut Menu">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -512,7 +544,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-04">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-04">Standard Life<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-04" aria-label="Standard Life."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">S</span><span class="cascade-char" style="transition-delay:30ms">t</span><span class="cascade-char" style="transition-delay:60ms">a</span><span class="cascade-char" style="transition-delay:90ms">n</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">a</span><span class="cascade-char" style="transition-delay:180ms">r</span><span class="cascade-char" style="transition-delay:210ms">d</span><span class="cascade-char cascade-char--space" style="transition-delay:240ms">&nbsp;</span><span class="cascade-char" style="transition-delay:270ms">L</span><span class="cascade-char" style="transition-delay:300ms">i</span><span class="cascade-char" style="transition-delay:330ms">f</span><span class="cascade-char" style="transition-delay:360ms">e</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Standard Life — Bespoke Brochure for Money Mindset">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -522,7 +554,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-05">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-05">Black Professionals Scotland<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-05" aria-label="Black Professionals Scotland."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">B</span><span class="cascade-char" style="transition-delay:30ms">l</span><span class="cascade-char" style="transition-delay:60ms">a</span><span class="cascade-char" style="transition-delay:90ms">c</span><span class="cascade-char" style="transition-delay:120ms">k</span><span class="cascade-char cascade-char--space" style="transition-delay:150ms">&nbsp;</span><span class="cascade-char" style="transition-delay:180ms">P</span><span class="cascade-char" style="transition-delay:210ms">r</span><span class="cascade-char" style="transition-delay:240ms">o</span><span class="cascade-char" style="transition-delay:270ms">f</span><span class="cascade-char" style="transition-delay:300ms">e</span><span class="cascade-char" style="transition-delay:330ms">s</span><span class="cascade-char" style="transition-delay:360ms">s</span><span class="cascade-char" style="transition-delay:390ms">i</span><span class="cascade-char" style="transition-delay:420ms">o</span><span class="cascade-char" style="transition-delay:450ms">n</span><span class="cascade-char" style="transition-delay:480ms">a</span><span class="cascade-char" style="transition-delay:510ms">l</span><span class="cascade-char" style="transition-delay:540ms">s</span><span class="cascade-char cascade-char--space" style="transition-delay:570ms">&nbsp;</span><span class="cascade-char" style="transition-delay:600ms">S</span><span class="cascade-char" style="transition-delay:630ms">c</span><span class="cascade-char" style="transition-delay:660ms">o</span><span class="cascade-char" style="transition-delay:690ms">t</span><span class="cascade-char" style="transition-delay:720ms">l</span><span class="cascade-char" style="transition-delay:750ms">a</span><span class="cascade-char" style="transition-delay:780ms">n</span><span class="cascade-char" style="transition-delay:810ms">d</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Black Professionals Scotland — Bespoke Flyers for Standard Life">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -532,7 +564,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-06">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-06">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-06" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Editorial News Article &amp; Podcast Graphics — Illustration &amp; Vector (I)">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -542,7 +574,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-07">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-07">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-07" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Editorial News Article &amp; Podcast Graphics — Illustration &amp; Vector (II)">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -552,7 +584,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-08">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-08">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-08" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Animated Social Media Ad — 1200×1200px · One Month To Go">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -569,7 +601,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-09">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-09">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-09" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Animated Social Media Ad — 1200×1200px · Lunar New Year">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -586,7 +618,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-10">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-10">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-10" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — PowerPoint Presentation 16:9">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -596,7 +628,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-11">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-11">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-11" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Global Equity Impact Annual Report 2023">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -606,7 +638,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-12">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-12">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-12" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Business Performance Update">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -616,7 +648,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-13">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-13">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-13" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Asia’s Investment Expert Report">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -626,7 +658,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-14">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-14">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-14" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Global Equity Impact Annual Report 2022">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -636,7 +668,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-15">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-15">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-15" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Seasons Greetings Card">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -646,7 +678,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-16">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-16">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-16" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — Rebranded Sustainability Report">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -656,7 +688,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-17">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-17">Aberdeen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-17" aria-label="Aberdeen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">e</span><span class="cascade-char" style="transition-delay:210ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Aberdeen — abrdn Financial Fairness Trust — Bespoke Rebranded Annual Report">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -666,7 +698,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-18">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-18">Standard Life<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-18" aria-label="Standard Life."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">S</span><span class="cascade-char" style="transition-delay:30ms">t</span><span class="cascade-char" style="transition-delay:60ms">a</span><span class="cascade-char" style="transition-delay:90ms">n</span><span class="cascade-char" style="transition-delay:120ms">d</span><span class="cascade-char" style="transition-delay:150ms">a</span><span class="cascade-char" style="transition-delay:180ms">r</span><span class="cascade-char" style="transition-delay:210ms">d</span><span class="cascade-char cascade-char--space" style="transition-delay:240ms">&nbsp;</span><span class="cascade-char" style="transition-delay:270ms">L</span><span class="cascade-char" style="transition-delay:300ms">i</span><span class="cascade-char" style="transition-delay:330ms">f</span><span class="cascade-char" style="transition-delay:360ms">e</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Standard Life — Home Hub Website Layout">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -676,7 +708,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-19">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-19">The University of Edinburgh<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-19" aria-label="The University of Edinburgh."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">T</span><span class="cascade-char" style="transition-delay:30ms">h</span><span class="cascade-char" style="transition-delay:60ms">e</span><span class="cascade-char cascade-char--space" style="transition-delay:90ms">&nbsp;</span><span class="cascade-char" style="transition-delay:120ms">U</span><span class="cascade-char" style="transition-delay:150ms">n</span><span class="cascade-char" style="transition-delay:180ms">i</span><span class="cascade-char" style="transition-delay:210ms">v</span><span class="cascade-char" style="transition-delay:240ms">e</span><span class="cascade-char" style="transition-delay:270ms">r</span><span class="cascade-char" style="transition-delay:300ms">s</span><span class="cascade-char" style="transition-delay:330ms">i</span><span class="cascade-char" style="transition-delay:360ms">t</span><span class="cascade-char" style="transition-delay:390ms">y</span><span class="cascade-char cascade-char--space" style="transition-delay:420ms">&nbsp;</span><span class="cascade-char" style="transition-delay:450ms">o</span><span class="cascade-char" style="transition-delay:480ms">f</span><span class="cascade-char cascade-char--space" style="transition-delay:510ms">&nbsp;</span><span class="cascade-char" style="transition-delay:540ms">E</span><span class="cascade-char" style="transition-delay:570ms">d</span><span class="cascade-char" style="transition-delay:600ms">i</span><span class="cascade-char" style="transition-delay:630ms">n</span><span class="cascade-char" style="transition-delay:660ms">b</span><span class="cascade-char" style="transition-delay:690ms">u</span><span class="cascade-char" style="transition-delay:720ms">r</span><span class="cascade-char" style="transition-delay:750ms">g</span><span class="cascade-char" style="transition-delay:780ms">h</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="The University of Edinburgh — 23 Reasons to Study at Edinburgh — Mailer">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -686,7 +718,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-20">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-20">Biji’s Kitchen<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-20" aria-label="Biji’s Kitchen."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">B</span><span class="cascade-char" style="transition-delay:30ms">i</span><span class="cascade-char" style="transition-delay:60ms">j</span><span class="cascade-char" style="transition-delay:90ms">i</span><span class="cascade-char" style="transition-delay:120ms">’</span><span class="cascade-char" style="transition-delay:150ms">s</span><span class="cascade-char cascade-char--space" style="transition-delay:180ms">&nbsp;</span><span class="cascade-char" style="transition-delay:210ms">K</span><span class="cascade-char" style="transition-delay:240ms">i</span><span class="cascade-char" style="transition-delay:270ms">t</span><span class="cascade-char" style="transition-delay:300ms">c</span><span class="cascade-char" style="transition-delay:330ms">h</span><span class="cascade-char" style="transition-delay:360ms">e</span><span class="cascade-char" style="transition-delay:390ms">n</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Biji’s Kitchen — Indian Takeaway Logo, Website &amp; Menu Design &amp; Build">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -696,7 +728,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-21">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-21">Wellness Thai Massage<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-21" aria-label="Wellness Thai Massage."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">W</span><span class="cascade-char" style="transition-delay:30ms">e</span><span class="cascade-char" style="transition-delay:60ms">l</span><span class="cascade-char" style="transition-delay:90ms">l</span><span class="cascade-char" style="transition-delay:120ms">n</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">s</span><span class="cascade-char" style="transition-delay:210ms">s</span><span class="cascade-char cascade-char--space" style="transition-delay:240ms">&nbsp;</span><span class="cascade-char" style="transition-delay:270ms">T</span><span class="cascade-char" style="transition-delay:300ms">h</span><span class="cascade-char" style="transition-delay:330ms">a</span><span class="cascade-char" style="transition-delay:360ms">i</span><span class="cascade-char cascade-char--space" style="transition-delay:390ms">&nbsp;</span><span class="cascade-char" style="transition-delay:420ms">M</span><span class="cascade-char" style="transition-delay:450ms">a</span><span class="cascade-char" style="transition-delay:480ms">s</span><span class="cascade-char" style="transition-delay:510ms">s</span><span class="cascade-char" style="transition-delay:540ms">a</span><span class="cascade-char" style="transition-delay:570ms">g</span><span class="cascade-char" style="transition-delay:600ms">e</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Wellness Thai Massage — Logo and Website">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -706,7 +738,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-22">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-22">Lancaster University<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-22" aria-label="Lancaster University."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">L</span><span class="cascade-char" style="transition-delay:30ms">a</span><span class="cascade-char" style="transition-delay:60ms">n</span><span class="cascade-char" style="transition-delay:90ms">c</span><span class="cascade-char" style="transition-delay:120ms">a</span><span class="cascade-char" style="transition-delay:150ms">s</span><span class="cascade-char" style="transition-delay:180ms">t</span><span class="cascade-char" style="transition-delay:210ms">e</span><span class="cascade-char" style="transition-delay:240ms">r</span><span class="cascade-char cascade-char--space" style="transition-delay:270ms">&nbsp;</span><span class="cascade-char" style="transition-delay:300ms">U</span><span class="cascade-char" style="transition-delay:330ms">n</span><span class="cascade-char" style="transition-delay:360ms">i</span><span class="cascade-char" style="transition-delay:390ms">v</span><span class="cascade-char" style="transition-delay:420ms">e</span><span class="cascade-char" style="transition-delay:450ms">r</span><span class="cascade-char" style="transition-delay:480ms">s</span><span class="cascade-char" style="transition-delay:510ms">i</span><span class="cascade-char" style="transition-delay:540ms">t</span><span class="cascade-char" style="transition-delay:570ms">y</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Lancaster University — Alumni Magazine">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -716,7 +748,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-23">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-23">Chartered Banker<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-23" aria-label="Chartered Banker."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">C</span><span class="cascade-char" style="transition-delay:30ms">h</span><span class="cascade-char" style="transition-delay:60ms">a</span><span class="cascade-char" style="transition-delay:90ms">r</span><span class="cascade-char" style="transition-delay:120ms">t</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">r</span><span class="cascade-char" style="transition-delay:210ms">e</span><span class="cascade-char" style="transition-delay:240ms">d</span><span class="cascade-char cascade-char--space" style="transition-delay:270ms">&nbsp;</span><span class="cascade-char" style="transition-delay:300ms">B</span><span class="cascade-char" style="transition-delay:330ms">a</span><span class="cascade-char" style="transition-delay:360ms">n</span><span class="cascade-char" style="transition-delay:390ms">k</span><span class="cascade-char" style="transition-delay:420ms">e</span><span class="cascade-char" style="transition-delay:450ms">r</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Chartered Banker — Annual Report">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -726,7 +758,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-24">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-24">Newcastle University<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-24" aria-label="Newcastle University."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">N</span><span class="cascade-char" style="transition-delay:30ms">e</span><span class="cascade-char" style="transition-delay:60ms">w</span><span class="cascade-char" style="transition-delay:90ms">c</span><span class="cascade-char" style="transition-delay:120ms">a</span><span class="cascade-char" style="transition-delay:150ms">s</span><span class="cascade-char" style="transition-delay:180ms">t</span><span class="cascade-char" style="transition-delay:210ms">l</span><span class="cascade-char" style="transition-delay:240ms">e</span><span class="cascade-char cascade-char--space" style="transition-delay:270ms">&nbsp;</span><span class="cascade-char" style="transition-delay:300ms">U</span><span class="cascade-char" style="transition-delay:330ms">n</span><span class="cascade-char" style="transition-delay:360ms">i</span><span class="cascade-char" style="transition-delay:390ms">v</span><span class="cascade-char" style="transition-delay:420ms">e</span><span class="cascade-char" style="transition-delay:450ms">r</span><span class="cascade-char" style="transition-delay:480ms">s</span><span class="cascade-char" style="transition-delay:510ms">i</span><span class="cascade-char" style="transition-delay:540ms">t</span><span class="cascade-char" style="transition-delay:570ms">y</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Newcastle University — Postgraduate Study Guide">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -736,7 +768,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-25">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-25">Broxap<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-25" aria-label="Broxap."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">B</span><span class="cascade-char" style="transition-delay:30ms">r</span><span class="cascade-char" style="transition-delay:60ms">o</span><span class="cascade-char" style="transition-delay:90ms">x</span><span class="cascade-char" style="transition-delay:120ms">a</span><span class="cascade-char" style="transition-delay:150ms">p</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Broxap — Sunshine Gym Equipment Catalogue">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -746,7 +778,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-26">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-26">RBS<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-26" aria-label="RBS."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">R</span><span class="cascade-char" style="transition-delay:30ms">B</span><span class="cascade-char" style="transition-delay:60ms">S</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="RBS — Royal Bank of Scotland — The Story of 36 St Andrew Square">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -756,7 +788,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-27">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-27">De Beers Group<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-27" aria-label="De Beers Group."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">D</span><span class="cascade-char" style="transition-delay:30ms">e</span><span class="cascade-char cascade-char--space" style="transition-delay:60ms">&nbsp;</span><span class="cascade-char" style="transition-delay:90ms">B</span><span class="cascade-char" style="transition-delay:120ms">e</span><span class="cascade-char" style="transition-delay:150ms">e</span><span class="cascade-char" style="transition-delay:180ms">r</span><span class="cascade-char" style="transition-delay:210ms">s</span><span class="cascade-char cascade-char--space" style="transition-delay:240ms">&nbsp;</span><span class="cascade-char" style="transition-delay:270ms">G</span><span class="cascade-char" style="transition-delay:300ms">r</span><span class="cascade-char" style="transition-delay:330ms">o</span><span class="cascade-char" style="transition-delay:360ms">u</span><span class="cascade-char" style="transition-delay:390ms">p</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="De Beers Group — Element Six Online Publication">
             <div class="folio-card__bar" aria-hidden="true"></div>
@@ -766,7 +798,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
         <article class="folio-item" aria-labelledby="folio-28">
           <div class="section-head">
-            <h2 class="section-head__title" id="folio-28">Velux<span class="dot">.</span></h2>
+            <h2 class="section-head__title section-head__title--cascade" id="folio-28" aria-label="Velux."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">V</span><span class="cascade-char" style="transition-delay:30ms">e</span><span class="cascade-char" style="transition-delay:60ms">l</span><span class="cascade-char" style="transition-delay:90ms">u</span><span class="cascade-char" style="transition-delay:120ms">x</span></span><span class="dot">.</span></h2>
           </div>
           <figure class="folio-card" aria-label="Velux — Online Product Brochure">
             <div class="folio-card__bar" aria-hidden="true"></div>

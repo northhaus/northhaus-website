@@ -469,6 +469,31 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   }
 }
 
+/* ═══════════════════════════════════════════════
+   CASCADE TEXT — stagger character slide on hover
+   Applied to .process__title--cascade
+   ═══════════════════════════════════════════════ */
+.process__title--cascade { cursor: default; }
+.cascade-chars {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1;
+  height: 1em;
+}
+.cascade-char {
+  display: inline-block;
+  position: relative;
+  will-change: transform;
+  text-shadow: 0 1em var(--teal);
+  transition: transform 250ms ease-in-out;
+}
+.process__title--cascade:hover .cascade-char {
+  transform: translateY(-1em);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cascade-char { transition: none !important; }
+}
   </style>
 </head>
 
@@ -525,25 +550,25 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
           <div class="process__row">
             <p class="process__num">01</p>
-            <h3 class="process__title">Recon</h3>
+            <h3 class="process__title process__title--cascade" aria-label="Recon"><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">R</span><span class="cascade-char" style="transition-delay:30ms">e</span><span class="cascade-char" style="transition-delay:60ms">c</span><span class="cascade-char" style="transition-delay:90ms">o</span><span class="cascade-char" style="transition-delay:120ms">n</span></span></h3>
             <p class="process__desc">Audit, interview, competitive teardown. I walk in with a map, not a pitch deck.</p>
           </div>
 
           <div class="process__row">
             <p class="process__num">02</p>
-            <h3 class="process__title">Direct</h3>
+            <h3 class="process__title process__title--cascade" aria-label="Direct"><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">D</span><span class="cascade-char" style="transition-delay:30ms">i</span><span class="cascade-char" style="transition-delay:60ms">r</span><span class="cascade-char" style="transition-delay:90ms">e</span><span class="cascade-char" style="transition-delay:120ms">c</span><span class="cascade-char" style="transition-delay:150ms">t</span></span></h3>
             <p class="process__desc">Two / three aesthetic routes, each fully mocked. You pick one — or I merge the best of two.</p>
           </div>
 
           <div class="process__row">
             <p class="process__num">03</p>
-            <h3 class="process__title">Build</h3>
+            <h3 class="process__title process__title--cascade" aria-label="Build"><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">B</span><span class="cascade-char" style="transition-delay:30ms">u</span><span class="cascade-char" style="transition-delay:60ms">i</span><span class="cascade-char" style="transition-delay:90ms">l</span><span class="cascade-char" style="transition-delay:120ms">d</span></span></h3>
             <p class="process__desc">Design and engineering in one loop. Weekly demos, no dark rooms, no vanishing prototypes.</p>
           </div>
 
           <div class="process__row">
             <p class="process__num">04</p>
-            <h3 class="process__title">Launch</h3>
+            <h3 class="process__title process__title--cascade" aria-label="Launch"><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">L</span><span class="cascade-char" style="transition-delay:30ms">a</span><span class="cascade-char" style="transition-delay:60ms">u</span><span class="cascade-char" style="transition-delay:90ms">n</span><span class="cascade-char" style="transition-delay:120ms">c</span><span class="cascade-char" style="transition-delay:150ms">h</span></span></h3>
             <p class="process__desc">Shipped, measured, iterated. I stay on retainer for the first 90 days so the site earns out.</p>
           </div>
 

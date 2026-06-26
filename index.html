@@ -350,7 +350,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   color: #ffffff;
   margin: 0 0 140px;
 }
-.about__head .dot { color: var(--teal); }
+.about__head .dot { color: var(--teal); transition: color 250ms ease-in-out; }
 .about__body { max-width: 3000px; }
 .about__body p {
   font-size: 60pt;
@@ -666,7 +666,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
     color: #fff;
     margin: 0 0 clamp(28px, 6vw, 48px);
   }
-  .about__head .dot { color: var(--teal); }
+  .about__head .dot { color: var(--teal); transition: color 250ms ease-in-out; }
   .about__body { max-width: 56ch; }
   .about__body p {
     font-size: clamp(18px, 2.4vw, 22px);
@@ -1020,6 +1020,47 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   100% { opacity: 1; transform: translateY(0); }
 }
 
+/* ═══════════════════════════════════════════════
+   CASCADE TEXT — stagger character slide on hover
+   Applied to .about__head--cascade on index.html
+   ═══════════════════════════════════════════════ */
+.about__head--cascade {
+  cursor: default;
+}
+/* The char wrapper clips to 1em height so the
+   translated shadow copy is hidden off-axis */
+.cascade-chars {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1;
+  height: 1em;
+}
+/* Each character sits in a relative container.
+   text-shadow clones it 1em above (in teal);
+   on hover the whole column slides up by 1em,
+   swapping the original out and the teal clone in. */
+.cascade-char {
+  display: inline-block;
+  position: relative;
+  will-change: transform;
+  /* teal clone sits 1em below, revealed by sliding up */
+  text-shadow: 0 1em var(--teal);
+  transition: transform 250ms ease-in-out;
+}
+.about__head--cascade:hover .cascade-char {
+  transform: translateY(-1em);
+}
+.about__head--cascade:hover .dot {
+  color: #ffffff;
+  transition: color 250ms ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cascade-char {
+    transition: none !important;
+  }
+}
+
 </style>
 </head>
 
@@ -1132,7 +1173,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
       <!-- ABOUT -->
       <section class="about" aria-labelledby="about-h">
         <div class="about__inner">
-          <h2 class="about__head" id="about-h">About<span class="dot">.</span></h2>
+          <h2 class="about__head about__head--cascade" id="about-h" aria-label="About."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">o</span><span class="cascade-char" style="transition-delay:90ms">u</span><span class="cascade-char" style="transition-delay:120ms">t</span></span><span class="dot">.</span></h2>
           <div class="about__body">
             <p><span class="about__key">I've spent over two decades in the design and creative industry</span> — across agencies, in-house teams and my own studio — shaping brands and building the digital experiences people actually use.</p>
             <p>What drives me is technology, and the constant search for better ways to make things. I'm endlessly curious about where design meets cutting-edge tech, and I lean on tools like AI to push what's possible &mdash; working faster, sharper and more precisely than ever before.</p>
