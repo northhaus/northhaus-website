@@ -358,6 +358,10 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .product-card .product-card__body { z-index: 1; }
 .product-laptop picture { display: contents; }
 
+/* Per-product gradient classes (apply at all viewports) */
+.product-card.t-teal { --card-c1: #39f0cf; --card-c2: #0063ae; }
+.product-card.t-pink { --card-c1: #fec183; --card-c2: #ff1572; }
+
 /* ═══ DESKTOP — scaled-canvas layout (≥1100px) ═══ */
 @media (min-width: 1100px) {
 
@@ -471,6 +475,38 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .product-laptop img {
   width: 100%; height: 100%; object-fit: cover; display: block;
 }
+
+/* ▼▼▼ Rebuilt product card (icon + title + gradient in HTML) ▼▼▼ */
+.product-card {
+  background: linear-gradient(135deg, var(--card-c1, #39f0cf) 0%, var(--card-c2, #0063ae) 100%);
+  overflow: hidden;
+}
+.product-card__head {
+  position: absolute; top: 100px; left: 100px;
+  display: flex; gap: 25px; height: 200px; z-index: 2;
+}
+.product-card__icon {
+  flex: 0 0 200px; width: 200px; height: 200px;
+  background: #000; display: block;
+}
+.product-card__icon img,
+.product-card__icon svg { width: 100%; height: 100%; display: block; }
+.product-card__title {
+  margin: 0;
+  background: #000; color: #fff;
+  display: flex; align-items: center; padding: 0 48px;
+  font-family: var(--font); font-weight: 900;
+  font-size: 97pt; line-height: 1; letter-spacing: 0.02em;
+  text-transform: uppercase; white-space: nowrap;
+}
+.product-card__title .dot { color: var(--teal); }
+.product-card__rule {
+  position: absolute; left: 100px; right: 100px; bottom: 102px;
+  height: 30px; background: #000; z-index: 1;
+}
+.product-card__body { z-index: 2; }
+/* ▲▲▲ /Rebuilt product card ▲▲▲ */
+
 
 /* CTA band */
 .cta {
@@ -597,7 +633,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   }
   .product-card {
     position: relative; aspect-ratio: 8000 / 3824;
-    background-size: cover; background-position: center; background-repeat: no-repeat;
+    background: linear-gradient(135deg, var(--card-c1, #39f0cf) 0%, var(--card-c2, #0063ae) 100%);
+    overflow: hidden;
   }
   /* Anchor the text to the empty gradient band between the title bar (ends ~15.5%)
      and the bottom rule (starts ~88%) and centre it vertically, so it always keeps
@@ -629,6 +666,33 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   .product-buy:active { background: var(--teal); color: #000; }
   .product-buy:active .dot { color: #000; }
   .product-laptop img { width: 100%; height: auto; display: block; }
+
+  /* ▼▼▼ Rebuilt product card — mobile ▼▼▼ */
+  .product-card__head {
+    position: absolute; top: 9.33%; left: 4.46%;
+    display: flex; gap: 1.1%; height: 19%; z-index: 2;
+  }
+  .product-card__icon {
+    flex: 0 0 auto; aspect-ratio: 1 / 1; height: 100%; width: auto;
+    background: #000; display: block;
+  }
+  .product-card__icon img,
+  .product-card__icon svg { width: 100%; height: 100%; display: block; }
+  .product-card__title {
+    margin: 0;
+    background: #000; color: #fff;
+    display: flex; align-items: center; padding: 0 clamp(16px, 2.4vw, 28px);
+    font-family: var(--font); font-weight: 900;
+    font-size: clamp(16px, 4vw, 38px); line-height: 1; letter-spacing: 0.02em;
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .product-card__title .dot { color: var(--teal); }
+  .product-card__rule {
+    position: absolute; left: 4.46%; right: 4.46%; bottom: 9.5%;
+    height: clamp(4px, 0.8vw, 12px); background: #000; z-index: 1;
+  }
+  /* ▲▲▲ /Rebuilt product card — mobile ▲▲▲ */
+
 
   /* CTA */
   .cta {
@@ -748,7 +812,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
           </button>
 
           <nav class="primary-nav" id="primary-nav" aria-label="Primary">
-            <a href="index.html">about</a>
+            <a href="index.html#about">about</a>
             <a href="web-design.html">web design</a>
             <a href="graphic-design.html">graphic design</a>
             <a href="digital-products.html" aria-current="page">digital products</a>
@@ -782,13 +846,14 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
       <section class="products" aria-label="HTML products">
 
         <article class="product-row product-row--buy" aria-labelledby="prod-wedding">
-          <div class="product-card">
-            <picture class="product-card__bg">
-              <source type="image/webp" srcset="assets/img/dp-wedding-card-800.webp 800w, assets/img/dp-wedding-card-1400.webp 1400w, assets/img/dp-wedding-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
-              <img src="assets/img/dp-wedding-card-2000.jpg" srcset="assets/img/dp-wedding-card-800.jpg 800w, assets/img/dp-wedding-card-1400.jpg 1400w, assets/img/dp-wedding-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="UK Wedding Planner by Northhaus — single-file HTML organiser for budget, suppliers, guests and RSVPs" loading="lazy" decoding="async" width="2400" height="1147">
-            </picture>
+          <div class="product-card t-teal">
+              <div class="product-card__head">
+                <span class="product-card__icon" aria-hidden="true"><img src="assets/img/icon-northhaus-product.png" alt="" width="200" height="200" decoding="async"></span>
+                <h3 class="product-card__title" id="prod-wedding">Wedding Planner<span class="dot">.</span></h3>
+              </div>
+              <div class="product-card__rule" aria-hidden="true"></div>
             <div class="product-card__body">
-              <h3 class="product-card__eyebrow" id="prod-wedding">EVERYTHING IN ONE PLACE</h3>
+              <p class="product-card__eyebrow">EVERYTHING IN ONE PLACE</p>
               <p class="product-card__copy">Planning a UK wedding means juggling dozens of moving pieces – suppliers, budgets, guests, RSVPs, dates, deposits. This organiser brings it all into one calm, private place that lives on your computer, so you can spend less time on spreadsheets.</p>
             </div>
           </div>
@@ -805,13 +870,14 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
         </article>
 
         <article class="product-row product-row--buy" aria-labelledby="prod-fit">
-          <div class="product-card">
-            <picture class="product-card__bg">
-              <source type="image/webp" srcset="assets/img/dp-fitphrase-card-800.webp 800w, assets/img/dp-fitphrase-card-1400.webp 1400w, assets/img/dp-fitphrase-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
-              <img src="assets/img/dp-fitphrase-card-2000.jpg" srcset="assets/img/dp-fitphrase-card-800.jpg 800w, assets/img/dp-fitphrase-card-1400.jpg 1400w, assets/img/dp-fitphrase-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="Fit Phrase Generator by Northhaus — A–Z alphabet workout generator that turns phrases into exercises" loading="lazy" decoding="async" width="2400" height="1147">
-            </picture>
+          <div class="product-card t-pink">
+              <div class="product-card__head">
+                <span class="product-card__icon" aria-hidden="true"><img src="assets/img/icon-northhaus-product.png" alt="" width="200" height="200" decoding="async"></span>
+                <h3 class="product-card__title" id="prod-fit">Fit Phrase<span class="dot">.</span></h3>
+              </div>
+              <div class="product-card__rule" aria-hidden="true"></div>
             <div class="product-card__body">
-              <h3 class="product-card__eyebrow" id="prod-fit">TURN WORDS INTO WORKOUTS</h3>
+              <p class="product-card__eyebrow">TURN WORDS INTO WORKOUTS</p>
               <p class="product-card__copy">Fit Phrase transforms phrases into movement – every letter linked to a corresponding exercise, creating quick, engaging workouts you can do anywhere. A simple, playful way to stay active, build consistency, and make fitness feel less like a chore.</p>
             </div>
           </div>
@@ -828,13 +894,14 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
         </article>
 
         <article class="product-row product-row--buy" aria-labelledby="prod-budget">
-          <div class="product-card">
-            <picture class="product-card__bg">
-              <source type="image/webp" srcset="assets/img/dp-budget-card-800.webp 800w, assets/img/dp-budget-card-1400.webp 1400w, assets/img/dp-budget-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
-              <img src="assets/img/dp-budget-card-2000.jpg" srcset="assets/img/dp-budget-card-800.jpg 800w, assets/img/dp-budget-card-1400.jpg 1400w, assets/img/dp-budget-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="UK Monthly Budget Tracker by Northhaus — track bills, debt and investments in one private HTML tool" loading="lazy" decoding="async" width="2400" height="1147">
-            </picture>
+          <div class="product-card t-teal">
+              <div class="product-card__head">
+                <span class="product-card__icon" aria-hidden="true"><img src="assets/img/icon-northhaus-product.png" alt="" width="200" height="200" decoding="async"></span>
+                <h3 class="product-card__title" id="prod-budget">Budget Tracker<span class="dot">.</span></h3>
+              </div>
+              <div class="product-card__rule" aria-hidden="true"></div>
             <div class="product-card__body">
-              <h3 class="product-card__eyebrow" id="prod-budget">KEEP ON TRACK OF MONTHLY COSTS</h3>
+              <p class="product-card__eyebrow">KEEP ON TRACK OF MONTHLY COSTS</p>
               <p class="product-card__copy">A simple, well-designed UK Budget Tracker that helps you take control of your monthly finances – track bills, debt and investments in one calm, considered place.</p>
             </div>
           </div>
@@ -851,13 +918,14 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
         </article>
 
         <article class="product-row product-row--buy" aria-labelledby="prod-divorce">
-          <div class="product-card">
-            <picture class="product-card__bg">
-              <source type="image/webp" srcset="assets/img/dp-divorce-card-800.webp 800w, assets/img/dp-divorce-card-1400.webp 1400w, assets/img/dp-divorce-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
-              <img src="assets/img/dp-divorce-card-2000.jpg" srcset="assets/img/dp-divorce-card-800.jpg 800w, assets/img/dp-divorce-card-1400.jpg 1400w, assets/img/dp-divorce-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="UK Divorce Organiser by Northhaus — single-file HTML organiser for paperwork, finances, dates and contacts" loading="lazy" decoding="async" width="2400" height="1147">
-            </picture>
+          <div class="product-card t-pink">
+              <div class="product-card__head">
+                <span class="product-card__icon" aria-hidden="true"><img src="assets/img/icon-northhaus-product.png" alt="" width="200" height="200" decoding="async"></span>
+                <h3 class="product-card__title" id="prod-divorce">Divorce Organiser<span class="dot">.</span></h3>
+              </div>
+              <div class="product-card__rule" aria-hidden="true"></div>
             <div class="product-card__body">
-              <h3 class="product-card__eyebrow" id="prod-divorce">A QUIET, ORGANISED PLACE TO HOLD EVERYTHING</h3>
+              <p class="product-card__eyebrow">A QUIET, ORGANISED PLACE TO HOLD EVERYTHING</p>
               <p class="product-card__copy">Going through a divorce in the UK means tracking dozens of moving pieces at once — paperwork, finances, dates, contacts, costs. This organiser brings it all into one calm, private place that lives on your computer.</p>
             </div>
           </div>
@@ -874,13 +942,14 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
         </article>
 
         <article class="product-row product-row--buy" aria-labelledby="prod-funeral">
-          <div class="product-card">
-            <picture class="product-card__bg">
-              <source type="image/webp" srcset="assets/img/dp-funeral-card-800.webp 800w, assets/img/dp-funeral-card-1400.webp 1400w, assets/img/dp-funeral-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
-              <img src="assets/img/dp-funeral-card-2000.jpg" srcset="assets/img/dp-funeral-card-800.jpg 800w, assets/img/dp-funeral-card-1400.jpg 1400w, assets/img/dp-funeral-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="UK Funeral Planner by Northhaus — organiser for registering a death, arranging the funeral and handling the will" loading="lazy" decoding="async" width="2400" height="1147">
-            </picture>
+          <div class="product-card t-teal">
+              <div class="product-card__head">
+                <span class="product-card__icon" aria-hidden="true"><img src="assets/img/icon-northhaus-product.png" alt="" width="200" height="200" decoding="async"></span>
+                <h3 class="product-card__title" id="prod-funeral">Funeral Planner<span class="dot">.</span></h3>
+              </div>
+              <div class="product-card__rule" aria-hidden="true"></div>
             <div class="product-card__body">
-              <h3 class="product-card__eyebrow" id="prod-funeral">A QUIET, ORGANISED PLACE TO HOLD EVERYTHING</h3>
+              <p class="product-card__eyebrow">A QUIET, ORGANISED PLACE TO HOLD EVERYTHING</p>
               <p class="product-card__copy">Losing someone is hard enough without drowning in paperwork. Registering the death, arranging the funeral, finding the will — it's a lot to carry, often while you're grieving. This UK organiser brings it all into one private place that lives on your computer.</p>
             </div>
           </div>
@@ -897,13 +966,14 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
         </article>
 
         <article class="product-row product-row--buy" aria-labelledby="prod-incorporated">
-          <div class="product-card">
-            <picture class="product-card__bg">
-              <source type="image/webp" srcset="assets/img/dp-incorporated-card-800.webp 800w, assets/img/dp-incorporated-card-1400.webp 1400w, assets/img/dp-incorporated-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
-              <img src="assets/img/dp-incorporated-card-2000.jpg" srcset="assets/img/dp-incorporated-card-800.jpg 800w, assets/img/dp-incorporated-card-1400.jpg 1400w, assets/img/dp-incorporated-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="Incorporated by Northhaus — 25-page UK limited company guide covering Companies House registration" loading="lazy" decoding="async" width="2400" height="1147">
-            </picture>
+          <div class="product-card t-pink">
+              <div class="product-card__head">
+                <span class="product-card__icon" aria-hidden="true"><img src="assets/img/icon-northhaus-product.png" alt="" width="200" height="200" decoding="async"></span>
+                <h3 class="product-card__title" id="prod-incorporated">Incorporated<span class="dot">.</span></h3>
+              </div>
+              <div class="product-card__rule" aria-hidden="true"></div>
             <div class="product-card__body">
-              <h3 class="product-card__eyebrow" id="prod-incorporated">EVERYTHING YOU NEED TO GO LIMITED</h3>
+              <p class="product-card__eyebrow">EVERYTHING YOU NEED TO GO LIMITED</p>
               <p class="product-card__copy">A simple, well-designed UK guide that helps you set up a limited company with confidence – covering the decision, the registration and everything after, in one calm, considered read.</p>
             </div>
           </div>
@@ -920,13 +990,14 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
         </article>
 
         <article class="product-row product-row--buy" aria-labelledby="prod-selfemployed">
-          <div class="product-card">
-            <picture class="product-card__bg">
-              <source type="image/webp" srcset="assets/img/dp-selfemployed-card-800.webp 800w, assets/img/dp-selfemployed-card-1400.webp 1400w, assets/img/dp-selfemployed-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
-              <img src="assets/img/dp-selfemployed-card-2000.jpg" srcset="assets/img/dp-selfemployed-card-800.jpg 800w, assets/img/dp-selfemployed-card-1400.jpg 1400w, assets/img/dp-selfemployed-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="Self-Employed by Northhaus — 26-page UK sole trader guide covering HMRC, Self Assessment and VAT" loading="lazy" decoding="async" width="2400" height="1147">
-            </picture>
+          <div class="product-card t-teal">
+              <div class="product-card__head">
+                <span class="product-card__icon" aria-hidden="true"><img src="assets/img/icon-northhaus-product.png" alt="" width="200" height="200" decoding="async"></span>
+                <h3 class="product-card__title" id="prod-selfemployed">Self-Employed<span class="dot">.</span></h3>
+              </div>
+              <div class="product-card__rule" aria-hidden="true"></div>
             <div class="product-card__body">
-              <h3 class="product-card__eyebrow" id="prod-selfemployed">GO SELF-EMPLOYED WITH CONFIDENCE</h3>
+              <p class="product-card__eyebrow">GO SELF-EMPLOYED WITH CONFIDENCE</p>
               <p class="product-card__copy">A clear, well-designed UK guide that walks you through working for yourself as a sole trader – from registering with HMRC to tax, VAT and Making Tax Digital, explained calmly and without the jargon.</p>
             </div>
           </div>

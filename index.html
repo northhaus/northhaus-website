@@ -37,21 +37,47 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Northhaus",
-    "url": "https://northhaus.io/",
-    "logo": "https://northhaus.io/apple-touch-icon.png",
-    "founder": {
-      "@type": "Person",
-      "name": "John",
-      "jobTitle": "Designer & Founder"
-    },
-    "foundingDate": "2025",
-    "description": "UK design studio building bespoke websites, brand identity and downloadable HTML planners for UK life events.",
-    "areaServed": "GB",
-    "knowsAbout": ["Web Design", "Graphic Design", "Brand Identity", "Digital Product Design", "HTML"],
-    "sameAs": [
-      "https://www.etsy.com/shop/northhaus"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://northhaus.io/#organization",
+        "name": "Northhaus",
+        "url": "https://northhaus.io/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://northhaus.io/apple-touch-icon.png"
+        },
+        "founder": { "@id": "https://northhaus.io/#person" },
+        "foundingDate": "2025",
+        "description": "UK design studio building bespoke websites, brand identity and downloadable HTML planners for UK life events.",
+        "areaServed": "GB",
+        "knowsAbout": ["Web Design", "Graphic Design", "Brand Identity", "Digital Product Design", "HTML"],
+        "sameAs": [
+          "https://www.etsy.com/shop/northhaus"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://northhaus.io/#person",
+        "name": "John",
+        "jobTitle": "Founder & Designer",
+        "description": "Founder and designer of Northhaus, with over two decades of experience across agencies, in-house teams and independent studio work. Specialises in web design, brand identity and hand-coded digital products.",
+        "worksFor": { "@id": "https://northhaus.io/#organization" },
+        "url": "https://northhaus.io/#about",
+        "mainEntityOfPage": "https://northhaus.io/#about",
+        "knowsAbout": ["Web Design", "Graphic Design", "Brand Identity", "Digital Product Design", "HTML", "UK Life Events Planning Tools"],
+        "sameAs": [
+          "https://www.etsy.com/shop/northhaus"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://northhaus.io/#website",
+        "url": "https://northhaus.io/",
+        "name": "Northhaus",
+        "publisher": { "@id": "https://northhaus.io/#organization" },
+        "inLanguage": "en-GB"
+      }
     ]
   }
   </script>
@@ -1139,7 +1165,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
           </button>
 
           <nav class="primary-nav" id="primary-nav" aria-label="Primary">
-            <a href="index.html" aria-current="page">about</a>
+            <a href="#about" aria-current="page">about</a>
             <a href="web-design.html">web design</a>
             <a href="graphic-design.html">graphic design</a>
             <a href="digital-products.html">digital products</a>
@@ -1219,7 +1245,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
       </section>
 
       <!-- ABOUT -->
-      <section class="about" aria-labelledby="about-h">
+      <section class="about" id="about" aria-labelledby="about-h">
         <div class="about__inner">
           <h2 class="about__head about__head--cascade" id="about-h" aria-label="About."><span class="cascade-chars" aria-hidden="true"><span class="cascade-char" style="transition-delay:0ms">A</span><span class="cascade-char" style="transition-delay:30ms">b</span><span class="cascade-char" style="transition-delay:60ms">o</span><span class="cascade-char" style="transition-delay:90ms">u</span><span class="cascade-char" style="transition-delay:120ms">t</span></span><span class="dot">.</span></h2>
           <div class="about__body">
@@ -1304,6 +1330,66 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
       // refit a couple frames later for fonts
       requestAnimationFrame(() => requestAnimationFrame(fit));
       setTimeout(fit, 500);
+    })();
+  </script>
+
+  <script>
+    // Anchor scroll fix for the scaled-canvas layout.
+    // The browser's native #anchor scroll uses pre-transform offsets, which
+    // overshoot the actual scroll height. We use getBoundingClientRect()
+    // (post-transform) to land at the correct visual position instead.
+    (function () {
+      function scrollToHash(hash, smooth) {
+        if (!hash || hash === '#') return;
+        const target = document.getElementById(hash.slice(1));
+        if (!target) return;
+        // The browser may have already internally scrolled an overflow:hidden
+        // ancestor (e.g. .stage-wrap) to bring the target into view. Reset
+        // every scrollable ancestor so the visual layout is intact, then
+        // scroll the window to the correct visual position.
+        let el = target.parentElement;
+        while (el && el !== document.body) {
+          if (el.scrollTop !== 0) el.scrollTop = 0;
+          el = el.parentElement;
+        }
+        // Now compute the target's visual position relative to the viewport
+        // (post-transform) and scroll the window there.
+        const top = target.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: Math.max(0, top), behavior: smooth ? 'smooth' : 'auto' });
+      }
+
+      // Intercept same-page anchor clicks
+      document.addEventListener('click', function (e) {
+        const link = e.target.closest('a[href*="#"]');
+        if (!link) return;
+        let url;
+        try { url = new URL(link.getAttribute('href'), location.href); }
+        catch (err) { return; }
+        if (url.origin !== location.origin) return;
+        if (url.pathname !== location.pathname) return;
+        if (!url.hash) return;
+        e.preventDefault();
+        history.replaceState(null, '', url.hash);
+        scrollToHash(url.hash, true);
+      });
+
+      // Re-resolve hash navigation (back/forward, programmatic hash change)
+      window.addEventListener('hashchange', function () {
+        scrollToHash(location.hash, true);
+      });
+
+      // Handle initial-load hash AFTER canvas scaling settles
+      if (location.hash) {
+        window.addEventListener('load', function () {
+          // Native scroll has already happened by now — undo any overshoot
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              scrollToHash(location.hash, false);
+            });
+          });
+          setTimeout(function () { scrollToHash(location.hash, false); }, 600);
+        });
+      }
     })();
   </script>
 

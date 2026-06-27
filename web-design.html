@@ -92,6 +92,10 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .product-card .product-card__body { z-index: 1; }
 .product-laptop picture { display: contents; }
 
+/* Per-product gradient classes (apply at all viewports) */
+.product-card.t-teal { --card-c1: #39f0cf; --card-c2: #0063ae; }
+.product-card.t-pink { --card-c1: #fec183; --card-c2: #ff1572; }
+
 /* ═══ DESKTOP — scaled-canvas layout (≥1100px) ═══ */
 @media (min-width: 1100px) {
 
@@ -189,6 +193,46 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .product-laptop img {
   width: 100%; height: 100%; object-fit: cover; display: block;
 }
+
+/* ▼▼▼ Rebuilt project card (icon + title + gradient in HTML) ▼▼▼ */
+.product-card {
+  background: linear-gradient(135deg, var(--card-c1, #39f0cf) 0%, var(--card-c2, #0063ae) 100%);
+  overflow: hidden;
+}
+.product-card__head {
+  position: absolute; top: 100px; left: 100px;
+  display: flex; gap: 25px; height: 200px; z-index: 2;
+}
+.product-card__icon {
+  flex: 0 0 200px; width: 200px; height: 200px;
+  background: #000; display: block;
+}
+.product-card__icon img { width: 100%; height: 100%; display: block; }
+.product-card__title {
+  margin: 0;
+  background: #000; color: #fff;
+  display: flex; align-items: center; padding: 0 48px;
+  font-family: var(--font); font-weight: 900;
+  font-size: 97pt; line-height: 1; letter-spacing: 0.02em;
+  text-transform: uppercase; white-space: nowrap;
+}
+.product-card__title .dot { color: var(--teal); }
+.product-card__rule {
+  position: absolute; left: 100px; right: 100px; bottom: 102px;
+  height: 30px; background: #000; z-index: 1;
+}
+/* Subtitle sits above the rule with side-padding-equivalent clearance */
+  .product-card__body {
+    top: auto;
+    bottom: 232px;
+    left: 100px; right: 100px;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    gap: 0;
+    z-index: 2;
+  }
+/* ▲▲▲ /Rebuilt project card ▲▲▲ */
+
 
 /* CTA band */
 .cta {
@@ -336,6 +380,45 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   }
   .product-laptop img { width: 100%; height: auto; display: block; }
 
+  /* ▼▼▼ Rebuilt project card — mobile ▼▼▼ */
+  .product-card {
+    position: relative; aspect-ratio: 8000 / 3824;
+    background: linear-gradient(135deg, var(--card-c1, #39f0cf) 0%, var(--card-c2, #0063ae) 100%);
+    overflow: hidden;
+  }
+  .product-card__head {
+    position: absolute; top: 9.33%; left: 4.46%;
+    display: flex; gap: 1.1%; height: 19%; z-index: 2;
+  }
+  .product-card__icon {
+    flex: 0 0 auto; aspect-ratio: 1 / 1; height: 100%; width: auto;
+    background: #000; display: block;
+  }
+  .product-card__icon img { width: 100%; height: 100%; display: block; }
+  .product-card__title {
+    margin: 0;
+    background: #000; color: #fff;
+    display: flex; align-items: center; padding: 0 clamp(16px, 2.4vw, 28px);
+    font-family: var(--font); font-weight: 900;
+    font-size: clamp(16px, 4vw, 38px); line-height: 1; letter-spacing: 0.02em;
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .product-card__title .dot { color: var(--teal); }
+  .product-card__rule {
+    position: absolute; left: 4.46%; right: 4.46%; bottom: 9.5%;
+    height: clamp(4px, 0.8vw, 12px); background: #000; z-index: 1;
+  }
+    .product-card__body {
+      top: auto;
+      bottom: 22%;
+      left: 4.46%; right: 4.46%;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      gap: 0;
+    }
+  /* ▲▲▲ /Rebuilt project card — mobile ▲▲▲ */
+
+
   /* CTA */
   .cta {
     padding: clamp(72px, 14vw, 140px) clamp(32px, 6vw, 80px);
@@ -478,7 +561,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
    in black (matches the reference layout). */
 @media (min-width: 1100px) {
   .products .product-card__body {
-    top: auto; bottom: 9%; left: 4.46%; right: 4.46%; gap: 0;
+    top: auto; bottom: 232px; left: 100px; right: 100px;
+    justify-content: flex-end; gap: 0;
   }
   .products .product-card__eyebrow {
     font-size: 64pt; line-height: 0.95;
@@ -486,7 +570,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 @media (max-width: 1099px) {
   .products .product-card__body {
-    top: auto; bottom: 8%; left: 4.46%; right: 4.46%;
+    top: auto; bottom: 22%; left: 4.46%; right: 4.46%;
     justify-content: flex-end; gap: 0;
   }
   .products .product-card__eyebrow {
@@ -546,7 +630,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
           </button>
 
           <nav class="primary-nav" id="primary-nav" aria-label="Primary">
-            <a href="index.html">about</a>
+            <a href="index.html#about">about</a>
             <a href="web-design.html" aria-current="page">web design</a>
             <a href="graphic-design.html">graphic design</a>
             <a href="digital-products.html">digital products</a>
@@ -604,13 +688,14 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
       <section class="products" aria-label="Selected web design projects">
 
         <article class="product-row" aria-labelledby="proj-biji">
-          <div class="product-card">
-            <picture class="product-card__bg">
-              <source type="image/webp" srcset="assets/img/web-bijis-card-800.webp 800w, assets/img/web-bijis-card-1400.webp 1400w, assets/img/web-bijis-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
-              <img src="assets/img/web-bijis-card-2000.jpg" srcset="assets/img/web-bijis-card-800.jpg 800w, assets/img/web-bijis-card-1400.jpg 1400w, assets/img/web-bijis-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="Bijis Kitchen Indian Takeaway — web design project" loading="lazy" decoding="async" width="2400" height="1147">
-            </picture>
+          <div class="product-card t-teal">
+            <div class="product-card__head">
+              <span class="product-card__icon" aria-hidden="true"><img src="assets/img/icon-northhaus-product.png" alt="" width="200" height="200" decoding="async"></span>
+              <h3 class="product-card__title" id="proj-biji">Biji's Kitchen<span class="dot">.</span></h3>
+            </div>
+            <div class="product-card__rule" aria-hidden="true"></div>
             <div class="product-card__body">
-              <h3 class="product-card__eyebrow" id="proj-biji">Bijis Kitchen Indian Takeaway.</h3>
+              <p class="product-card__eyebrow">Website design and build for Indian takeaway</p>
             </div>
           </div>
           <div class="product-laptop">
@@ -622,13 +707,14 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
         </article>
 
         <article class="product-row" aria-labelledby="proj-sabai">
-          <div class="product-card">
-            <picture class="product-card__bg">
-              <source type="image/webp" srcset="assets/img/web-sabai-card-800.webp 800w, assets/img/web-sabai-card-1400.webp 1400w, assets/img/web-sabai-card-2000.webp 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)">
-              <img src="assets/img/web-sabai-card-2000.jpg" srcset="assets/img/web-sabai-card-800.jpg 800w, assets/img/web-sabai-card-1400.jpg 1400w, assets/img/web-sabai-card-2000.jpg 2000w" sizes="(min-width: 1100px) 1800px, calc(100vw - 48px)" alt="Sabai Sabai Thai Massage — web design project" loading="lazy" decoding="async" width="2400" height="1147">
-            </picture>
+          <div class="product-card t-pink">
+            <div class="product-card__head">
+              <span class="product-card__icon" aria-hidden="true"><img src="assets/img/icon-northhaus-product.png" alt="" width="200" height="200" decoding="async"></span>
+              <h3 class="product-card__title" id="proj-sabai">Sabai Sabai<span class="dot">.</span></h3>
+            </div>
+            <div class="product-card__rule" aria-hidden="true"></div>
             <div class="product-card__body">
-              <h3 class="product-card__eyebrow" id="proj-sabai">Sabai Sabai Thai Massage.</h3>
+              <p class="product-card__eyebrow">Website design and build for Thai massage studio</p>
             </div>
           </div>
           <div class="product-laptop">
