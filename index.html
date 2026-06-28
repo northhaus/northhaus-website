@@ -435,7 +435,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 .about__body p:last-child { margin: 0; }
 .about__key,
-.about__closer { color: var(--teal); font-weight: 700; }
+.about__body .about__closer { color: var(--teal); font-weight: 700; }
 
 /* ── About figure (parallax + monitor code reveal) ── */
 /* Two-column layout: the existing body text sits on the left,
@@ -842,7 +842,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
     margin: 0 0 clamp(28px, 6vw, 48px);
   }
   .about__head .dot { color: var(--teal); transition: color 250ms ease-in-out; }
-  .about__body { max-width: 56ch; }
+  .about__body { max-width: 75ch; }
   .about__body p {
     font-size: clamp(18px, 2.4vw, 22px);
     line-height: 1.5;
@@ -852,7 +852,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   }
   .about__body p:last-child { margin: 0; }
   .about__key,
-  .about__closer { color: var(--teal); font-weight: 700; }
+  .about__body .about__closer { color: var(--teal); font-weight: 700; }
 
   /* Figure is desktop-only — on mobile the about section stays as
      a clean single text column, matching the rest of the mobile
