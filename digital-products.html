@@ -785,7 +785,18 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   .cascade-char { transition: none !important; }
   .section-head__title--cascade .dot { transition: none !important; }
 }
-  </style>
+  
+/* ▼▼▼ Typography: prevent widows and balance headlines ▼▼▼ */
+/* Short headings & labels: distribute lines evenly */
+h1, h2, h3, h4,
+.article__title, .article__eyebrow,
+.product-card__eyebrow,
+.cta__head, .form-heading,
+.toc__head { text-wrap: balance; }
+/* Long-form body text: minimise orphans on last line */
+p, li, .article__lede, .product-card__copy, .cta__body { text-wrap: pretty; }
+/* ▲▲▲ Typography: prevent widows ▲▲▲ */
+</style>
 </head>
 
 <body data-screen-label="04 Digital Products">

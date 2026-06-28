@@ -183,8 +183,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   display: flex; flex-direction: column; gap: 36px;
 }
 .product-card__eyebrow {
-  margin: 0; font-family: var(--font); font-weight: 900; font-size: 46pt;
-  line-height: 1; letter-spacing: 0.04em; text-transform: uppercase; color: #000;
+  margin: 0; font-family: var(--font); font-weight: 900; font-size: 64pt;
+  line-height: 0.95; letter-spacing: 0.04em; text-transform: uppercase; color: #000;
 }
 .product-card__copy {
   margin: 0; font-family: var(--font); font-weight: 700; font-size: 40pt;
@@ -376,7 +376,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   }
   .product-card__eyebrow {
     margin: 0; font-family: var(--font); font-weight: 900;
-    font-size: clamp(12px, 2.2vw, 20px); line-height: 1; letter-spacing: 0.03em;
+    font-size: clamp(14px, 3.4vw, 30px); line-height: 1; letter-spacing: 0.03em;
     text-transform: uppercase; color: #000;
   }
   .product-card__copy {
@@ -526,7 +526,18 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   .cascade-char { transition: none !important; }
   .section-head__title--cascade .dot { transition: none !important; }
 }
-  </style>
+  
+/* ▼▼▼ Typography: prevent widows and balance headlines ▼▼▼ */
+/* Short headings & labels: distribute lines evenly */
+h1, h2, h3, h4,
+.article__title, .article__eyebrow,
+.product-card__eyebrow,
+.cta__head, .form-heading,
+.toc__head { text-wrap: balance; }
+/* Long-form body text: minimise orphans on last line */
+p, li, .article__lede, .product-card__copy, .cta__body { text-wrap: pretty; }
+/* ▲▲▲ Typography: prevent widows ▲▲▲ */
+</style>
 </head>
 
 <body data-screen-label="03 Graphic Design">
