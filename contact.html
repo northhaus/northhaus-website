@@ -89,6 +89,7 @@
     #site [data-cta]{display:none !important}
     #site [data-burger]{display:inline-flex !important}
     #top{height:auto !important;min-height:100vh !important}
+    #site [data-hero-scrim]{background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.72) 22%,rgba(0,0,0,.92) 42%,rgba(0,0,0,.92) 62%,rgba(0,0,0,.72) 80%,rgba(0,0,0,0) 100%) !important}
     #site [data-hero-overlay]{
       -webkit-mask-image:radial-gradient(circle 32vw at 22% 28%,transparent 42%,#000 74%),radial-gradient(circle 24vw at 76% 22%,transparent 42%,#000 74%),radial-gradient(circle 30vw at 64% 64%,transparent 42%,#000 74%),radial-gradient(circle 22vw at 26% 82%,transparent 42%,#000 74%) !important;
       mask-image:radial-gradient(circle 32vw at 22% 28%,transparent 42%,#000 74%),radial-gradient(circle 24vw at 76% 22%,transparent 42%,#000 74%),radial-gradient(circle 30vw at 64% 64%,transparent 42%,#000 74%),radial-gradient(circle 22vw at 26% 82%,transparent 42%,#000 74%) !important;
@@ -187,7 +188,7 @@
   <header id="top" data-hero data-screen-label="Hero" style="position:relative;height:100vh;min-height:640px;overflow:hidden;background:#000;cursor:none">
     {{ codeLayer }}
     <div data-hero-overlay style="position:absolute;inset:0;background:var(--hero-bg,#000);-webkit-mask-image:radial-gradient(circle 210px at var(--mx,-9999px) var(--my,-9999px),transparent 34%,#000 72%);mask-image:radial-gradient(circle 210px at var(--mx,-9999px) var(--my,-9999px),transparent 34%,#000 72%)"></div>
-    <div style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 48% 48% at 50% 50%,#000 0%,rgba(0,0,0,.94) 52%,rgba(0,0,0,0) 80%)"></div>
+    <div data-hero-scrim style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 48% 48% at 50% 50%,#000 0%,rgba(0,0,0,.94) 52%,rgba(0,0,0,0) 80%)"></div>
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 3.5vw;pointer-events:none;z-index:2">
       <div style="font-size:12px;font-weight:600;letter-spacing:.22em;color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .1s">NORTHHAUS - GET IN TOUCH</div>
       <h1 style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:7vw;line-height:1.02;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:2vw auto 0;max-width:70vw;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .22s;text-wrap:balance"><span style="color:var(--accent,#2E6F68)">Contact</span> Us<span style="color:var(--accent,#2E6F68)">.</span></h1>
