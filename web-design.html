@@ -77,7 +77,7 @@
   #site [data-menu] a{font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(30px,8.5vw,50px);line-height:1.18;color:#FBF8F3}
   #site [data-menu] a:active{color:var(--accent,#66D1DE)}
   @media (min-width:901px){#site [data-menu],#site [data-burger]{display:none !important}}
-  @media (hover:none){#site [data-glitch-over]{display:none !important}#top{cursor:auto !important}#top [data-wire]{display:none !important}#top [data-hero-hint]{display:none !important}}
+  @media (hover:none){#site [data-glitch-over]{display:none !important}#top{cursor:auto !important}#top [data-wire]{-webkit-mask-image:none !important;mask-image:none !important}#top [data-hero-hint]{display:none !important}}
   @media (prefers-reduced-motion:reduce){
     *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
     html{scroll-behavior:auto}
