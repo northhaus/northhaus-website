@@ -77,7 +77,7 @@
   #site [data-menu] a{font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(30px,8.5vw,50px);line-height:1.18;color:#FBF8F3}
   #site [data-menu] a:active{color:var(--accent,#66D1DE)}
   @media (min-width:901px){#site [data-menu],#site [data-burger]{display:none !important}}
-  @media (hover:none){#top{cursor:auto !important}#top [data-wire]{-webkit-mask-image:radial-gradient(circle 72px at 28% 32%,#000 0 42%,transparent 74%),radial-gradient(circle 64px at 74% 60%,#000 0 42%,transparent 74%),radial-gradient(circle 58px at 46% 82%,#000 0 42%,transparent 74%) !important;mask-image:radial-gradient(circle 72px at 28% 32%,#000 0 42%,transparent 74%),radial-gradient(circle 64px at 74% 60%,#000 0 42%,transparent 74%),radial-gradient(circle 58px at 46% 82%,#000 0 42%,transparent 74%) !important}#top [data-hero-hint]{display:none !important}}
+  @media (hover:none){#site [data-glitch-over]{display:none !important}#top{cursor:auto !important}#top [data-wire]{display:none !important}#top [data-hero-hint]{display:none !important}}
   @media (prefers-reduced-motion:reduce){
     *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
     html{scroll-behavior:auto}
@@ -200,7 +200,7 @@
   <header id="top" data-hero data-screen-label="Hero" style="position:relative;height:100vh;min-height:660px;overflow:hidden;background:#000;display:grid;grid-template-columns:minmax(300px,32%) 1fr;align-items:start;gap:3vw;padding:clamp(180px,22vh,260px) 5vw 3.5vw;text-align:left">
     <div style="position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 68% 66% at 50% 46%,rgba(102,209,222,.30) 0%,rgba(102,209,222,.12) 40%,rgba(0,0,0,0) 74%)"></div>
     <div data-hero-copy style="position:relative;z-index:2;pointer-events:none;margin-top:calc(min(60vw,1700px) * 0.02286)">
-      <h1 style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:clamp(44px,4.8vw,124px);line-height:.98;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:0;pointer-events:auto;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .22s"><span style="color:var(--accent,#66D1DE)">Web</span><br>Design<span style="color:var(--accent,#66D1DE)">.</span></h1>
+      <h1 data-glitch style="position:relative;display:inline-block;font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:clamp(44px,4.8vw,124px);line-height:.98;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:0;pointer-events:auto;cursor:none;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .22s"><span data-gw style="position:relative;display:inline-block;color:var(--accent,#66D1DE)">Web<span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#66D1DE);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl>Web</span></span></span><br><span data-gw style="position:relative;display:inline-block">Design<span style="color:var(--accent,#66D1DE)">.</span><span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#66D1DE);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl>Design.</span></span></span></h1>
       <p style="font-size:clamp(15px,1.1vw,27px);line-height:1.6;color:var(--accent,#66D1DE);max-width:26vw;margin:1.6vw 0 0;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .46s;text-wrap:pretty">High-performance interfaces built with the latest technology. I build on the architecture of sound UI fundamentals.</p>
       <div data-hero-hint style="margin-top:2.4vw;display:inline-flex;align-items:center;gap:.6em;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:#FBF8F3;opacity:.55;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .58s"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent,#66D1DE)"></span>Hover the screen to explore</div>
     </div>
@@ -422,7 +422,7 @@
   <div data-cursor-dot style="position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--accent,#2E6F68);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s ease,width .25s cubic-bezier(.6,.5,0,1),height .25s cubic-bezier(.6,.5,0,1);will-change:transform,left,top"></div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;typeface&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Sharp Sans (Black / Medium)&quot;,&quot;options&quot;:[&quot;Current&quot;,&quot;Swiss Grotesk (Haas Unica)&quot;,&quot;Sharp Sans (Black / Medium)&quot;],&quot;section&quot;:&quot;Typography&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#66D1DE&quot;,&quot;options&quot;:[&quot;#2E6F68&quot;,&quot;#66D1DE&quot;,&quot;#3AA6A0&quot;,&quot;#1F4E49&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroGradient&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Solid Black&quot;,&quot;options&quot;:[&quot;Solid Black&quot;,&quot;Black → Grey&quot;,&quot;Black → Teal&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgObject&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;None&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;Torus&quot;,&quot;Orbit Rings&quot;,&quot;Floating Cubes&quot;,&quot;Torus Knot&quot;,&quot;Icosahedron&quot;,&quot;Neural Net&quot;,&quot;Node Sphere&quot;,&quot;Data Grid&quot;,&quot;Northhaus Mark&quot;],&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2.5,&quot;min&quot;:0.4,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;x&quot;,&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;marqueeSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:22,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;countUp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;typeface&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Sharp Sans (Black / Medium)&quot;,&quot;options&quot;:[&quot;Current&quot;,&quot;Swiss Grotesk (Haas Unica)&quot;,&quot;Sharp Sans (Black / Medium)&quot;],&quot;section&quot;:&quot;Typography&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#66D1DE&quot;,&quot;options&quot;:[&quot;#2E6F68&quot;,&quot;#66D1DE&quot;,&quot;#3AA6A0&quot;,&quot;#1F4E49&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroGradient&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Solid Black&quot;,&quot;options&quot;:[&quot;Solid Black&quot;,&quot;Black → Grey&quot;,&quot;Black → Teal&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgObject&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;None&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;Torus&quot;,&quot;Orbit Rings&quot;,&quot;Floating Cubes&quot;,&quot;Torus Knot&quot;,&quot;Icosahedron&quot;,&quot;Neural Net&quot;,&quot;Node Sphere&quot;,&quot;Data Grid&quot;,&quot;Northhaus Mark&quot;],&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2.5,&quot;min&quot;:0.4,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;x&quot;,&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;marqueeSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:22,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;countUp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroGlitch&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroHoverText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { hov: -1, sHov: -1, panel: 0, scrolled: false, counts: [0, 0, 0, 0], counted: false, menu: false };
   componentDidMount() {
@@ -501,6 +501,7 @@ class Component extends DCLogic {
     });
     this._fixWidows();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this._fixWidows());
+    this._initGlitch();
     this._wio = new IntersectionObserver((es) => {
       es.forEach((e) => {
         const t = e.target;
@@ -947,6 +948,44 @@ class Component extends DCLogic {
     };
     this._raf = requestAnimationFrame(tick);
   }
+  _initGlitch() {
+    if (this.props.heroGlitch === false) return;
+    const h1 = document.querySelector('[data-glitch]');
+    if (!h1) return;
+    const units = Array.from(h1.querySelectorAll('[data-gw]'));
+    if (!units.length) return;
+    const custom = (this.props.heroHoverText || '').split('/').map((t) => t.trim());
+    const CH = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const OPEN = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+    const SHUT = 'polygon(0 50%, 100% 50%, 100% 50%, 0 50%)';
+    this._glBound = [];
+    units.forEach((unit, i) => {
+      const over = unit.querySelector('[data-glitch-over]');
+      const el = over && over.querySelector('[data-gl]');
+      if (!el) return;
+      const final = custom[i] ? custom[i] : el.textContent;
+      el.textContent = final;
+      const stop = () => { if (el._iv) { clearInterval(el._iv); el._iv = null; } };
+      const enter = () => {
+        stop();
+        over.style.clipPath = OPEN;
+        let it = 0;
+        el._iv = setInterval(() => {
+          el.textContent = final.split('').map((c, k) => {
+            if (k < it) return final[k];
+            if (!c.trim()) return c;
+            return CH[(Math.random() * 26) | 0];
+          }).join('');
+          if (it >= final.length) { stop(); el.textContent = final; }
+          it += 1 / 2.6;
+        }, 30);
+      };
+      const leave = () => { stop(); over.style.clipPath = SHUT; el.textContent = final; };
+      unit.addEventListener('mouseenter', enter);
+      unit.addEventListener('mouseleave', leave);
+      this._glBound.push([unit, enter, leave]);
+    });
+  }
   _fixWidows() {
     const NB = '\u00A0';
     document.querySelectorAll('#site h1, #site h2, #site h3, #site h4, #site p').forEach((el) => {
@@ -962,6 +1001,7 @@ class Component extends DCLogic {
     });
   }
   componentWillUnmount() {
+    if (this._glBound) this._glBound.forEach(([el, a, b]) => { el.removeEventListener('mouseenter', a); el.removeEventListener('mouseleave', b); });
     window.removeEventListener('scroll', this._onScroll);
     if (this._wio) this._wio.disconnect();
     if (this._io) this._io.disconnect();

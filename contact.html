@@ -77,7 +77,7 @@
   #site [data-menu] a{font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(30px,8.5vw,50px);line-height:1.18;color:#FBF8F3}
   #site [data-menu] a:active{color:var(--accent,#66D1DE)}
   @media (min-width:901px){#site [data-menu],#site [data-burger]{display:none !important}}
-  @media (hover:none){#top{cursor:auto !important}}
+  @media (hover:none){#site [data-glitch-over]{display:none !important}#top{cursor:auto !important}}
   @media (prefers-reduced-motion:reduce){
     *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
     html{scroll-behavior:auto}
@@ -191,7 +191,7 @@
     <div data-hero-scrim style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 48% 48% at 50% 50%,#000 0%,rgba(0,0,0,.94) 52%,rgba(0,0,0,0) 80%)"></div>
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 3.5vw;pointer-events:none;z-index:2">
       <div style="font-size:12px;font-weight:600;letter-spacing:.22em;color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .1s">NORTHHAUS - GET IN TOUCH</div>
-      <h1 style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:7vw;line-height:1.02;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:2vw auto 0;max-width:70vw;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .22s;text-wrap:balance"><span style="color:var(--accent,#2E6F68)">Contact</span> Us<span style="color:var(--accent,#2E6F68)">.</span></h1>
+      <h1 data-glitch style="position:relative;display:inline-block;font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:7vw;line-height:1.02;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:2vw auto 0;max-width:70vw;pointer-events:auto;cursor:none;text-wrap:balance;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .22s"><span data-gw style="position:relative;display:inline-block;color:var(--accent,#2E6F68)">Contact<span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#2E6F68);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl>Contact</span></span></span> <span data-gw style="position:relative;display:inline-block">Us<span style="color:var(--accent,#2E6F68)">.</span><span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#2E6F68);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl>Us.</span></span></span></h1>
       <p style="font-size:1.15vw;line-height:1.6;color:var(--accent,#2E6F68);max-width:38vw;margin:1.8vw auto 0;text-shadow:0 1px 16px rgba(0,0,0,.95);animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .34s;text-wrap:pretty">If your brand or organisation needs a distinctive identity, dynamic website, digital tool or impactful communication design, I can help you deliver that. I&rsquo;d love to hear from you.</p>
     </div>
   </header>
@@ -313,7 +313,7 @@
   <div data-cursor-dot style="position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--accent,#2E6F68);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s ease,width .25s cubic-bezier(.6,.5,0,1),height .25s cubic-bezier(.6,.5,0,1);will-change:transform,left,top"></div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;typeface&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Sharp Sans (Black / Medium)&quot;,&quot;options&quot;:[&quot;Current&quot;,&quot;Swiss Grotesk (Haas Unica)&quot;,&quot;Sharp Sans (Black / Medium)&quot;],&quot;section&quot;:&quot;Typography&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#66D1DE&quot;,&quot;options&quot;:[&quot;#2E6F68&quot;,&quot;#66D1DE&quot;,&quot;#3AA6A0&quot;,&quot;#1F4E49&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroGradient&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Solid Black&quot;,&quot;options&quot;:[&quot;Solid Black&quot;,&quot;Black → Grey&quot;,&quot;Black → Teal&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgObject&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;None&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;Torus&quot;,&quot;Orbit Rings&quot;,&quot;Floating Cubes&quot;,&quot;Torus Knot&quot;,&quot;Icosahedron&quot;,&quot;Neural Net&quot;,&quot;Node Sphere&quot;,&quot;Data Grid&quot;,&quot;Northhaus Mark&quot;],&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2.5,&quot;min&quot;:0.4,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;x&quot;,&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;marqueeSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:22,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;countUp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;typeface&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Sharp Sans (Black / Medium)&quot;,&quot;options&quot;:[&quot;Current&quot;,&quot;Swiss Grotesk (Haas Unica)&quot;,&quot;Sharp Sans (Black / Medium)&quot;],&quot;section&quot;:&quot;Typography&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#66D1DE&quot;,&quot;options&quot;:[&quot;#2E6F68&quot;,&quot;#66D1DE&quot;,&quot;#3AA6A0&quot;,&quot;#1F4E49&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroGradient&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Solid Black&quot;,&quot;options&quot;:[&quot;Solid Black&quot;,&quot;Black → Grey&quot;,&quot;Black → Teal&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgObject&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;None&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;Torus&quot;,&quot;Orbit Rings&quot;,&quot;Floating Cubes&quot;,&quot;Torus Knot&quot;,&quot;Icosahedron&quot;,&quot;Neural Net&quot;,&quot;Node Sphere&quot;,&quot;Data Grid&quot;,&quot;Northhaus Mark&quot;],&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2.5,&quot;min&quot;:0.4,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;x&quot;,&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;marqueeSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:22,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;countUp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroGlitch&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroHoverText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { hov: -1, panel: 0, scrolled: false, counts: [0, 0, 0, 0], counted: false, menu: false, formStatus: '', formMsg: '' };
   componentDidMount() {
@@ -390,6 +390,7 @@ class Component extends DCLogic {
     });
     this._fixWidows();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this._fixWidows());
+    this._initGlitch();
     const dot = document.querySelector('[data-cursor-dot]');
     if (dot && !window.matchMedia('(pointer: coarse)').matches) {
       let tx = window.innerWidth / 2, ty = window.innerHeight / 2, cx = tx, cy = ty, shown = false;
@@ -816,6 +817,44 @@ class Component extends DCLogic {
     };
     this._raf = requestAnimationFrame(tick);
   }
+  _initGlitch() {
+    if (this.props.heroGlitch === false) return;
+    const h1 = document.querySelector('[data-glitch]');
+    if (!h1) return;
+    const units = Array.from(h1.querySelectorAll('[data-gw]'));
+    if (!units.length) return;
+    const custom = (this.props.heroHoverText || '').split('/').map((t) => t.trim());
+    const CH = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const OPEN = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+    const SHUT = 'polygon(0 50%, 100% 50%, 100% 50%, 0 50%)';
+    this._glBound = [];
+    units.forEach((unit, i) => {
+      const over = unit.querySelector('[data-glitch-over]');
+      const el = over && over.querySelector('[data-gl]');
+      if (!el) return;
+      const final = custom[i] ? custom[i] : el.textContent;
+      el.textContent = final;
+      const stop = () => { if (el._iv) { clearInterval(el._iv); el._iv = null; } };
+      const enter = () => {
+        stop();
+        over.style.clipPath = OPEN;
+        let it = 0;
+        el._iv = setInterval(() => {
+          el.textContent = final.split('').map((c, k) => {
+            if (k < it) return final[k];
+            if (!c.trim()) return c;
+            return CH[(Math.random() * 26) | 0];
+          }).join('');
+          if (it >= final.length) { stop(); el.textContent = final; }
+          it += 1 / 2.6;
+        }, 30);
+      };
+      const leave = () => { stop(); over.style.clipPath = SHUT; el.textContent = final; };
+      unit.addEventListener('mouseenter', enter);
+      unit.addEventListener('mouseleave', leave);
+      this._glBound.push([unit, enter, leave]);
+    });
+  }
   _fixWidows() {
     const NB = '\u00A0';
     document.querySelectorAll('#site h1, #site h2, #site h3, #site h4, #site p').forEach((el) => {
@@ -831,6 +870,7 @@ class Component extends DCLogic {
     });
   }
   componentWillUnmount() {
+    if (this._glBound) this._glBound.forEach(([el, a, b]) => { el.removeEventListener('mouseenter', a); el.removeEventListener('mouseleave', b); });
     window.removeEventListener('scroll', this._onScroll);
     if (this._io) this._io.disconnect();
     if (this._ioZoom) this._ioZoom.disconnect();
