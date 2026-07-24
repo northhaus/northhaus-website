@@ -372,17 +372,19 @@ class Component extends DCLogic {
       el.addEventListener('mouseleave', () => cs.forEach((s) => { s.style.transform = 'translateY(0)'; }));
     });
     const ease = 'cubic-bezier(.6,.5,0,1)';
+    const _revealShow = (t, io) => {
+      t.style.opacity = '1';
+      t.style.transform = 'none';
+      t.style.filter = 'none';
+      t.style.clipPath = 'inset(0 0 0 0)';
+      io.unobserve(t);
+    };
     this._io = new IntersectionObserver((es) => {
-      es.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'none';
-          e.target.style.filter = 'none';
-          e.target.style.clipPath = 'inset(0 0 0 0)';
-          this._io.unobserve(e.target);
-        }
-      });
+      es.forEach((e) => { if (e.isIntersecting) _revealShow(e.target, this._io); });
     }, { threshold: 0.12 });
+    this._ioZoom = new IntersectionObserver((es) => {
+      es.forEach((e) => { if (e.isIntersecting) _revealShow(e.target, this._ioZoom); });
+    }, { threshold: 0 });
     document.querySelectorAll('[data-reveal]').forEach((el) => {
       const kind = el.dataset.reveal;
       el.style.opacity = '0';
@@ -397,8 +399,10 @@ class Component extends DCLogic {
         el.style.transition = 'opacity .95s ' + ease + ', transform 1s ' + ease + ', filter .95s ' + ease;
       }
       el.style.transitionDelay = (el.dataset.delay || 0) + 'ms';
-      this._io.observe(el);
+      (kind === 'zoom' ? this._ioZoom : this._io).observe(el);
     });
+    this._fixWidows();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this._fixWidows());
     const dot = document.querySelector('[data-cursor-dot]');
     if (dot && !window.matchMedia('(pointer: coarse)').matches) {
       let tx = window.innerWidth / 2, ty = window.innerHeight / 2, cx = tx, cy = ty, shown = false;
@@ -825,9 +829,24 @@ class Component extends DCLogic {
     };
     this._raf = requestAnimationFrame(tick);
   }
+  _fixWidows() {
+    const NB = '\u00A0';
+    document.querySelectorAll('#site h1, #site h2, #site h3, #site h4, #site p').forEach((el) => {
+      const texts = [];
+      const walk = (n) => { n.childNodes.forEach((c) => { if (c.nodeType === 3) { if (c.nodeValue.trim()) texts.push(c); } else if (c.nodeType === 1) walk(c); }); };
+      walk(el);
+      for (let i = texts.length - 1; i >= 0; i--) {
+        if (/\s\S+\s*$/.test(texts[i].nodeValue)) {
+          texts[i].nodeValue = texts[i].nodeValue.replace(/\s+(\S+\s*)$/, NB + '$1');
+          break;
+        }
+      }
+    });
+  }
   componentWillUnmount() {
     window.removeEventListener('scroll', this._onScroll);
     if (this._io) this._io.disconnect();
+    if (this._ioZoom) this._ioZoom.disconnect();
     if (this._so) this._so.disconnect();
     if (this._raf) cancelAnimationFrame(this._raf);
     if (this._craf) cancelAnimationFrame(this._craf);

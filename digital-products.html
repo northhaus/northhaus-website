@@ -88,7 +88,7 @@
     #site [data-navlinks]{display:none !important}
     #site [data-cta]{display:none !important}
     #site [data-burger]{display:inline-flex !important}
-    #top{height:auto !important;min-height:100vh !important;grid-template-columns:1fr !important;text-align:center !important;gap:6vw !important;padding:104px 24px 48px !important}
+    #top{height:auto !important;min-height:100vh !important;grid-template-columns:1fr !important;align-content:start !important;text-align:center !important;gap:28px !important;padding:104px 24px 48px !important}
     #top [data-hero-copy]{display:flex !important;flex-direction:column !important;align-items:center !important}
     #site [data-hero-overlay]{
       -webkit-mask-image:radial-gradient(circle 32vw at 22% 28%,transparent 42%,#000 74%),radial-gradient(circle 24vw at 76% 22%,transparent 42%,#000 74%),radial-gradient(circle 30vw at 64% 64%,transparent 42%,#000 74%),radial-gradient(circle 22vw at 26% 82%,transparent 42%,#000 74%) !important;
@@ -98,7 +98,7 @@
     #site #top pre{font-size:clamp(9px,3vw,13px) !important;line-height:1.7 !important;overflow:hidden !important}
     #site #top pre:nth-child(n+4){display:none !important}
     #top h1{font-size:clamp(40px,12vw,72px) !important;max-width:90vw !important;margin-top:0 !important}
-    #top [data-mb]{width:100% !important;max-width:92vw !important;margin-top:-6vw !important}
+    #top [data-mb]{width:100% !important;max-width:92vw !important;margin-top:0 !important}
     #top p{font-size:clamp(15px,4.2vw,19px) !important;max-width:88vw !important;margin-top:20px !important}
     #site [data-pin-track]{height:auto !important}
     #about{grid-template-columns:1fr !important;gap:34px !important;padding:96px 24px 48px !important;min-height:0 !important;position:static !important}
@@ -291,9 +291,8 @@
                 <span style="width:.7vw;height:.7vw;border-radius:50%;background:#3a3c42"></span>
                 <span style="margin-left:1vw;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:500;font-size:.7vw;letter-spacing:.14em;color:#6f6f73">NORTHHAUS &middot; HTML TOOL</span>
               </div>
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1vw;padding:2vw;text-align:center">
-                <div data-prev-title style="font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;font-size:3vw;line-height:1;color:#FBF8F3;text-transform:uppercase;letter-spacing:.02em">{{ p.name }}</div>
-                <div data-prev-label style="font-size:.8vw;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,#2E6F68);font-weight:600">Preview coming soon</div>
+              <div style="flex:1;position:relative;overflow:hidden;background:#0a0b0d">
+                <img src="{{ p.img }}" alt="{{ p.name }} screenshot" width="{{ p.imgW }}" height="{{ p.imgH }}" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:2.2vw 0;box-sizing:border-box">
               </div>
             </div>
           </sc-for>
@@ -458,17 +457,19 @@ class Component extends DCLogic {
       el.addEventListener('mouseleave', () => cs.forEach((s) => { s.style.transform = 'translateY(0)'; }));
     });
     const ease = 'cubic-bezier(.6,.5,0,1)';
+    const _revealShow = (t, io) => {
+      t.style.opacity = '1';
+      t.style.transform = 'none';
+      t.style.filter = 'none';
+      t.style.clipPath = 'inset(0 0 0 0)';
+      io.unobserve(t);
+    };
     this._io = new IntersectionObserver((es) => {
-      es.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'none';
-          e.target.style.filter = 'none';
-          e.target.style.clipPath = 'inset(0 0 0 0)';
-          this._io.unobserve(e.target);
-        }
-      });
+      es.forEach((e) => { if (e.isIntersecting) _revealShow(e.target, this._io); });
     }, { threshold: 0.12 });
+    this._ioZoom = new IntersectionObserver((es) => {
+      es.forEach((e) => { if (e.isIntersecting) _revealShow(e.target, this._ioZoom); });
+    }, { threshold: 0 });
     document.querySelectorAll('[data-reveal]').forEach((el) => {
       const kind = el.dataset.reveal;
       el.style.opacity = '0';
@@ -483,8 +484,10 @@ class Component extends DCLogic {
         el.style.transition = 'opacity .95s ' + ease + ', transform 1s ' + ease + ', filter .95s ' + ease;
       }
       el.style.transitionDelay = (el.dataset.delay || 0) + 'ms';
-      this._io.observe(el);
+      (kind === 'zoom' ? this._ioZoom : this._io).observe(el);
     });
+    this._fixWidows();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this._fixWidows());
     this._wio = new IntersectionObserver((es) => {
       es.forEach((e) => {
         const t = e.target;
@@ -931,10 +934,25 @@ class Component extends DCLogic {
     };
     this._raf = requestAnimationFrame(tick);
   }
+  _fixWidows() {
+    const NB = '\u00A0';
+    document.querySelectorAll('#site h1, #site h2, #site h3, #site h4, #site p').forEach((el) => {
+      const texts = [];
+      const walk = (n) => { n.childNodes.forEach((c) => { if (c.nodeType === 3) { if (c.nodeValue.trim()) texts.push(c); } else if (c.nodeType === 1) walk(c); }); };
+      walk(el);
+      for (let i = texts.length - 1; i >= 0; i--) {
+        if (/\s\S+\s*$/.test(texts[i].nodeValue)) {
+          texts[i].nodeValue = texts[i].nodeValue.replace(/\s+(\S+\s*)$/, NB + '$1');
+          break;
+        }
+      }
+    });
+  }
   componentWillUnmount() {
     window.removeEventListener('scroll', this._onScroll);
     if (this._wio) this._wio.disconnect();
     if (this._io) this._io.disconnect();
+    if (this._ioZoom) this._ioZoom.disconnect();
     if (this._so) this._so.disconnect();
     if (this._raf) cancelAnimationFrame(this._raf);
     if (this._craf) cancelAnimationFrame(this._craf);
@@ -1081,13 +1099,13 @@ class Component extends DCLogic {
       leave: () => this.setState({ sHov: -1 })
     });
     const PRODUCTS = [
-      { name: 'Wedding Planner', tagline: 'Everything in one place', price: '\u00A34.99', desc: 'Planning a UK wedding means juggling dozens of moving pieces - suppliers, budgets, guests, RSVPs, dates, deposits. This organiser brings it all into one calm, private place that lives on your computer, so you can spend less time on spreadsheets.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/13bf4d6e-67c8-4f4d-a390-473376bb1765?embed=1&logo=0' },
-      { name: 'Fit Phrase', tagline: 'Turn words into workouts', price: '\u00A34.99', desc: 'Fit Phrase transforms phrases into movement - every letter linked to a corresponding exercise, creating quick, engaging workouts you can do anywhere. A simple, playful way to stay active and make fitness feel less like a chore.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/7554b8f1-7cba-4f18-a0b3-fe0a00b4e007?embed=1&logo=0' },
-      { name: 'Budget Tracker', tagline: 'Keep on track of monthly costs', price: '\u00A34.99', desc: 'A simple, well-designed UK Budget Tracker that helps you take control of your monthly finances - track bills, debt and investments in one calm, considered place.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/aaa7bf44-7be8-44d6-8723-bc6db3ec3801?embed=1&logo=0' },
-      { name: 'Divorce Organiser', tagline: 'A quiet, organised place to hold everything', price: '\u00A34.99', desc: 'Going through a divorce in the UK means tracking dozens of moving pieces at once - paperwork, finances, dates, contacts, costs. This organiser brings it all into one calm, private place that lives on your computer.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/037cea55-ff8a-4a95-b879-12fdbc6ad3d4?embed=1&logo=0' },
-      { name: 'Funeral Planner', tagline: 'A quiet, organised place to hold everything', price: '\u00A34.99', desc: 'Losing someone is hard enough without drowning in paperwork. Registering the death, arranging the funeral, finding the will - this UK organiser brings it all into one private place that lives on your computer.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/5133d1fe-ae24-4a26-821e-8d06dd552b7f?embed=1&logo=0' },
-      { name: 'Incorporated', tagline: 'Everything you need to go limited', price: '\u00A31.99', desc: 'A simple, well-designed UK guide that helps you set up a limited company with confidence - covering the decision, the registration and everything after, in one calm, considered read.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/fa810839-3a3d-4d02-af0b-e4a5fa864847?embed=1&logo=0' },
-      { name: 'Self-Employed', tagline: 'Go self-employed with confidence', price: '\u00A31.99', desc: 'A clear, well-designed UK guide that walks you through working for yourself as a sole trader - from registering with HMRC to tax, VAT and Making Tax Digital, explained calmly and without the jargon.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/e5d5631c-e912-4f10-97b4-8405bf9e5ea4?embed=1&logo=0' }
+      { name: 'Wedding Planner', tagline: 'Everything in one place', price: '\u00A34.99', desc: 'Planning a UK wedding means juggling dozens of moving pieces - suppliers, budgets, guests, RSVPs, dates, deposits. This organiser brings it all into one calm, private place that lives on your computer, so you can spend less time on spreadsheets.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/13bf4d6e-67c8-4f4d-a390-473376bb1765?embed=1&logo=0', img: 'uploads/Wedding%20planner.png', imgW: 2982, imgH: 2246 },
+      { name: 'Fit Phrase', tagline: 'Turn words into workouts', price: '\u00A34.99', desc: 'Fit Phrase transforms phrases into movement - every letter linked to a corresponding exercise, creating quick, engaging workouts you can do anywhere. A simple, playful way to stay active and make fitness feel less like a chore.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/7554b8f1-7cba-4f18-a0b3-fe0a00b4e007?embed=1&logo=0', img: 'uploads/Fit%20Phrase.png', imgW: 3488, imgH: 2643 },
+      { name: 'Budget Tracker', tagline: 'Keep on track of monthly costs', price: '\u00A34.99', desc: 'A simple, well-designed UK Budget Tracker that helps you take control of your monthly finances - track bills, debt and investments in one calm, considered place.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/aaa7bf44-7be8-44d6-8723-bc6db3ec3801?embed=1&logo=0', img: 'uploads/UK%20BUDGET%20TRACKER.png', imgW: 3603, imgH: 2747 },
+      { name: 'Divorce Organiser', tagline: 'A quiet, organised place to hold everything', price: '\u00A34.99', desc: 'Going through a divorce in the UK means tracking dozens of moving pieces at once - paperwork, finances, dates, contacts, costs. This organiser brings it all into one calm, private place that lives on your computer.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/037cea55-ff8a-4a95-b879-12fdbc6ad3d4?embed=1&logo=0', img: 'uploads/Divorce%20Organiser.png', imgW: 2983, imgH: 2235 },
+      { name: 'Funeral Planner', tagline: 'A quiet, organised place to hold everything', price: '\u00A34.99', desc: 'Losing someone is hard enough without drowning in paperwork. Registering the death, arranging the funeral, finding the will - this UK organiser brings it all into one private place that lives on your computer.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/5133d1fe-ae24-4a26-821e-8d06dd552b7f?embed=1&logo=0', img: 'uploads/Funeral%20Planner.png', imgW: 2763, imgH: 2063 },
+      { name: 'Incorporated', tagline: 'Everything you need to go limited', price: '\u00A31.99', desc: 'A simple, well-designed UK guide that helps you set up a limited company with confidence - covering the decision, the registration and everything after, in one calm, considered read.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/fa810839-3a3d-4d02-af0b-e4a5fa864847?embed=1&logo=0', img: 'uploads/Incorporated_UK_Limited_Company_Guide_Page_01.jpg', imgW: 1654, imgH: 2339 },
+      { name: 'Self-Employed', tagline: 'Go self-employed with confidence', price: '\u00A31.99', desc: 'A clear, well-designed UK guide that walks you through working for yourself as a sole trader - from registering with HMRC to tax, VAT and Making Tax Digital, explained calmly and without the jargon.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/e5d5631c-e912-4f10-97b4-8405bf9e5ea4?embed=1&logo=0', img: 'uploads/Self_Employed_UK_Sole_Trader_Guide_Page_01.jpg', imgW: 1654, imgH: 2339 }
     ];
     const selIdx = this.state.product;
     const productRows = PRODUCTS.map((p, i) => ({
@@ -1097,6 +1115,7 @@ class Component extends DCLogic {
       barScale: i === selIdx ? 1 : 0,
       previewOp: i === selIdx ? 1 : 0,
       previewZ: i === selIdx ? 2 : 1,
+      img: p.img, imgW: p.imgW, imgH: p.imgH,
       select: () => this.setState({ product: i })
     }));
     const sp = PRODUCTS[selIdx];

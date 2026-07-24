@@ -88,7 +88,7 @@
     #site [data-navlinks]{display:none !important}
     #site [data-cta]{display:none !important}
     #site [data-burger]{display:inline-flex !important}
-    #top{height:auto !important;min-height:100vh !important;grid-template-columns:1fr !important;text-align:center !important;gap:6vw !important;padding:104px 24px 48px !important}
+    #top{height:auto !important;min-height:100vh !important;grid-template-columns:1fr !important;align-content:start !important;text-align:center !important;gap:28px !important;padding:104px 24px 48px !important}
     #top [data-hero-copy]{display:flex !important;flex-direction:column !important;align-items:center !important}
     #site [data-hero-overlay]{
       -webkit-mask-image:radial-gradient(circle 32vw at 22% 28%,transparent 42%,#000 74%),radial-gradient(circle 24vw at 76% 22%,transparent 42%,#000 74%),radial-gradient(circle 30vw at 64% 64%,transparent 42%,#000 74%),radial-gradient(circle 22vw at 26% 82%,transparent 42%,#000 74%) !important;
@@ -98,7 +98,7 @@
     #site #top pre{font-size:clamp(9px,3vw,13px) !important;line-height:1.7 !important;overflow:hidden !important}
     #site #top pre:nth-child(n+4){display:none !important}
     #top h1{font-size:clamp(40px,12vw,72px) !important;max-width:90vw !important;margin-top:0 !important}
-    #top [data-mb]{width:100% !important;max-width:92vw !important;margin-top:-6vw !important}
+    #top [data-mb]{width:100% !important;max-width:92vw !important;margin-top:0 !important}
     #top p{font-size:clamp(15px,4.2vw,19px) !important;max-width:88vw !important;margin-top:20px !important}
     #site [data-pin-track]{height:auto !important}
     #about{grid-template-columns:1fr !important;gap:34px !important;padding:96px 24px 48px !important;min-height:0 !important;position:static !important}
@@ -470,17 +470,19 @@ class Component extends DCLogic {
       el.addEventListener('mouseleave', () => cs.forEach((s) => { s.style.transform = 'translateY(0)'; }));
     });
     const ease = 'cubic-bezier(.6,.5,0,1)';
+    const _revealShow = (t, io) => {
+      t.style.opacity = '1';
+      t.style.transform = 'none';
+      t.style.filter = 'none';
+      t.style.clipPath = 'inset(0 0 0 0)';
+      io.unobserve(t);
+    };
     this._io = new IntersectionObserver((es) => {
-      es.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'none';
-          e.target.style.filter = 'none';
-          e.target.style.clipPath = 'inset(0 0 0 0)';
-          this._io.unobserve(e.target);
-        }
-      });
+      es.forEach((e) => { if (e.isIntersecting) _revealShow(e.target, this._io); });
     }, { threshold: 0.12 });
+    this._ioZoom = new IntersectionObserver((es) => {
+      es.forEach((e) => { if (e.isIntersecting) _revealShow(e.target, this._ioZoom); });
+    }, { threshold: 0 });
     document.querySelectorAll('[data-reveal]').forEach((el) => {
       const kind = el.dataset.reveal;
       el.style.opacity = '0';
@@ -495,8 +497,10 @@ class Component extends DCLogic {
         el.style.transition = 'opacity .95s ' + ease + ', transform 1s ' + ease + ', filter .95s ' + ease;
       }
       el.style.transitionDelay = (el.dataset.delay || 0) + 'ms';
-      this._io.observe(el);
+      (kind === 'zoom' ? this._ioZoom : this._io).observe(el);
     });
+    this._fixWidows();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this._fixWidows());
     this._wio = new IntersectionObserver((es) => {
       es.forEach((e) => {
         const t = e.target;
@@ -943,10 +947,25 @@ class Component extends DCLogic {
     };
     this._raf = requestAnimationFrame(tick);
   }
+  _fixWidows() {
+    const NB = '\u00A0';
+    document.querySelectorAll('#site h1, #site h2, #site h3, #site h4, #site p').forEach((el) => {
+      const texts = [];
+      const walk = (n) => { n.childNodes.forEach((c) => { if (c.nodeType === 3) { if (c.nodeValue.trim()) texts.push(c); } else if (c.nodeType === 1) walk(c); }); };
+      walk(el);
+      for (let i = texts.length - 1; i >= 0; i--) {
+        if (/\s\S+\s*$/.test(texts[i].nodeValue)) {
+          texts[i].nodeValue = texts[i].nodeValue.replace(/\s+(\S+\s*)$/, NB + '$1');
+          break;
+        }
+      }
+    });
+  }
   componentWillUnmount() {
     window.removeEventListener('scroll', this._onScroll);
     if (this._wio) this._wio.disconnect();
     if (this._io) this._io.disconnect();
+    if (this._ioZoom) this._ioZoom.disconnect();
     if (this._so) this._so.disconnect();
     if (this._raf) cancelAnimationFrame(this._raf);
     if (this._craf) cancelAnimationFrame(this._craf);
