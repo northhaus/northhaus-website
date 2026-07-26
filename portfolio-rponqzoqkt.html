@@ -179,7 +179,7 @@
       <h2 data-cascade style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);text-transform:var(--head-transform,none);font-size:clamp(32px,5vw,64px);letter-spacing:var(--head-tracking,-.015em);margin:1vw 0 0;color:#FBF8F3;display:inline-block">The work<span style="color:var(--accent,#2E6F68)">.</span></h2>
     </div>
     <div style="max-width:1040px;margin:0 auto">
-      <div style="position:relative;width:100%;padding-top:{{ folio.spot.pad }};border-radius:14px;overflow:hidden;background:linear-gradient(150deg,{{ folio.spot.tint }},#0d0e10);box-shadow:0 24px 60px rgba(0,0,0,.45)">
+      <div style="position:relative;width:100%;padding-top:{{ folio.spot.pad }};transition:padding-top .3s ease;border-radius:14px;overflow:hidden;background:linear-gradient(150deg,{{ folio.spot.tint }},#0d0e10);box-shadow:0 24px 60px rgba(0,0,0,.45)">
         {{ folio.spotImg }}
         <sc-if value="{{ folio.spot.showPlay }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px">&#9654;</span></sc-if>
         <button onClick="{{ folio.prev }}" aria-label="Previous" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);width:48px;height:48px;border:1px solid rgba(255,255,255,.35);background:rgba(6,7,9,.35);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);color:#FBF8F3;border-radius:50%;font-size:22px;cursor:pointer;line-height:1">&#8249;</button>
@@ -254,7 +254,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;typeface&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Sharp Sans (Black / Medium)&quot;,&quot;options&quot;:[&quot;Current&quot;,&quot;Swiss Grotesk (Haas Unica)&quot;,&quot;Sharp Sans (Black / Medium)&quot;],&quot;section&quot;:&quot;Typography&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#66D1DE&quot;,&quot;options&quot;:[&quot;#2E6F68&quot;,&quot;#66D1DE&quot;,&quot;#3AA6A0&quot;,&quot;#1F4E49&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroGradient&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Solid Black&quot;,&quot;options&quot;:[&quot;Solid Black&quot;,&quot;Black → Grey&quot;,&quot;Black → Teal&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgObject&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;None&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;Torus&quot;,&quot;Orbit Rings&quot;,&quot;Floating Cubes&quot;,&quot;Torus Knot&quot;,&quot;Icosahedron&quot;,&quot;Neural Net&quot;,&quot;Node Sphere&quot;,&quot;Data Grid&quot;,&quot;Northhaus Mark&quot;],&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2.5,&quot;min&quot;:0.4,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;x&quot;,&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;marqueeSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:22,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;countUp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
-  state = { hov: -1, panel: 0, scrolled: false, counts: [0, 0, 0, 0], counted: false, menu: false, formStatus: '', formMsg: '', gSpot: 0 };
+  state = { hov: -1, panel: 0, scrolled: false, counts: [0, 0, 0, 0], counted: false, menu: false, formStatus: '', formMsg: '', gSpot: 0, arMap: {} };
   componentDidMount() {
     const pl = document.querySelector('[data-preloader]');
     if (pl) {
@@ -985,13 +985,15 @@ class Component extends DCLogic {
     const spot=ITEMS[gSpot];
     const spotThumbs=ITEMS.map(w=>({title:w.title,tint:w.tint,img:w.img,hasImg:!!w.img,video:w.video,ring:w.idx===gSpot?accent:'rgba(255,255,255,.16)',op:w.idx===gSpot?1:0.55,select:()=>this.setState({gSpot:w.idx})}));
     const SCR={l:'29.4%',t:'10.5%',w:'62.7%',h:'49.4%'};
+    const onImgLoad=(e)=>{const el=e.target,src=el.getAttribute('src');if(!el.naturalWidth||!el.naturalHeight)return;const r=el.naturalHeight/el.naturalWidth;if(this.state.arMap[src]!==r)this.setState(s=>({arMap:Object.assign({},s.arMap,{[src]:r})}));};
+    const spotAR=spot.img?this.state.arMap[spot.img]:null;
     const spotImg = spot.videoSrc
       ? React.createElement('div',{style:{position:'absolute',inset:0}},[
-          React.createElement('img',{key:'m',src:spot.img,alt:spot.alt,style:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',display:'block'}}),
+          React.createElement('img',{key:'m',src:spot.img,alt:spot.alt,onLoad:onImgLoad,style:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'contain',display:'block'}}),
           React.createElement('video',{key:'v',src:encodeURI(spot.videoSrc),autoPlay:true,loop:true,muted:true,playsInline:true,ref:(el)=>{if(el){el.muted=true;const p=el.play();if(p&&p.catch)p.catch(()=>{});}},style:{position:'absolute',left:SCR.l,top:SCR.t,width:SCR.w,height:SCR.h,objectFit:'contain',display:'block',background:'transparent'}})
         ])
-      : (spot.img ? React.createElement('img',{src:spot.img,alt:spot.alt,style:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover',display:'block'}}) : null);
-    const folioObj={ spot:{tint:spot.tint,title:spot.title,client:spot.client,tag:spot.tag,video:spot.video,showPlay:spot.video&&!spot.videoSrc,img:spot.img,alt:spot.alt,counter:(gSpot+1)+' / '+N, pad:(spot.videoSrc?'70.7%':'62%')}, spotImg:spotImg, spotHasImg:!!spot.img, spotThumbs:spotThumbs, prev:()=>this.setState(s=>({gSpot:(s.gSpot+N-1)%N})), next:()=>this.setState(s=>({gSpot:(s.gSpot+1)%N})) };
+      : (spot.img ? React.createElement('img',{src:spot.img,alt:spot.alt,onLoad:onImgLoad,style:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'contain',display:'block'}}) : null);
+    const folioObj={ spot:{tint:spot.tint,title:spot.title,client:spot.client,tag:spot.tag,video:spot.video,showPlay:spot.video&&!spot.videoSrc,img:spot.img,alt:spot.alt,counter:(gSpot+1)+' / '+N, pad:(spotAR?(spotAR*100).toFixed(3)+'%':(spot.videoSrc?'70.7%':'62%'))}, spotImg:spotImg, spotHasImg:!!spot.img, spotThumbs:spotThumbs, prev:()=>this.setState(s=>({gSpot:(s.gSpot+N-1)%N})), next:()=>this.setState(s=>({gSpot:(s.gSpot+1)%N})) };
     return {
       accentVal: accent,
       folio: folioObj,
