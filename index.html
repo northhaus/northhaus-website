@@ -850,6 +850,11 @@ class Component extends DCLogic {
     const spreadMul = this.props.vaporizeSpread ?? 5;
     let ps = [], sample = 2, buf = null, buf32 = null, box = null, spreadPx = 4;
     let mode = 'hold', t0 = performance.now(), prog = 0, fade = 0, last = t0, dirty = true;
+    const vaporTexts = [
+      h1.innerHTML,
+      '<span style="display:block;color:var(--accent,#2E6F68)">Where Ideas</span><span style="display:block">Become Reality<span style="color:var(--accent,#2E6F68)">.</span></span>'
+    ];
+    let vIdx = 0;
 
     const collect = () => {
       const cr = cv.getBoundingClientRect();
@@ -1024,6 +1029,11 @@ class Component extends DCLogic {
         paint();
         if (prog >= 1 && done) {
           mode = 'fade'; fade = now; reset(); clear();
+          vIdx = (vIdx + 1) % vaporTexts.length;
+          if (this._vmo) this._vmo.disconnect();
+          h1.innerHTML = vaporTexts[vIdx];
+          collect();
+          if (this._vmo) this._vmo.observe(h1, { characterData: true, childList: true, subtree: true });
           h1.style.transition = 'opacity ' + FADE + 'ms cubic-bezier(.4,.6,.1,1)';
           h1.style.opacity = '1';
         }
