@@ -74,7 +74,7 @@
   #site [data-burger]{display:none}
   #site [data-menu]{position:fixed;inset:0;z-index:80;background:rgba(6,7,9,.985);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:24px 34px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .4s cubic-bezier(.6,.5,0,1),transform .4s cubic-bezier(.6,.5,0,1),visibility .4s}
   #site [data-menu][data-open="true"]{opacity:1;visibility:visible;transform:none}
-  #site [data-menu] a{font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(30px,8.5vw,50px);line-height:1.18;color:#FBF8F3}
+  #site [data-menu] a{font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(30px,8.5vw,50px);line-height:1.18;color:#FBF8F3}
   #site [data-menu] a:active{color:var(--accent,#66D1DE)}
   @media (min-width:901px){#site [data-menu],#site [data-burger]{display:none !important}}
   @media (hover:none){#site [data-glitch-over]{display:none !important}#top{cursor:auto !important}#top [data-wire]{-webkit-mask-image:none !important;mask-image:none !important}#top [data-hero-hint]{display:none !important}}
@@ -143,7 +143,7 @@
     #showcase [data-showcase-grid]{grid-template-columns:1fr !important;gap:30px !important}
     #showcase [data-product-list] button{padding:16px 0 !important;gap:14px !important}
     #showcase [data-row-name]{font-size:21px !important}
-    #showcase [data-row-num],#showcase [data-row-price]{font-size:13px !important}
+    #showcase [data-row-num]{font-size:13px !important}#showcase [data-row-price]{font-size:15px !important}
     #showcase [data-product-media]{border-radius:12px !important}
     #showcase [data-prev-title]{font-size:clamp(30px,8vw,44px) !important}
     #showcase [data-prev-label],#showcase [data-info-tag]{font-size:11px !important}
@@ -273,25 +273,25 @@
       <div data-product-list style="display:flex;flex-direction:column">
         <sc-for list="{{ products }}" as="p" hint-placeholder-count="7">
           <button onClick="{{ p.select }}" style="background:none;border:none;border-top:1px solid rgba(255,255,255,.12);text-align:left;font:inherit;margin:0;width:100%;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.2vw;padding:1.35vw 0;position:relative">
-            <span data-row-num style="font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;font-size:1vw;color:{{ p.numColor }};transition:color .4s ease">{{ p.num }}</span>
+            <span data-row-num style="font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;font-size:1vw;letter-spacing:.04em;color:{{ p.numColor }};transition:color .4s ease">{{ p.num }}</span>
             <span data-row-name style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:600;font-size:1.6vw;letter-spacing:-.01em;color:{{ p.rowColor }};transition:color .4s ease">{{ p.name }}</span>
-            <span data-row-price style="font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;font-size:.8vw;letter-spacing:.05em;color:{{ p.numColor }};transition:color .4s ease">{{ p.price }}</span>
+            <span data-row-price style="font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;font-size:.95vw;letter-spacing:.04em;color:{{ p.numColor }};transition:color .4s ease">{{ p.price }}</span>
             <span style="position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--accent,#2E6F68);transform:scaleX({{ p.barScale }});transform-origin:left;transition:transform .5s cubic-bezier(.6,.5,0,1)"></span>
           </button>
         </sc-for>
         <div style="border-top:1px solid rgba(255,255,255,.12)"></div>
       </div>
       <div>
-        <div data-product-media style="position:relative;aspect-ratio:16/10;border-radius:.9vw;overflow:hidden;background:#0d0e10;border:1px solid rgba(255,255,255,.08)">
+        <div data-product-media style="position:relative;aspect-ratio:16/10;border-radius:.9vw;overflow:hidden;background:#2a2c31;border:1px solid rgba(255,255,255,.12)">
           <sc-for list="{{ products }}" as="p" hint-placeholder-count="7">
-            <div style="position:absolute;inset:0;opacity:{{ p.previewOp }};z-index:{{ p.previewZ }};transition:opacity .55s cubic-bezier(.6,.5,0,1);display:flex;flex-direction:column;background:#121316">
-              <div style="display:flex;align-items:center;gap:.55vw;padding:1vw 1.3vw;border-bottom:1px solid rgba(255,255,255,.08)">
-                <span style="width:.7vw;height:.7vw;border-radius:50%;background:#3a3c42"></span>
-                <span style="width:.7vw;height:.7vw;border-radius:50%;background:#3a3c42"></span>
-                <span style="width:.7vw;height:.7vw;border-radius:50%;background:#3a3c42"></span>
-                <span style="margin-left:1vw;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:500;font-size:.7vw;letter-spacing:.14em;color:#6f6f73">NORTHHAUS &middot; HTML TOOL</span>
+            <div style="position:absolute;inset:0;opacity:{{ p.previewOp }};z-index:{{ p.previewZ }};transition:opacity .55s cubic-bezier(.6,.5,0,1);display:flex;flex-direction:column;background:#2a2c31">
+              <div style="display:flex;align-items:center;gap:.55vw;padding:1vw 1.3vw;border-bottom:1px solid rgba(255,255,255,.1)">
+                <span style="width:.7vw;height:.7vw;border-radius:50%;background:#4a4d54"></span>
+                <span style="width:.7vw;height:.7vw;border-radius:50%;background:#4a4d54"></span>
+                <span style="width:.7vw;height:.7vw;border-radius:50%;background:#4a4d54"></span>
+                <span style="margin-left:1vw;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:500;font-size:.7vw;letter-spacing:.14em;color:#9a9ca2">NORTHHAUS &middot; HTML TOOL</span>
               </div>
-              <div style="flex:1;position:relative;overflow:hidden;background:#0a0b0d">
+              <div style="flex:1;position:relative;overflow:hidden;background:#24262a">
                 <img src="{{ p.img }}" alt="{{ p.name }} screenshot" width="{{ p.imgW }}" height="{{ p.imgH }}" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:2.2vw 0;box-sizing:border-box">
               </div>
             </div>
@@ -299,7 +299,7 @@
         </div>
         <div data-info style="margin-top:2vw">
           <div data-info-tag style="font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;font-size:.8vw;letter-spacing:.18em;text-transform:uppercase;color:var(--accent,#2E6F68)">{{ sel.tagline }}</div>
-          <h3 data-info-title style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:2.6vw;letter-spacing:-.015em;margin:.8vw 0 0;color:#FBF8F3;text-transform:uppercase">{{ sel.name }}<span style="color:var(--accent,#2E6F68)">.</span></h3>
+          <h3 data-info-title style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:2.6vw;letter-spacing:var(--head-tracking,-.015em);margin:.8vw 0 0;color:#FBF8F3;text-transform:uppercase">{{ sel.name }}<span style="color:var(--accent,#2E6F68)">.</span></h3>
           <p data-info-desc style="font-size:1.05vw;line-height:1.6;color:var(--accent,#66D1DE);margin:1.2vw 0 0;max-width:42vw;text-wrap:pretty">{{ sel.desc }}</p>
           <div data-buy-row style="display:flex;align-items:center;gap:1.6vw;margin-top:2vw;flex-wrap:wrap">
             <a data-buy href="{{ sel.url }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;background:linear-gradient(90deg,#FBF8F3 0 50%,var(--accent,#2E6F68) 50% 100%);background-size:200% 100%;background-position:100% 0;color:#000;padding:.9vw 1.8vw;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:13px;transition:background-position .6s cubic-bezier(.6,.5,0,1),color .6s cubic-bezier(.6,.5,0,1)" style-hover="background-position:0 0;color:#000">Buy now - {{ sel.price }}</a>
@@ -364,7 +364,7 @@
 
   <section id="contact" data-screen-label="Closing CTA" style="background:linear-gradient(180deg,#3BE0C4 0%,#2AAFC0 48%,#1E6FB4 100%);color:#000;text-align:center;padding:9vw 3.5vw;scroll-margin-top:90px">
     <div data-reveal="up">
-      <h2 style="font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;font-size:clamp(46px,8.6vw,176px);text-transform:uppercase;letter-spacing:.02em;line-height:.98;margin:0 auto;max-width:90vw;color:#000;text-wrap:balance">Digital tools for modern life<span style="color:#FBF8F3">.</span></h2>
+      <h2 style="font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;font-size:clamp(46px,8.6vw,176px);text-transform:uppercase;letter-spacing:.04em;line-height:.98;margin:0 auto;max-width:90vw;color:#000;text-wrap:balance">Digital tools for modern life<span style="color:#FBF8F3">.</span></h2>
     </div>
   </section>
 
@@ -1139,11 +1139,11 @@ class Component extends DCLogic {
       leave: () => this.setState({ sHov: -1 })
     });
     const PRODUCTS = [
-      { name: 'Wedding Planner', tagline: 'Everything in one place', price: '\u00A34.99', desc: 'Planning a UK wedding means juggling dozens of moving pieces - suppliers, budgets, guests, RSVPs, dates, deposits. This organiser brings it all into one calm, private place that lives on your computer, so you can spend less time on spreadsheets.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/13bf4d6e-67c8-4f4d-a390-473376bb1765?embed=1&logo=0', img: 'uploads/Wedding%20planner.png', imgW: 2982, imgH: 2246 },
-      { name: 'Fit Phrase', tagline: 'Turn words into workouts', price: '\u00A34.99', desc: 'Fit Phrase transforms phrases into movement - every letter linked to a corresponding exercise, creating quick, engaging workouts you can do anywhere. A simple, playful way to stay active and make fitness feel less like a chore.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/7554b8f1-7cba-4f18-a0b3-fe0a00b4e007?embed=1&logo=0', img: 'uploads/Fit%20Phrase.png', imgW: 3488, imgH: 2643 },
-      { name: 'Budget Tracker', tagline: 'Keep on track of monthly costs', price: '\u00A34.99', desc: 'A simple, well-designed UK Budget Tracker that helps you take control of your monthly finances - track bills, debt and investments in one calm, considered place.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/aaa7bf44-7be8-44d6-8723-bc6db3ec3801?embed=1&logo=0', img: 'uploads/UK%20BUDGET%20TRACKER.png', imgW: 3603, imgH: 2747 },
-      { name: 'Divorce Organiser', tagline: 'A quiet, organised place to hold everything', price: '\u00A34.99', desc: 'Going through a divorce in the UK means tracking dozens of moving pieces at once - paperwork, finances, dates, contacts, costs. This organiser brings it all into one calm, private place that lives on your computer.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/037cea55-ff8a-4a95-b879-12fdbc6ad3d4?embed=1&logo=0', img: 'uploads/Divorce%20Organiser.png', imgW: 2983, imgH: 2235 },
-      { name: 'Funeral Planner', tagline: 'A quiet, organised place to hold everything', price: '\u00A34.99', desc: 'Losing someone is hard enough without drowning in paperwork. Registering the death, arranging the funeral, finding the will - this UK organiser brings it all into one private place that lives on your computer.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/5133d1fe-ae24-4a26-821e-8d06dd552b7f?embed=1&logo=0', img: 'uploads/Funeral%20Planner.png', imgW: 2763, imgH: 2063 },
+      { name: 'Wedding Planner', tagline: 'Everything in one place', price: '\u00A34.99', desc: 'Planning a UK wedding means juggling dozens of moving pieces - suppliers, budgets, guests, RSVPs, dates, deposits. This organiser brings it all into one calm, private place that lives on your computer, so you can spend less time on spreadsheets.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/13bf4d6e-67c8-4f4d-a390-473376bb1765?embed=1&logo=0', img: 'uploads/wedding%20planner_dashboard.jpg', imgW: 1536, imgH: 1152 },
+      { name: 'Fit Phrase', tagline: 'Turn words into workouts', price: '\u00A34.99', desc: 'Fit Phrase transforms phrases into movement - every letter linked to a corresponding exercise, creating quick, engaging workouts you can do anywhere. A simple, playful way to stay active and make fitness feel less like a chore.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/7554b8f1-7cba-4f18-a0b3-fe0a00b4e007?embed=1&logo=0', img: 'uploads/fitphrase_dashboard.png', imgW: 2048, imgH: 1536 },
+      { name: 'Budget Tracker', tagline: 'Keep on track of monthly costs', price: '\u00A34.99', desc: 'A simple, well-designed UK Budget Tracker that helps you take control of your monthly finances - track bills, debt and investments in one calm, considered place.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/aaa7bf44-7be8-44d6-8723-bc6db3ec3801?embed=1&logo=0', img: 'uploads/budget%20tracker_dashboard.png', imgW: 3072, imgH: 2304 },
+      { name: 'Divorce Organiser', tagline: 'A quiet, organised place to hold everything', price: '\u00A34.99', desc: 'Going through a divorce in the UK means tracking dozens of moving pieces at once - paperwork, finances, dates, contacts, costs. This organiser brings it all into one calm, private place that lives on your computer.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/037cea55-ff8a-4a95-b879-12fdbc6ad3d4?embed=1&logo=0', img: 'uploads/divorce%20organiser_dashboard.png', imgW: 2048, imgH: 1536 },
+      { name: 'Funeral Planner', tagline: 'A quiet, organised place to hold everything', price: '\u00A34.99', desc: 'Losing someone is hard enough without drowning in paperwork. Registering the death, arranging the funeral, finding the will - this UK organiser brings it all into one private place that lives on your computer.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/5133d1fe-ae24-4a26-821e-8d06dd552b7f?embed=1&logo=0', img: 'uploads/Funeral%20planner_dashboard.png', imgW: 2560, imgH: 1920 },
       { name: 'Incorporated', tagline: 'Everything you need to go limited', price: '\u00A31.99', desc: 'A simple, well-designed UK guide that helps you set up a limited company with confidence - covering the decision, the registration and everything after, in one calm, considered read.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/fa810839-3a3d-4d02-af0b-e4a5fa864847?embed=1&logo=0', img: 'uploads/Incorporated_UK_Limited_Company_Guide_Page_01.jpg', imgW: 1654, imgH: 2339 },
       { name: 'Self-Employed', tagline: 'Go self-employed with confidence', price: '\u00A31.99', desc: 'A clear, well-designed UK guide that walks you through working for yourself as a sole trader - from registering with HMRC to tax, VAT and Making Tax Digital, explained calmly and without the jargon.', url: 'https://northhaus-store.lemonsqueezy.com/checkout/buy/e5d5631c-e912-4f10-97b4-8405bf9e5ea4?embed=1&logo=0', img: 'uploads/Self_Employed_UK_Sole_Trader_Guide_Page_01.jpg', imgW: 1654, imgH: 2339 }
     ];
