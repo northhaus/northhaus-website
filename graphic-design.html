@@ -169,7 +169,7 @@
     <img src="uploads/northhaus_logo_01_3360%20x%20840.png" alt="Northhaus" style="height:30px;width:auto;filter:brightness(0);animation:ldpulse 1.6s ease-in-out infinite">
   </div>
   <canvas data-gl aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none"></canvas>
-  <a data-skip href="#process">Skip to content</a>
+  <a data-skip href="#main">Skip to content</a>
   <div data-progress aria-hidden="true" style="position:fixed;top:0;left:0;right:0;height:2px;z-index:60;background:linear-gradient(90deg,var(--accent,#66D1DE),var(--accent,#66D1DE));transform-origin:0 50%;transform:scaleX(0);pointer-events:none"></div>
 
   <nav data-screen-label="Nav" aria-label="Primary" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1.6vw 3.5vw;padding:{{ nav.pad }};background:transparent;background:{{ nav.bg }};backdrop-filter:{{ nav.blur }};-webkit-backdrop-filter:{{ nav.blur }};box-shadow:{{ nav.shadow }};transition:all .6s cubic-bezier(.6,.5,0,1)">
@@ -195,6 +195,7 @@
     <a href="#contact" onClick="{{ closeMenu }}" style="margin-top:14px;font-size:clamp(13px,3.6vw,15px) !important;letter-spacing:.06em;color:var(--accent,#66D1DE)">Get Started Now</a>
   </div>
 
+  <main id="main" tabindex="-1" style="display:block;outline:none">
   <header id="top" data-hero data-screen-label="Hero" style="position:relative;height:100vh;min-height:660px;overflow:hidden;background:#000;display:grid;grid-template-columns:minmax(300px,32%) 1fr;align-items:start;gap:3vw;padding:clamp(180px,22vh,260px) 5vw 3.5vw;text-align:left">
     <div style="position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 68% 66% at 62% 46%,rgba(102,209,222,.30) 0%,rgba(102,209,222,.12) 40%,rgba(0,0,0,0) 74%)"></div>
     <div data-hero-copy style="position:relative;z-index:2;pointer-events:none;margin-top:calc(min(48vw,1250px) * 0.0405)">
@@ -303,6 +304,8 @@
       <h2 style="font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;font-size:clamp(46px,8.6vw,176px);text-transform:uppercase;letter-spacing:.02em;line-height:.98;margin:0 auto;max-width:90vw;color:#000;text-wrap:balance">Cut through the noise<span style="color:#FBF8F3">.</span></h2>
     </div>
   </section>
+
+  </main>
 
   <footer data-screen-label="Footer" style="background:transparent;color:#FBF8F3;padding:4vw 3.5vw 2.5vw;border-top:1px solid rgba(255,255,255,.12)">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:4vw;flex-wrap:wrap">
