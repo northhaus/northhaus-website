@@ -123,6 +123,19 @@
     #site [data-footer-brand]{align-items:center !important}
     #site [data-footer-brand] img{align-self:center !important}
     #site footer > div:last-child{flex-direction:column !important;align-items:center !important;text-align:center !important;gap:8px !important}
+      /* Step 8 - mobile legibility & tap targets */
+    #site main p{font-size:16px !important}
+    #site [data-stats] p,#site [data-form-privacy]{font-size:14px !important}
+    #site footer span,#site [data-flabel],#site [data-hero-hint],#site [data-macbook-hint],#services a span,#showcase span{font-size:12px !important}
+    #site #top pre,#site #top pre span{font-size:12px !important}
+    #site footer > div:last-child a{display:inline-flex !important;align-items:center;justify-content:center;min-height:44px;min-width:44px}
+    #site details > summary{min-height:44px !important;box-sizing:border-box}
+    [data-skip]{padding:12px 18px !important}
+    #about > div:last-child a,#work a{position:relative}
+    #about > div:last-child a::after,#work a::after{content:"";position:absolute;inset:-13px -6px}
+    #site [data-legal] [role=table] > div:first-child span{font-size:12px !important}
+    #site [data-preview-label]{display:none !important}
+    @media (hover:none){#site [data-hint-hover]{display:none !important}#site [data-hint-touch]{display:inline !important}}
   }
   @media (max-width:480px){
     #site [data-stats] > div{grid-template-columns:1fr !important}
