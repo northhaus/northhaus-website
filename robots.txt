@@ -53,4 +53,4 @@ Allow: /
 User-agent: MistralAI-User
 Allow: /
 
-Sitemap: https://northhaus.io/sitemap.xml
+Sitemap: https://www.northhaus.io/sitemap.xml
