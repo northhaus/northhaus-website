@@ -63,7 +63,9 @@
   #site [data-peek-hint]{display:none}
   @media (pointer:coarse){
     #top{touch-action:pan-y;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
-    #site [data-hero-overlay]{--rr:clamp(120px,33vw,170px)}
+    #site [data-hero-overlay]{--rr:clamp(130px,36vw,180px);--ms:52%;--me:92%}
+    #site [data-code-layer]{padding-top:0 !important}
+    #site #top pre{margin-top:0 !important}
     #site [data-peek-hint]{display:flex}
     #site [data-peek-hint][data-hidden]{opacity:0}
   }
@@ -79,7 +81,7 @@
     #site [data-cta]{display:none !important}
     #site [data-burger]{display:inline-flex !important}
     #top{height:auto !important;min-height:100vh !important}
-    #site [data-hero-scrim]{background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.72) 22%,rgba(0,0,0,.92) 42%,rgba(0,0,0,.92) 62%,rgba(0,0,0,.72) 80%,rgba(0,0,0,0) 100%) !important}
+    #site [data-hero-scrim]{background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0) 14%,rgba(0,0,0,.5) 26%,rgba(0,0,0,.78) 40%,rgba(0,0,0,.78) 64%,rgba(0,0,0,.5) 78%,rgba(0,0,0,0) 90%) !important}
     #site #top pre{font-size:clamp(9px,3vw,13px) !important;line-height:1.7 !important;overflow:hidden !important}
     #site #top pre:nth-child(n+4){display:none !important}
     #top h1{font-size:clamp(30px,9vw,60px) !important;max-width:90vw !important;margin-top:18px !important}
@@ -168,7 +170,7 @@
 
   <header id="top" data-hero data-screen-label="Hero" style="position:relative;height:100vh;min-height:640px;overflow:hidden;background:#000;cursor:none">
     {{ codeLayer }}
-    <div data-hero-overlay style="position:absolute;inset:0;background:var(--hero-bg,#000);-webkit-mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) 34%,#000 72%);mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) 34%,#000 72%)"></div>
+    <div data-hero-overlay style="position:absolute;inset:0;background:var(--hero-bg,#000);-webkit-mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) var(--ms,34%),#000 var(--me,72%));mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) var(--ms,34%),#000 var(--me,72%))"></div>
     <div data-hero-scrim style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 48% 48% at 50% 50%,#000 0%,rgba(0,0,0,.94) 52%,rgba(0,0,0,0) 80%)"></div>
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 3.5vw;pointer-events:none;z-index:2">
       <div style="font-size:12px;font-weight:600;letter-spacing:.22em;color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .1s">NORTHHAUS - SELECTED WORK</div>
@@ -823,11 +825,8 @@ class Component extends DCLogic {
   _initPeek(hero, overlay) {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const hint = hero.querySelector('[data-peek-hint]');
-    const KEY = 'nh-peek-seen', EASE = 0.12, HOLD = 300, SLOP = 10;
-    let seen = false;
-    try { seen = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
-    if (seen && hint) hint.setAttribute('data-hidden', '');
-    let timer = 0, raf = 0, active = false, sx = 0, sy = 0, tx = 0, ty = 0, cx = 0, cy = 0, a = 1, ta = 1;
+    const EASE = 0.12, HOLD = 300, SLOP = 10;
+    let hintT = 0, timer = 0, raf = 0, active = false, sx = 0, sy = 0, tx = 0, ty = 0, cx = 0, cy = 0, a = 1, ta = 1;
     const set = (k, v) => overlay.style.setProperty(k, v);
     const local = (t) => { const r = hero.getBoundingClientRect(); return [t.clientX - r.left, t.clientY - r.top]; };
     const paint = () => { set('--mx', cx + 'px'); set('--my', cy + 'px'); set('--ma', a.toFixed(3)); };
@@ -840,12 +839,13 @@ class Component extends DCLogic {
     const activate = () => {
       timer = 0; active = true; cx = tx = sx; cy = ty = sy; ta = 0;
       if (reduce) { a = 0; paint(); } else { if (!raf) a = 1; paint(); if (!raf) raf = requestAnimationFrame(tick); }
-      if (!seen) { seen = true; if (hint) hint.setAttribute('data-hidden', ''); try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
+      clearTimeout(hintT); if (hint) hint.setAttribute('data-hidden', '');
     };
     const release = () => {
       if (timer) { clearTimeout(timer); timer = 0; }
       if (!active) return;
       active = false; ta = 1;
+      clearTimeout(hintT); hintT = setTimeout(() => { if (hint) hint.removeAttribute('data-hidden'); }, reduce ? 0 : 900);
       if (reduce) rest(); else if (!raf) raf = requestAnimationFrame(tick);
     };
     const onStart = (e) => {
@@ -871,7 +871,7 @@ class Component extends DCLogic {
     hero.addEventListener('touchcancel', onEnd, { passive: true });
     hero.addEventListener('contextmenu', onMenu);
     this._peekCleanup = () => {
-      clearTimeout(timer); cancelAnimationFrame(raf);
+      clearTimeout(timer); clearTimeout(hintT); cancelAnimationFrame(raf);
       hero.removeEventListener('touchstart', onStart);
       hero.removeEventListener('touchmove', onMove);
       hero.removeEventListener('touchend', onEnd);
@@ -986,7 +986,7 @@ class Component extends DCLogic {
       }));
     }
     const codeLayer = React.createElement('div', {
-      style: { position: 'absolute', inset: 0, display: 'flex', gap: '2.4vw', padding: '7vw 3vw 3vw', overflow: 'hidden', pointerEvents: 'none' }
+      'data-code-layer': '', style: { position: 'absolute', inset: 0, display: 'flex', gap: '2.4vw', padding: '7vw 3vw 3vw', overflow: 'hidden', pointerEvents: 'none' }
     }, cols);
     const cardColors = ['var(--accent,#2E6F68)', 'var(--accent,#2E6F68)', 'var(--accent,#2E6F68)'];
     const titles = ['Web Design', 'Graphic Design', 'Digital Products'];
