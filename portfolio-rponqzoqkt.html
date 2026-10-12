@@ -59,6 +59,15 @@
   #site [data-menu] a:active{color:var(--accent,#66D1DE)}
   @media (min-width:901px){#site [data-menu],#site [data-burger]{display:none !important}}
   @media (hover:none){#top{cursor:auto !important}#site [data-glitch-over]{display:none !important}}
+  @keyframes peekPulse{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.14);opacity:1}}
+  #site [data-peek-hint]{display:none}
+  @media (pointer:coarse){
+    #top{touch-action:pan-y;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+    #site [data-hero-overlay]{--rr:clamp(120px,33vw,170px)}
+    #site [data-peek-hint]{display:flex}
+    #site [data-peek-hint][data-hidden]{opacity:0}
+  }
+  @media (prefers-reduced-motion:reduce){#site [data-peek-ring]{animation:none !important;opacity:1 !important}}
   @media (prefers-reduced-motion:reduce){
     *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
     html{scroll-behavior:auto}
@@ -71,11 +80,6 @@
     #site [data-burger]{display:inline-flex !important}
     #top{height:auto !important;min-height:100vh !important}
     #site [data-hero-scrim]{background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.72) 22%,rgba(0,0,0,.92) 42%,rgba(0,0,0,.92) 62%,rgba(0,0,0,.72) 80%,rgba(0,0,0,0) 100%) !important}
-    #site [data-hero-overlay]{
-      -webkit-mask-image:radial-gradient(circle 32vw at 22% 28%,transparent 42%,#000 74%),radial-gradient(circle 24vw at 76% 22%,transparent 42%,#000 74%),radial-gradient(circle 30vw at 64% 64%,transparent 42%,#000 74%),radial-gradient(circle 22vw at 26% 82%,transparent 42%,#000 74%) !important;
-      mask-image:radial-gradient(circle 32vw at 22% 28%,transparent 42%,#000 74%),radial-gradient(circle 24vw at 76% 22%,transparent 42%,#000 74%),radial-gradient(circle 30vw at 64% 64%,transparent 42%,#000 74%),radial-gradient(circle 22vw at 26% 82%,transparent 42%,#000 74%) !important;
-      -webkit-mask-composite:source-in !important;mask-composite:intersect !important;
-    }
     #site #top pre{font-size:clamp(9px,3vw,13px) !important;line-height:1.7 !important;overflow:hidden !important}
     #site #top pre:nth-child(n+4){display:none !important}
     #top h1{font-size:clamp(30px,9vw,60px) !important;max-width:90vw !important;margin-top:18px !important}
@@ -164,12 +168,18 @@
 
   <header id="top" data-hero data-screen-label="Hero" style="position:relative;height:100vh;min-height:640px;overflow:hidden;background:#000;cursor:none">
     {{ codeLayer }}
-    <div data-hero-overlay style="position:absolute;inset:0;background:var(--hero-bg,#000);-webkit-mask-image:radial-gradient(circle 210px at var(--mx,-9999px) var(--my,-9999px),transparent 34%,#000 72%);mask-image:radial-gradient(circle 210px at var(--mx,-9999px) var(--my,-9999px),transparent 34%,#000 72%)"></div>
+    <div data-hero-overlay style="position:absolute;inset:0;background:var(--hero-bg,#000);-webkit-mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) 34%,#000 72%);mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) 34%,#000 72%)"></div>
     <div data-hero-scrim style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 48% 48% at 50% 50%,#000 0%,rgba(0,0,0,.94) 52%,rgba(0,0,0,0) 80%)"></div>
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 3.5vw;pointer-events:none;z-index:2">
       <div style="font-size:12px;font-weight:600;letter-spacing:.22em;color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .1s">NORTHHAUS - SELECTED WORK</div>
       <h1 data-glitch style="position:relative;display:inline-block;font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:7vw;line-height:1.02;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:2vw auto 0;max-width:70vw;pointer-events:auto;cursor:none;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .22s;text-wrap:balance"><span data-gw style="position:relative;display:inline-block">Portfolio<span style="color:var(--accent,#2E6F68)">.</span><span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#2E6F68);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl>Portfolio.</span></span></span></h1>
       <p style="font-size:1.15vw;line-height:1.6;color:var(--accent,#2E6F68);max-width:38vw;margin:1.8vw auto 0;text-shadow:0 1px 16px rgba(0,0,0,.95);animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .34s;text-wrap:pretty">Selected work from years spent inside design studios and agencies. Identities, websites, reports and social ads - different clients, different challenges, one consistent standard.</p>
+    </div>
+  <div data-peek-hint aria-hidden="true" style="position:absolute;left:50%;bottom:calc(32px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:3;flex-direction:column;align-items:center;gap:12px;pointer-events:none;transition:opacity .5s ease">
+      <div data-peek-ring style="width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(251,248,243,.7);display:flex;align-items:center;justify-content:center;animation:peekPulse 2.4s ease-in-out infinite">
+        <div style="width:8px;height:8px;border-radius:50%;background:#66d1de"></div>
+      </div>
+      <div style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.08em;color:#FBF8F3;white-space:nowrap">Press and hold to peek</div>
     </div>
   </header>
 
@@ -356,6 +366,7 @@ class Component extends DCLogic {
     const overlay = document.querySelector('[data-hero-overlay]');
     if (hero && overlay) {
       this._heroMove = (e) => {
+        if (Date.now() - (this._lastTouch || 0) < 800) return;
         const r = hero.getBoundingClientRect();
         overlay.style.setProperty('--mx', (e.clientX - r.left) + 'px');
         overlay.style.setProperty('--my', (e.clientY - r.top) + 'px');
@@ -366,6 +377,7 @@ class Component extends DCLogic {
       };
       hero.addEventListener('mousemove', this._heroMove, { passive: true });
       hero.addEventListener('mouseleave', this._heroLeave);
+      this._initPeek(hero, overlay);
     }
     const hlWrap = document.querySelector('[data-highlight]');
     if (hlWrap) {
@@ -808,6 +820,65 @@ class Component extends DCLogic {
       this._glBound.push([unit, enter, leave]);
     });
   }
+  _initPeek(hero, overlay) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hint = hero.querySelector('[data-peek-hint]');
+    const KEY = 'nh-peek-seen', EASE = 0.12, HOLD = 300, SLOP = 10;
+    let seen = false;
+    try { seen = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+    if (seen && hint) hint.setAttribute('data-hidden', '');
+    let timer = 0, raf = 0, active = false, sx = 0, sy = 0, tx = 0, ty = 0, cx = 0, cy = 0, a = 1, ta = 1;
+    const set = (k, v) => overlay.style.setProperty(k, v);
+    const local = (t) => { const r = hero.getBoundingClientRect(); return [t.clientX - r.left, t.clientY - r.top]; };
+    const paint = () => { set('--mx', cx + 'px'); set('--my', cy + 'px'); set('--ma', a.toFixed(3)); };
+    const rest = () => { set('--mx', '-9999px'); set('--my', '-9999px'); overlay.style.removeProperty('--ma'); };
+    const tick = () => {
+      cx += (tx - cx) * EASE; cy += (ty - cy) * EASE; a += (ta - a) * EASE;
+      if (!active && a > 0.99) { raf = 0; rest(); return; }
+      paint(); raf = requestAnimationFrame(tick);
+    };
+    const activate = () => {
+      timer = 0; active = true; cx = tx = sx; cy = ty = sy; ta = 0;
+      if (reduce) { a = 0; paint(); } else { if (!raf) a = 1; paint(); if (!raf) raf = requestAnimationFrame(tick); }
+      if (!seen) { seen = true; if (hint) hint.setAttribute('data-hidden', ''); try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
+    };
+    const release = () => {
+      if (timer) { clearTimeout(timer); timer = 0; }
+      if (!active) return;
+      active = false; ta = 1;
+      if (reduce) rest(); else if (!raf) raf = requestAnimationFrame(tick);
+    };
+    const onStart = (e) => {
+      this._lastTouch = Date.now();
+      if (e.touches.length !== 1 || (e.target.closest && e.target.closest('a,button,input,textarea,select'))) { release(); return; }
+      const p = local(e.touches[0]); sx = p[0]; sy = p[1];
+      clearTimeout(timer); timer = setTimeout(activate, HOLD);
+    };
+    const onMove = (e) => {
+      this._lastTouch = Date.now();
+      if (e.touches.length !== 1) { release(); return; }
+      const p = local(e.touches[0]);
+      if (!active) { if (timer && Math.hypot(p[0] - sx, p[1] - sy) > SLOP) { clearTimeout(timer); timer = 0; } return; }
+      if (e.cancelable) e.preventDefault();
+      tx = p[0]; ty = p[1];
+      if (reduce) { cx = tx; cy = ty; paint(); }
+    };
+    const onEnd = () => { this._lastTouch = Date.now(); release(); };
+    const onMenu = (e) => { if (active || timer) e.preventDefault(); };
+    hero.addEventListener('touchstart', onStart, { passive: true });
+    hero.addEventListener('touchmove', onMove, { passive: false });
+    hero.addEventListener('touchend', onEnd, { passive: true });
+    hero.addEventListener('touchcancel', onEnd, { passive: true });
+    hero.addEventListener('contextmenu', onMenu);
+    this._peekCleanup = () => {
+      clearTimeout(timer); cancelAnimationFrame(raf);
+      hero.removeEventListener('touchstart', onStart);
+      hero.removeEventListener('touchmove', onMove);
+      hero.removeEventListener('touchend', onEnd);
+      hero.removeEventListener('touchcancel', onEnd);
+      hero.removeEventListener('contextmenu', onMenu);
+    };
+  }
   componentWillUnmount() {
     if (this._glBound) this._glBound.forEach(([el, a, b]) => { el.removeEventListener('mouseenter', a); el.removeEventListener('mouseleave', b); });
     window.removeEventListener('scroll', this._onScroll);
@@ -821,6 +892,7 @@ class Component extends DCLogic {
     const hero = document.querySelector('[data-hero]');
     if (hero && this._heroMove) hero.removeEventListener('mousemove', this._heroMove);
     if (hero && this._heroLeave) hero.removeEventListener('mouseleave', this._heroLeave);
+    if (this._peekCleanup) this._peekCleanup();
     if (this._hlo) this._hlo.disconnect();
     if (this._fill) window.removeEventListener('scroll', this._fill);
     if (this._glRaf) cancelAnimationFrame(this._glRaf);
