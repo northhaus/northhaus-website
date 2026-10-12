@@ -82,7 +82,7 @@
   @media (pointer:coarse){
     #top{touch-action:pan-y;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
     #site [data-hero-overlay]{--rr:clamp(130px,36vw,180px);--ms:52%;--me:92%}
-    #site [data-code-layer]{padding-top:0 !important}
+    #site [data-code-layer]{padding-top:calc(92px + env(safe-area-inset-top,0px)) !important;-webkit-mask-image:linear-gradient(180deg,transparent calc(92px + env(safe-area-inset-top,0px)),#000 calc(124px + env(safe-area-inset-top,0px)));mask-image:linear-gradient(180deg,transparent calc(92px + env(safe-area-inset-top,0px)),#000 calc(124px + env(safe-area-inset-top,0px)))}
     #site #top pre{margin-top:0 !important}
     #site [data-peek-hint]{display:flex}
     #site [data-peek-hint][data-hidden]{opacity:0}
