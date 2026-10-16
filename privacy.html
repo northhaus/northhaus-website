@@ -204,7 +204,7 @@
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 3.5vw;pointer-events:none;z-index:2">
       <div style="font-size:12px;font-weight:600;letter-spacing:.22em;color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both 0.4s">NORTHHAUS - LEGAL</div>
       <h1 data-glitch style="position:relative;display:inline-block;font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:7vw;line-height:1.02;white-space:nowrap;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:2vw auto 0;max-width:70vw;pointer-events:auto;cursor:none;text-wrap:balance;animation:heroRise .9s cubic-bezier(.6,.5,0,1) both 0.52s"><span data-gw style="position:relative;display:inline-block;color:var(--accent,#2E6F68)">Privacy<span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#2E6F68);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl></span></span></span> <span data-gw style="position:relative;display:inline-block">Policy<span style="color:var(--accent,#2E6F68)">.</span><span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#2E6F68);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl></span></span></span></h1>
-      <p style="font-size:1.15vw;line-height:1.6;color:var(--accent,#2E6F68);max-width:38vw;margin:1.8vw auto 0;text-shadow:0 1px 16px rgba(0,0,0,.95);animation:heroUp .9s cubic-bezier(.6,.5,0,1) both 0.64s;text-wrap:pretty">How I collect, use and protect your personal data - in plain English.</p>
+      <p style="font-size:1.15vw;line-height:1.6;color:var(--accent,#2E6F68);max-width:38vw;margin:1.8vw auto 0;text-shadow:0 1px 16px rgba(0,0,0,.95);animation:heroUp .9s cubic-bezier(.6,.5,0,1) both 0.64s;text-wrap:pretty">How we collect, use and protect your personal data - in plain English.</p>
     </div>
   </header>
 
@@ -1055,12 +1055,12 @@ class Component extends DCLogic {
       fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name: name, email: email, message: message, _replyto: email, _subject: 'Website enquiry from ' + name, _autoresponse: 'Hi ' + name + ',\n\nThanks for getting in touch with Northhaus - I\u2019ve received your message and will get back to you as soon as I can.\n\nBest,\nJohn\nNorthhaus', _template: 'table', _captcha: 'false' })
+        body: JSON.stringify({ name: name, email: email, message: message, _replyto: email, _subject: 'Website enquiry from ' + name, _autoresponse: 'Hi ' + name + ',\n\nThanks for getting in touch with Northhaus - we\u2019ve received your message and will get back to you as soon as we can.\n\nBest,\nJohn\nNorthhaus', _template: 'table', _captcha: 'false' })
       })
         .then((r) => r.json().catch(() => ({})))
         .then((d) => {
           if (d && (d.success === true || d.success === 'true')) {
-            this.setState({ formStatus: 'success', formMsg: 'Thanks ' + name + ' - your message has been sent. I\u2019ll be in touch soon.' });
+            this.setState({ formStatus: 'success', formMsg: 'Thanks ' + name + ' - your message has been sent. We\u2019ll be in touch soon.' });
             f.reset();
           } else {
             this.setState({ formStatus: 'error', formMsg: 'Something went wrong. Please email ' + CONTACT_EMAIL + ' directly.' });

@@ -1053,12 +1053,12 @@ class Component extends DCLogic {
       fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name: name, email: email, message: message, _replyto: email, _subject: 'Website enquiry from ' + name, _autoresponse: 'Hi ' + name + ',\n\nThanks for getting in touch with Northhaus - I\u2019ve received your message and will get back to you as soon as I can.\n\nBest,\nJohn\nNorthhaus', _template: 'table', _captcha: 'false' })
+        body: JSON.stringify({ name: name, email: email, message: message, _replyto: email, _subject: 'Website enquiry from ' + name, _autoresponse: 'Hi ' + name + ',\n\nThanks for getting in touch with Northhaus - we\u2019ve received your message and will get back to you as soon as we can.\n\nBest,\nJohn\nNorthhaus', _template: 'table', _captcha: 'false' })
       })
         .then((r) => r.json().catch(() => ({})))
         .then((d) => {
           if (d && (d.success === true || d.success === 'true')) {
-            this.setState({ formStatus: 'success', formMsg: 'Thanks ' + name + ' - your message has been sent. I\u2019ll be in touch soon.' });
+            this.setState({ formStatus: 'success', formMsg: 'Thanks ' + name + ' - your message has been sent. We\u2019ll be in touch soon.' });
             f.reset();
           } else {
             this.setState({ formStatus: 'error', formMsg: 'Something went wrong. Please email ' + CONTACT_EMAIL + ' directly.' });
