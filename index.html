@@ -165,7 +165,7 @@
   <div data-progress aria-hidden="true" style="position:fixed;top:0;left:0;right:0;height:2px;z-index:60;background:linear-gradient(90deg,var(--accent,#66D1DE),var(--accent,#66D1DE));transform-origin:0 50%;transform:scaleX(0);pointer-events:none"></div>
 
   <nav data-screen-label="Nav" aria-label="Primary" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1.6vw 3.5vw;padding:{{ nav.pad }};background:transparent;background:{{ nav.bg }};backdrop-filter:{{ nav.blur }};-webkit-backdrop-filter:{{ nav.blur }};box-shadow:{{ nav.shadow }};transition:background-color .6s cubic-bezier(.6,.5,0,1),box-shadow .6s cubic-bezier(.6,.5,0,1),backdrop-filter .6s cubic-bezier(.6,.5,0,1),padding .6s cubic-bezier(.6,.5,0,1)">
-    <a href="#top" style="display:flex;align-items:center"><img src="uploads/northhaus-logo-384.webp" alt="Northhaus" width="192" height="48" style="height:48px;width:auto"></a>
+    <a href="#top" style="display:flex;align-items:center"><img src="uploads/northhaus-logo-384.webp" alt="Northhaus" width="192" height="48" fetchpriority="high" style="height:48px;width:auto"></a>
     <div data-navlinks style="flex:1;display:flex;align-items:center;justify-content:center;gap:2.2vw;font-size:14px;font-weight:500">
       <a href="#about" style="letter-spacing:.01em">About</a>
       <a href="/web-design#top" style="letter-spacing:.01em">Web Design</a>
@@ -243,7 +243,7 @@
       <a href="/web-design#top" data-reveal="up" data-delay="0" onMouseEnter="{{ c0.enter }}" onMouseLeave="{{ c0.leave }}" style="display:block;background:#121316;background:{{ c0.bg }};border-radius:.87vw;overflow:hidden;transition:background .6s cubic-bezier(.6,.5,0,1)">
         <div style="aspect-ratio:4/3;overflow:hidden;position:relative">
           <div style="position:absolute;inset:0;transform:scale(1);transform:{{ c0.scale }};transition:transform .6s cubic-bezier(.6,.5,0,1)">
-            <div style="position:absolute;inset:0;background:var(--accent,#2E6F68);display:grid;place-items:center"><img data-svc-icon src="uploads/web-design-icon.webp" width="192" height="192" alt="" aria-hidden="true" style="width:5vw;height:5vw;object-fit:contain;transform:{{ c0.iconT }};transition:transform .5s cubic-bezier(.6,.5,0,1)"></div>
+            <div style="position:absolute;inset:0;background:var(--accent,#2E6F68);display:grid;place-items:center"><img data-svc-icon loading="lazy" decoding="async" src="uploads/web-design-icon.webp" width="192" height="192" alt="" aria-hidden="true" style="width:5vw;height:5vw;object-fit:contain;transform:{{ c0.iconT }};transition:transform .5s cubic-bezier(.6,.5,0,1)"></div>
           </div>
         </div>
         <div style="padding:1.8vw 1.8vw 2.2vw">
@@ -258,7 +258,7 @@
       <a href="/graphic-design#top" data-reveal="up" data-delay="120" onMouseEnter="{{ c1.enter }}" onMouseLeave="{{ c1.leave }}" style="display:block;background:#121316;background:{{ c1.bg }};border-radius:.87vw;overflow:hidden;transition:background .6s cubic-bezier(.6,.5,0,1)">
         <div style="aspect-ratio:4/3;overflow:hidden;position:relative">
           <div style="position:absolute;inset:0;transform:scale(1);transform:{{ c1.scale }};transition:transform .6s cubic-bezier(.6,.5,0,1)">
-            <div style="position:absolute;inset:0;background:var(--accent,#2E6F68);display:grid;place-items:center"><img data-svc-icon src="uploads/graphic-design-icon.webp" width="192" height="192" alt="" aria-hidden="true" style="width:5vw;height:5vw;object-fit:contain;transform:{{ c1.iconT }};transition:transform .5s cubic-bezier(.6,.5,0,1)"></div>
+            <div style="position:absolute;inset:0;background:var(--accent,#2E6F68);display:grid;place-items:center"><img data-svc-icon loading="lazy" decoding="async" src="uploads/graphic-design-icon.webp" width="192" height="192" alt="" aria-hidden="true" style="width:5vw;height:5vw;object-fit:contain;transform:{{ c1.iconT }};transition:transform .5s cubic-bezier(.6,.5,0,1)"></div>
           </div>
         </div>
         <div style="padding:1.8vw 1.8vw 2.2vw">
@@ -273,7 +273,7 @@
       <a href="/digital-products#top" data-reveal="up" data-delay="240" onMouseEnter="{{ c2.enter }}" onMouseLeave="{{ c2.leave }}" style="display:block;background:#121316;background:{{ c2.bg }};border-radius:.87vw;overflow:hidden;transition:background .6s cubic-bezier(.6,.5,0,1)">
         <div style="aspect-ratio:4/3;overflow:hidden;position:relative">
           <div style="position:absolute;inset:0;transform:scale(1);transform:{{ c2.scale }};transition:transform .6s cubic-bezier(.6,.5,0,1)">
-            <div style="position:absolute;inset:0;background:var(--accent,#2E6F68);display:grid;place-items:center"><img data-svc-icon src="uploads/digital-product-icon.webp" width="192" height="192" alt="" aria-hidden="true" style="width:5vw;height:5vw;object-fit:contain;transform:{{ c2.iconT }};transition:transform .5s cubic-bezier(.6,.5,0,1)"></div>
+            <div style="position:absolute;inset:0;background:var(--accent,#2E6F68);display:grid;place-items:center"><img data-svc-icon loading="lazy" decoding="async" src="uploads/digital-product-icon.webp" width="192" height="192" alt="" aria-hidden="true" style="width:5vw;height:5vw;object-fit:contain;transform:{{ c2.iconT }};transition:transform .5s cubic-bezier(.6,.5,0,1)"></div>
           </div>
         </div>
         <div style="padding:1.8vw 1.8vw 2.2vw">
