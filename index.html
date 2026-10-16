@@ -708,7 +708,11 @@ class Component extends DCLogic {
         laptop.rotation.x = st.rx;
         laptop.position.y = Math.sin(t * 0.8) * 0.12;
         renderer.render(scene, camera);
-        if (!shown) { shown = true; canvas.style.opacity = '1'; }
+        if (!shown) {
+          shown = true; canvas.style.opacity = '1';
+          const w = canvas.parentElement;
+          setTimeout(() => { w.style.backgroundImage = 'none'; }, 450);
+        }
         if (!this._posterDone && st.open > 0.995 && /[?&]poster\b/.test(location.search)) {
           this._posterDone = true;
           const a = document.createElement('a'); a.download = 'macbook-poster.png'; a.href = canvas.toDataURL('image/png'); a.click();
