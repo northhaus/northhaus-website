@@ -25,7 +25,7 @@
 <meta name="twitter:image" content="https://www.northhaus.io/uploads/og-contact.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"ProfessionalService","@id":"https://www.northhaus.io/#studio","name":"Northhaus","description":"UK design studio building high-performance websites, brand identities, and digital product tools.","url":"https://www.northhaus.io/","email":"northhaus.io@outlook.com","areaServed":"United Kingdom","foundingDate":"2005","logo":"https://www.northhaus.io/uploads/northhaus_logo_01_3360%20x%20840.png"},
+{"@type":"ProfessionalService","@id":"https://www.northhaus.io/#studio","name":"Northhaus","description":"UK design studio building high-performance websites, brand identities, and digital product tools.","url":"https://www.northhaus.io/","email":"northhaus.io@outlook.com","areaServed":"United Kingdom","foundingDate":"2005","logo":"https://www.northhaus.io/uploads/northhaus-logo-384.webp"},
 {"@type":"WebSite","@id":"https://www.northhaus.io/#website","url":"https://www.northhaus.io/","name":"Northhaus","publisher":{"@id":"https://www.northhaus.io/#studio"}},
 {"@type":"ContactPage","@id":"https://www.northhaus.io/contact#webpage","url":"https://www.northhaus.io/contact","name":"Contact - Northhaus | Get in Touch with the UK Design Studio","description":"Get in touch with Northhaus about website design, brand identity or a digital product. Tell me about your project and I’ll get back to you.","isPartOf":{"@id":"https://www.northhaus.io/#website"},"about":{"@id":"https://www.northhaus.io/#studio"},"inLanguage":"en-GB"},
 {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.northhaus.io/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://www.northhaus.io/contact"}]},{"@type":"Organization","@id":"https://www.northhaus.io/#studio-contact","name":"Northhaus","email":"northhaus.io@outlook.com","url":"https://www.northhaus.io/","contactPoint":{"@type":"ContactPoint","email":"northhaus.io@outlook.com","contactType":"customer support","areaServed":"GB","availableLanguage":"English"}}
@@ -34,21 +34,27 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How quickly will you reply?","acceptedAnswer":{"@type":"Answer","text":"I aim to reply within one to two working days."}},{"@type":"Question","name":"What should I include in my message?","acceptedAnswer":{"@type":"Answer","text":"A short description of your project, your timeline and any budget guidance helps me give you a useful first response."}},{"@type":"Question","name":"What services does Northhaus offer?","acceptedAnswer":{"@type":"Answer","text":"Website design and build, graphic design and brand identity, and downloadable digital products."}},{"@type":"Question","name":"Where is Northhaus based?","acceptedAnswer":{"@type":"Answer","text":"Northhaus is a UK-based design studio, working with clients across the United Kingdom."}}]}
 </script>
-<script src="./support.js"></script>
+<style>x-dc{display:none!important}</style>
+<link rel="preload" as="script" href="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous">
+<link rel="preload" as="script" href="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="/uploads/SharpSansDisplay-900.woff2" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="/uploads/SharpSansDisplay-500.woff2" crossorigin="anonymous">
+<script src="/support.min.js" defer></script>
+<style>
+  #intro{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:#66D1DE;pointer-events:none;will-change:transform;animation:introOut .7s cubic-bezier(.6,.5,0,1) 3s forwards}
+  #intro[data-go]{animation:none;transform:translateY(-100%);transition:transform .7s cubic-bezier(.6,.5,0,1)}
+  @keyframes introOut{to{transform:translateY(-100%)}}
+  @media (prefers-reduced-motion:reduce){#intro{display:none}}
+</style>
 </head>
 <body>
+<div id="intro" aria-hidden="true"></div>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="./image-slot.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,1,0&display=block" rel="stylesheet">
 <style>
   html{scroll-behavior:smooth}
   html,body{max-width:100%}
-  body{margin:0;background:#000;color:#FBF8F3;font-family:Inter,'Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased}
+  body{margin:0;background:#000;color:#FBF8F3;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased}
   a{color:#FBF8F3;text-decoration:none}
   a:hover{color:var(--accent,#2E6F68)}
   #faq summary::-webkit-details-marker{display:none}
@@ -58,16 +64,18 @@
   @keyframes heroUp{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
   @keyframes heroImg{from{opacity:0;transform:scale(1.045)}to{opacity:1;transform:none}}
   @keyframes mq{to{transform:translateX(-50%)}}
-  @keyframes ldspin{to{transform:rotate(360deg)}}
-  @keyframes ldpulse{0%,100%{opacity:.55}50%{opacity:1}}
+  @keyframes heroRise{from{transform:translateY(34px)}to{transform:none}}
   @font-face{font-family:'SharpSansDisplay';src:url('uploads/SharpSansDisplay-300.woff2') format('woff2');font-weight:300;font-display:swap}
   @font-face{font-family:'SharpSansDisplay';src:url('uploads/SharpSansDisplay-500.woff2') format('woff2');font-weight:500;font-display:swap}
   @font-face{font-family:'SharpSansDisplay';src:url('uploads/SharpSansDisplay-600.woff2') format('woff2');font-weight:600;font-display:swap}
   @font-face{font-family:'SharpSansDisplay';src:url('uploads/SharpSansDisplay-700.woff2') format('woff2');font-weight:700;font-display:swap}
   @font-face{font-family:'SharpSansDisplay';src:url('uploads/SharpSansDisplay-900.woff2') format('woff2');font-weight:900;font-display:swap}
   /* accessibility */
-  [data-skip]{position:fixed;left:12px;top:-70px;z-index:200;background:var(--accent,#66D1DE);color:#000;padding:10px 16px;font-weight:700;text-decoration:none;border-radius:6px;transition:top .2s ease}
-  [data-skip]:focus{top:12px}
+  [data-skip]{position:fixed;left:12px;top:12px;transform:translateY(-90px);z-index:200;background:var(--accent,#66D1DE);color:#000;padding:10px 16px;font-weight:700;text-decoration:none;border-radius:6px;transition:transform .2s ease}
+  [data-skip]:focus{transform:none}
+  [data-fill]{position:relative;isolation:isolate;overflow:hidden}
+  [data-fill]::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--fill);transform:translateX(-101%);transition:transform .6s cubic-bezier(.6,.5,0,1)}
+  [data-fill]:hover::before{transform:none}
   #site a:focus-visible,#site button:focus-visible{outline:2px solid var(--accent,#66D1DE);outline-offset:3px;border-radius:2px}
   /* mobile menu */
   #site [data-burger]{display:none}
@@ -172,16 +180,12 @@
 </style>
 </helmet>
 <div id="site" style="--accent:{{ accentVal }};--mq:{{ mqVal }};--hero-bg:{{ heroBgVal }};--head-font:{{ headFont }};--body-font:{{ bodyFont }};--head-weight:{{ headWeight }};--body-weight:{{ bodyWeight }};--head-transform:{{ headTransform }};--head-tracking:{{ headTracking }};background:transparent;min-height:100vh;font-family:var(--body-font,Inter,'Helvetica Neue',sans-serif);font-weight:var(--body-weight,400);color:#FBF8F3;overflow-x:clip">
-  <div data-preloader style="position:fixed;inset:0;z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;background:var(--accent,#66D1DE);transition:opacity .7s cubic-bezier(.6,.5,0,1),visibility .7s">
-    <div style="width:58px;height:58px;border:4px solid rgba(0,0,0,.22);border-top-color:#000;border-radius:50%;animation:ldspin .8s linear infinite"></div>
-    <img src="uploads/northhaus-logo-384.webp" alt="Northhaus" width="192" height="48" style="height:30px;width:auto;filter:brightness(0);animation:ldpulse 1.6s ease-in-out infinite">
-  </div>
-  <canvas data-gl aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none"></canvas>
+  <canvas data-gl aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0;transition:opacity 1s ease"></canvas>
   <a data-skip href="#main">Skip to content</a>
   <div data-progress aria-hidden="true" style="position:fixed;top:0;left:0;right:0;height:2px;z-index:60;background:linear-gradient(90deg,var(--accent,#66D1DE),var(--accent,#66D1DE));transform-origin:0 50%;transform:scaleX(0);pointer-events:none"></div>
 
-  <nav data-screen-label="Nav" aria-label="Primary" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1.6vw 3.5vw;padding:{{ nav.pad }};background:transparent;background:{{ nav.bg }};backdrop-filter:{{ nav.blur }};-webkit-backdrop-filter:{{ nav.blur }};box-shadow:{{ nav.shadow }};transition:all .6s cubic-bezier(.6,.5,0,1)">
-    <a href="#top" style="display:flex;align-items:center"><img src="uploads/northhaus-logo-384.webp" alt="Northhaus" width="192" height="48" style="height:48px;width:auto"></a>
+  <nav data-screen-label="Nav" aria-label="Primary" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1.6vw 3.5vw;padding:{{ nav.pad }};background:transparent;background:{{ nav.bg }};backdrop-filter:{{ nav.blur }};-webkit-backdrop-filter:{{ nav.blur }};box-shadow:{{ nav.shadow }};transition:background-color .6s cubic-bezier(.6,.5,0,1),box-shadow .6s cubic-bezier(.6,.5,0,1),backdrop-filter .6s cubic-bezier(.6,.5,0,1),padding .6s cubic-bezier(.6,.5,0,1)">
+    <a href="#top" style="display:flex;align-items:center"><img src="uploads/northhaus-logo-384.webp" alt="Northhaus" width="192" height="48" fetchpriority="high" style="height:48px;width:auto"></a>
     <div data-navlinks style="flex:1;display:flex;align-items:center;justify-content:center;gap:2.2vw;font-size:14px;font-weight:500">
       <a href="/#about" style="letter-spacing:.01em">About</a>
       <a href="/web-design#top" style="letter-spacing:.01em">Web Design</a>
@@ -189,12 +193,12 @@
       <a href="/digital-products#top" style="letter-spacing:.01em">Digital Products</a>
       <a href="#contact-form" style="letter-spacing:.01em;color:var(--accent,#2E6F68)">Contact</a>
     </div>
-    <a data-cta href="/contact#contact-form" style="display:inline-flex;align-items:center;background:linear-gradient(90deg,#FBF8F3 0 50%,var(--accent,#2E6F68) 50% 100%);background-size:200% 100%;background-position:100% 0;color:#FBF8F3;padding:.7vw 1.4vw;border-radius:0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:13px;transition:background-position .6s cubic-bezier(.6,.5,0,1),color .6s cubic-bezier(.6,.5,0,1)" style-hover="background-position:0 0;color:#000">Get Started Now</a>
-    <button data-burger data-open="{{ menuOpen }}" onClick="{{ openMenu }}" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="align-items:center;justify-content:center;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0"><span aria-hidden="true" style="font-family:'Material Symbols Rounded';font-size:34px;line-height:1">menu</span></button>
+    <a data-cta data-fill href="/contact#contact-form" style="--fill:#FBF8F3;display:inline-flex;align-items:center;background:var(--accent,#2E6F68);color:#FBF8F3;padding:.7vw 1.4vw;border-radius:0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:13px;transition:color .6s cubic-bezier(.6,.5,0,1)" style-hover="color:#000">Get Started Now</a>
+    <button data-burger data-open="{{ menuOpen }}" onClick="{{ openMenu }}" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="align-items:center;justify-content:center;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
   </nav>
 
   <div data-menu data-open="{{ menuOpen }}" role="dialog" aria-modal="true" aria-label="Menu">
-    <button onClick="{{ closeMenu }}" aria-label="Close menu" style="position:absolute;top:20px;right:24px;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><span aria-hidden="true" style="font-family:'Material Symbols Rounded';font-size:34px;line-height:1">close</span></button>
+    <button onClick="{{ closeMenu }}" aria-label="Close menu" style="position:absolute;top:20px;right:24px;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
     <a href="/#about" onClick="{{ closeMenu }}">About</a>
     <a href="/web-design#top" onClick="{{ closeMenu }}">Web Design</a>
     <a href="/graphic-design#top" onClick="{{ closeMenu }}">Graphic Design</a>
@@ -209,9 +213,9 @@
     <div data-hero-overlay style="position:absolute;inset:0;background:var(--hero-bg,#000);-webkit-mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) var(--ms,34%),#000 var(--me,72%));mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) var(--ms,34%),#000 var(--me,72%))"></div>
     <div data-hero-scrim style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 48% 48% at 50% 50%,#000 0%,rgba(0,0,0,.94) 52%,rgba(0,0,0,0) 80%)"></div>
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 3.5vw;pointer-events:none;z-index:2">
-      <div style="font-size:12px;font-weight:600;letter-spacing:.22em;color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .1s">NORTHHAUS - GET IN TOUCH</div>
-      <h1 data-glitch style="position:relative;display:inline-block;font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:7vw;line-height:1.02;white-space:nowrap;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:2vw auto 0;max-width:70vw;pointer-events:auto;cursor:none;text-wrap:balance;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .22s"><span data-gw style="position:relative;display:inline-block;color:var(--accent,#2E6F68)">Contact<span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#2E6F68);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl>Contact</span></span></span> <span data-gw style="position:relative;display:inline-block">Us<span style="color:var(--accent,#2E6F68)">.</span><span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#2E6F68);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl>Us.</span></span></span></h1>
-      <p style="font-size:1.15vw;line-height:1.6;color:var(--accent,#2E6F68);max-width:38vw;margin:1.8vw auto 0;text-shadow:0 1px 16px rgba(0,0,0,.95);animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .34s;text-wrap:pretty">If your brand or organisation needs a distinctive identity, dynamic website, digital tool or impactful communication design, I can help you deliver that. I&rsquo;d love to hear from you.</p>
+      <div style="font-size:12px;font-weight:600;letter-spacing:.22em;color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both 0.4s">NORTHHAUS - GET IN TOUCH</div>
+      <h1 data-glitch style="position:relative;display:inline-block;font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:7vw;line-height:1.02;white-space:nowrap;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:2vw auto 0;max-width:70vw;pointer-events:auto;cursor:none;text-wrap:balance;animation:heroRise .9s cubic-bezier(.6,.5,0,1) both 0.52s"><span data-gw style="position:relative;display:inline-block;color:var(--accent,#2E6F68)">Contact<span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#2E6F68);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl>Contact</span></span></span> <span data-gw style="position:relative;display:inline-block">Us<span style="color:var(--accent,#2E6F68)">.</span><span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#2E6F68);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl>Us.</span></span></span></h1>
+      <p style="font-size:1.15vw;line-height:1.6;color:var(--accent,#2E6F68);max-width:38vw;margin:1.8vw auto 0;text-shadow:0 1px 16px rgba(0,0,0,.95);animation:heroUp .9s cubic-bezier(.6,.5,0,1) both 0.64s;text-wrap:pretty">If your brand or organisation needs a distinctive identity, dynamic website, digital tool or impactful communication design, I can help you deliver that. I&rsquo;d love to hear from you.</p>
     </div>
   <div data-peek-hint aria-hidden="true" style="position:absolute;left:50%;bottom:calc(32px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:3;flex-direction:column;align-items:center;gap:12px;pointer-events:none;transition:opacity .5s ease">
       <div data-peek-ring style="width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(251,248,243,.7);display:flex;align-items:center;justify-content:center;animation:peekPulse 2.4s ease-in-out infinite">
@@ -301,7 +305,7 @@
     <div data-reveal="up">
       <h2 style="font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;font-size:clamp(46px,8.6vw,176px);text-transform:uppercase;letter-spacing:.02em;line-height:.98;margin:0 auto;max-width:90vw;color:#000;text-wrap:balance">Let&rsquo;s Work Together<span style="color:#FBF8F3">.</span></h2>
       <div style="margin-top:3.4vw">
-        <a href="/contact#contact-form" style="display:inline-flex;align-items:center;background:linear-gradient(90deg,var(--accent,#2E6F68) 0 50%,#000 50% 100%);background-size:200% 100%;background-position:100% 0;color:#FBF8F3;padding:1.2vw 3vw;border-radius:0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:15px;transition:background-position .6s cubic-bezier(.6,.5,0,1),color .6s cubic-bezier(.6,.5,0,1)" style-hover="background-position:0 0;color:#000">Get Started Now</a>
+        <a data-fill href="/contact#contact-form" style="--fill:var(--accent,#2E6F68);display:inline-flex;align-items:center;background:#000;color:#FBF8F3;padding:1.2vw 3vw;border-radius:0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:15px;transition:color .6s cubic-bezier(.6,.5,0,1)" style-hover="color:#000">Get Started Now</a>
       </div>
     </div>
   </section>
@@ -338,14 +342,14 @@
           <a href="https://www.instagram.com/northhaus.io" target="_blank" rel="noopener" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Instagram</a>
         </div>
       </div>
-      <button onClick="{{ toTop }}" aria-label="Scroll to top" style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#FBF8F3;font-size:18px;cursor:pointer;transition:all .6s cubic-bezier(.6,.5,0,1)" style-hover="background:var(--accent,#2E6F68);border-color:var(--accent,#2E6F68)">&uarr;</button>
+      <button onClick="{{ toTop }}" aria-label="Scroll to top" style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#FBF8F3;font-size:18px;cursor:pointer;transition:background-color .6s cubic-bezier(.6,.5,0,1),border-color .6s cubic-bezier(.6,.5,0,1)" style-hover="background:var(--accent,#2E6F68);border-color:var(--accent,#2E6F68)">&uarr;</button>
     </div>
     <div style="margin-top:3.5vw;padding-top:1.5vw;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;font-size:12px;color:#6f6f73">
       <span style="display:flex;gap:1.4vw;flex-wrap:wrap;align-items:center;color:#FBF8F3"><span>&copy; 2026 Northhaus. All rights reserved.</span><a href="/privacy" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Privacy</a><a href="/terms" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Terms</a></span>
       <span style="color:var(--accent,#2E6F68)">UK Design Studio</span>
     </div>
   </footer>
-  <div data-cursor-dot style="position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--accent,#2E6F68);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s ease,width .25s cubic-bezier(.6,.5,0,1),height .25s cubic-bezier(.6,.5,0,1);will-change:transform,left,top"></div>
+  <div data-cursor-dot style="position:fixed;top:-13px;left:-13px;width:26px;height:26px;pointer-events:none;z-index:9999;opacity:0;transition:opacity .3s ease;will-change:transform"><div data-cursor-ring style="width:100%;height:100%;border-radius:50%;box-sizing:border-box;background:var(--accent,#2E6F68);transform:scale(.385);transition:transform .25s cubic-bezier(.6,.5,0,1)"></div></div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;typeface&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Sharp Sans (Black / Medium)&quot;,&quot;options&quot;:[&quot;Current&quot;,&quot;Swiss Grotesk (Haas Unica)&quot;,&quot;Sharp Sans (Black / Medium)&quot;],&quot;section&quot;:&quot;Typography&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#66D1DE&quot;,&quot;options&quot;:[&quot;#2E6F68&quot;,&quot;#66D1DE&quot;,&quot;#3AA6A0&quot;,&quot;#1F4E49&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroGradient&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Solid Black&quot;,&quot;options&quot;:[&quot;Solid Black&quot;,&quot;Black → Grey&quot;,&quot;Black → Teal&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgObject&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;None&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;Torus&quot;,&quot;Orbit Rings&quot;,&quot;Floating Cubes&quot;,&quot;Torus Knot&quot;,&quot;Icosahedron&quot;,&quot;Neural Net&quot;,&quot;Node Sphere&quot;,&quot;Data Grid&quot;,&quot;Northhaus Mark&quot;],&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2.5,&quot;min&quot;:0.4,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;x&quot;,&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;marqueeSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:22,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;countUp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroGlitch&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroHoverText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
@@ -358,16 +362,11 @@ class Component extends DCLogic {
       this.setState({ formStatus: 'success', formMsg: 'Thanks - your message has been sent. I\u2019ll be in touch soon.' });
       history.replaceState(null, '', location.pathname + location.hash);
     }
-    const pl = document.querySelector('[data-preloader]');
-    if (pl) {
-      const t0 = performance.now();
-      const hide = () => {
-        const wait = Math.max(0, 700 - (performance.now() - t0));
-        setTimeout(() => { pl.style.opacity = '0'; pl.style.visibility = 'hidden'; }, wait);
-      };
-      if (document.readyState === 'complete') hide();
-      else window.addEventListener('load', hide, { once: true });
-      setTimeout(hide, 4000);
+    const intro = document.getElementById('intro');
+    if (intro) {
+      requestAnimationFrame(() => requestAnimationFrame(() => intro.setAttribute('data-go', '')));
+      intro.addEventListener('transitionend', () => intro.remove(), { once: true });
+      setTimeout(() => intro.remove(), 1500);
     }
     this._onScroll = () => {
       const sc = window.scrollY > 80;
@@ -403,8 +402,8 @@ class Component extends DCLogic {
     const _revealShow = (t, io) => {
       t.style.opacity = '1';
       t.style.transform = 'none';
-      t.style.filter = 'none';
       t.style.clipPath = 'inset(0 0 0 0)';
+      setTimeout(() => { t.style.willChange = 'auto'; }, 1500 + (+t.dataset.delay || 0));
       io.unobserve(t);
     };
     this._io = new IntersectionObserver((es) => {
@@ -416,15 +415,14 @@ class Component extends DCLogic {
     document.querySelectorAll('[data-reveal]').forEach((el) => {
       const kind = el.dataset.reveal;
       el.style.opacity = '0';
-      el.style.willChange = 'opacity, transform, filter, clip-path';
+      el.style.willChange = kind === 'zoom' ? 'opacity, transform, clip-path' : 'opacity, transform';
       if (kind === 'zoom') {
         el.style.transform = 'scale(1.08)';
         el.style.clipPath = 'inset(0 0 100% 0)';
         el.style.transition = 'opacity 1.1s ' + ease + ', transform 1.3s ' + ease + ', clip-path 1.2s ' + ease;
       } else {
         el.style.transform = 'translateY(30px)';
-        el.style.filter = 'blur(9px)';
-        el.style.transition = 'opacity .95s ' + ease + ', transform 1s ' + ease + ', filter .95s ' + ease;
+        el.style.transition = 'opacity .95s ' + ease + ', transform 1s ' + ease;
       }
       el.style.transitionDelay = (el.dataset.delay || 0) + 'ms';
       (kind === 'zoom' ? this._ioZoom : this._io).observe(el);
@@ -434,22 +432,25 @@ class Component extends DCLogic {
     this._initGlitch();
     const dot = document.querySelector('[data-cursor-dot]');
     if (dot && !window.matchMedia('(pointer: coarse)').matches) {
-      let tx = window.innerWidth / 2, ty = window.innerHeight / 2, cx = tx, cy = ty, shown = false;
+      let tx = window.innerWidth / 2, ty = window.innerHeight / 2, cx = tx, cy = ty, shown = false, hot = false;
+      const ring = dot.firstElementChild;
       this._onMove = (e) => {
         tx = e.clientX; ty = e.clientY;
         if (!shown) { shown = true; dot.style.opacity = '1'; }
-        const int = e.target.closest && e.target.closest('a,button');
-        dot.style.width = int ? '26px' : '10px';
-        dot.style.height = int ? '26px' : '10px';
-        dot.style.background = int ? 'transparent' : 'var(--accent,#2E6F68)';
-        dot.style.border = int ? '1.5px solid var(--accent,#2E6F68)' : 'none';
+        const int = !!(e.target.closest && e.target.closest('a,button'));
+        if (int !== hot && ring) {
+          hot = int;
+          ring.style.transform = int ? 'scale(1)' : 'scale(.385)';
+          ring.style.background = int ? 'transparent' : 'var(--accent,#2E6F68)';
+          ring.style.border = int ? '1.5px solid var(--accent,#2E6F68)' : 'none';
+        }
       };
       this._onLeave = () => { dot.style.opacity = '0'; };
       window.addEventListener('mousemove', this._onMove, { passive: true });
       document.addEventListener('mouseleave', this._onLeave);
       const loop = () => {
         cx += (tx - cx) * 0.2; cy += (ty - cy) * 0.2;
-        dot.style.left = cx + 'px'; dot.style.top = cy + 'px';
+        dot.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
         this._craf = requestAnimationFrame(loop);
       };
       this._craf = requestAnimationFrame(loop);
@@ -688,7 +689,9 @@ class Component extends DCLogic {
       }, { threshold: 0.4 });
       this._mbIO.observe(wrap);
       const t0 = performance.now();
+      let running = false, shown = false;
       const loop = () => {
+        if (!running) return;
         this._mbRaf = requestAnimationFrame(loop);
         const t = (performance.now() - t0) * 0.001;
         st.open += (st.targetOpen - st.open) * 0.09;
@@ -701,17 +704,45 @@ class Component extends DCLogic {
         laptop.rotation.x = st.rx;
         laptop.position.y = Math.sin(t * 0.8) * 0.12;
         renderer.render(scene, camera);
+        if (!shown) {
+          shown = true; canvas.style.opacity = '1';
+          const w = canvas.parentElement;
+          setTimeout(() => { w.style.backgroundImage = 'none'; }, 450);
+        }
+        if (!this._posterDone && st.open > 0.995 && /[?&]poster\b/.test(location.search)) {
+          this._posterDone = true;
+          const a = document.createElement('a'); a.download = 'macbook-poster.png'; a.href = canvas.toDataURL('image/png'); a.click();
+        }
       };
-      loop();
+      this._mbVis = new IntersectionObserver((es) => {
+        const v = es[0].isIntersecting;
+        if (v && !running) { running = true; loop(); }
+        else if (!v && running) { running = false; cancelAnimationFrame(this._mbRaf); }
+      });
+      this._mbVis.observe(wrap);
     };
-    if (window.THREE) start();
-    else {
-      let tries = 0;
-      this._mbPoll = setInterval(() => {
-        if (window.THREE) { clearInterval(this._mbPoll); start(); }
-        else if (++tries > 120) clearInterval(this._mbPoll);
-      }, 50);
-    }
+    this._whenIdle(() => {
+      this._mbLoadIO = new IntersectionObserver((es) => {
+        if (!es.some((e) => e.isIntersecting)) return;
+        this._mbLoadIO.disconnect();
+        this._loadThree().then(start).catch(() => {});
+      }, { rootMargin: '600px 0px' });
+      this._mbLoadIO.observe(canvas.parentElement);
+    });
+  }
+  _loadThree() {
+    if (window.THREE) return Promise.resolve();
+    if (!window.__threeP) window.__threeP = new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+      s.async = true; s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+    return window.__threeP;
+  }
+  _whenIdle(fn) {
+    const go = () => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 2500 }) : setTimeout(fn, 300));
+    if (document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
   }
   _initGL() {
     const canvas = document.querySelector('[data-gl]');
@@ -752,7 +783,13 @@ class Component extends DCLogic {
         g.fillStyle = '#fff'; g.fill();
         return new THREE.CanvasTexture(cv);
       })();
-      scene.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 2.4 * (0.75 + INT * 0.45), map: dotTex, alphaTest: 0.5, vertexColors: true, transparent: true, opacity: Math.min(1, 0.85 * (0.7 + INT * 0.4)), blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true })));
+      const pMat = new THREE.PointsMaterial({ size: 2.4 * (0.75 + INT * 0.45), map: dotTex, alphaTest: 0.5, vertexColors: true, transparent: true, opacity: Math.min(1, 0.85 * (0.7 + INT * 0.4)), blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true });
+      const uT = { value: 0 };
+      pMat.onBeforeCompile = (sh) => {
+        sh.uniforms.uT = uT;
+        sh.vertexShader = 'uniform float uT;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\ntransformed.y = -90.0 + (sin(position.x * 0.011 + uT * 0.9) * 9.0 + cos(position.z * 0.017 + uT * 0.6) * 7.0) * ' + Number(INT).toFixed(4) + ';');
+      };
+      scene.add(new THREE.Points(geo, pMat));
       const wire = (g, op) => new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: new THREE.Color(accent), wireframe: true, transparent: true, opacity: op || 0.16 }));
       const kind = this.props.bgObject ?? 'Torus';
       let obj = null;
@@ -817,36 +854,38 @@ class Component extends DCLogic {
       window.addEventListener('pointermove', this._glMove, { passive: true });
       this._glResize = () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); };
       window.addEventListener('resize', this._glResize);
-      const pos = geo.attributes.position.array;
       const t0 = performance.now();
-      let smoothP = 0;
+      let smoothP = 0, running = false, shown = false;
       const render = () => {
+        if (!running) return;
         this._glRaf = requestAnimationFrame(render);
         const t = (performance.now() - t0) * 0.001 * (0.6 + INT * 0.6);
         const max = document.documentElement.scrollHeight - innerHeight;
         const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
         smoothP += (progress - smoothP) * 0.06;
-        for (let i = 0; i < count; i++) {
-          const px = pos[i * 3], pz = pos[i * 3 + 2];
-          pos[i * 3 + 1] = -90 + (Math.sin(px * 0.011 + t * 0.9) * 9 + Math.cos(pz * 0.017 + t * 0.6) * 7) * INT;
-        }
-        geo.attributes.position.needsUpdate = true;
+        uT.value = t;
         const base = samplePath(smoothP);
         camera.position.set(base.x + ptr.nx * 18 * INT, base.y + ptr.ny * 10 * INT, base.z);
         camera.lookAt(0, 20, base.z - 600);
         if (obj) { obj.rotation.x = t * 0.12; obj.rotation.y = t * 0.17; obj.position.y = objBaseY + Math.sin(t * 0.5) * 14 * INT; }
         renderer.render(scene, camera);
+        if (!shown) { shown = true; canvas.style.opacity = '1'; }
       };
-      render();
+      const setRun = (on) => {
+        if (on && !running) { running = true; render(); }
+        else if (!on && running) { running = false; cancelAnimationFrame(this._glRaf); }
+      };
+      const hero = document.querySelector('[data-hero]');
+      if (hero) {
+        const th = []; for (let i = 0; i <= 20; i++) th.push(i / 20);
+        this._glVis = new IntersectionObserver((es) => {
+          const r = es[0].boundingClientRect;
+          setRun(!(es[0].isIntersecting && r.top <= 1 && r.bottom >= innerHeight - 1));
+        }, { threshold: th });
+        this._glVis.observe(hero);
+      } else setRun(true);
     };
-    if (window.THREE) start();
-    else {
-      let tries = 0;
-      this._glPoll = setInterval(() => {
-        if (window.THREE) { clearInterval(this._glPoll); start(); }
-        else if (++tries > 120) clearInterval(this._glPoll);
-      }, 50);
-    }
+    this._whenIdle(() => this._loadThree().then(start).catch(() => {}));
   }
   _runCount() {
     const targets = [21, 12, 8, 15];
@@ -994,11 +1033,16 @@ class Component extends DCLogic {
     if (this._mbMove) window.removeEventListener('mousemove', this._mbMove);
     if (this._mbUp) window.removeEventListener('mouseup', this._mbUp);
     if (this._mbResize) window.removeEventListener('resize', this._mbResize);
+    if (this._mbVis) this._mbVis.disconnect();
+    if (this._mbLoadIO) this._mbLoadIO.disconnect();
+    if (this._mbIO) this._mbIO.disconnect();
+    if (this._glVis) this._glVis.disconnect();
+    if (this._vIO) this._vIO.disconnect();
   }
   componentDidUpdate(prev) {
     if (prev.bgIntensity !== this.props.bgIntensity || prev.bgObject !== this.props.bgObject || prev.accent !== this.props.accent) {
       if (this._glRaf) cancelAnimationFrame(this._glRaf);
-      if (this._glPoll) clearInterval(this._glPoll);
+      if (this._glVis) this._glVis.disconnect();
       if (this._glMove) window.removeEventListener('pointermove', this._glMove);
       if (this._glResize) window.removeEventListener('resize', this._glResize);
       this._initGL();
