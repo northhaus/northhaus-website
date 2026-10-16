@@ -35,8 +35,15 @@
 <link rel="preload" as="font" type="font/woff2" href="/uploads/SharpSansDisplay-900.woff2" crossorigin="anonymous">
 <link rel="preload" as="font" type="font/woff2" href="/uploads/SharpSansDisplay-500.woff2" crossorigin="anonymous">
 <script src="/support.min.js" defer></script>
+<style>
+  #intro{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:#66D1DE;pointer-events:none;will-change:transform;animation:introOut .7s cubic-bezier(.6,.5,0,1) 3s forwards}
+  #intro[data-go]{animation:none;transform:translateY(-100%);transition:transform .7s cubic-bezier(.6,.5,0,1)}
+  @keyframes introOut{to{transform:translateY(-100%)}}
+  @media (prefers-reduced-motion:reduce){#intro{display:none}}
+</style>
 </head>
 <body>
+<div id="intro" aria-hidden="true"><img src="/uploads/northhaus-logo-384.webp" alt="" width="192" height="48" style="height:30px;width:auto;filter:brightness(0)"></div>
 <x-dc>
 <helmet>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -49,8 +56,7 @@
   @keyframes heroUp{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
   @keyframes heroImg{from{opacity:0;transform:scale(1.045)}to{opacity:1;transform:none}}
   @keyframes mq{to{transform:translateX(-50%)}}
-  @keyframes ldspin{to{transform:rotate(360deg)}}
-  @keyframes ldpulse{0%,100%{opacity:.55}50%{opacity:1}}
+  @keyframes heroRise{from{transform:translateY(34px)}to{transform:none}}
   @font-face{font-family:'SharpSansDisplay';src:url('uploads/SharpSansDisplay-300.woff2') format('woff2');font-weight:300;font-display:swap}
   @font-face{font-family:'SharpSansDisplay';src:url('uploads/SharpSansDisplay-500.woff2') format('woff2');font-weight:500;font-display:swap}
   @font-face{font-family:'SharpSansDisplay';src:url('uploads/SharpSansDisplay-600.woff2') format('woff2');font-weight:600;font-display:swap}
@@ -152,10 +158,6 @@
 </style>
 </helmet>
 <div id="site" style="--accent:{{ accentVal }};--mq:{{ mqVal }};--hero-bg:{{ heroBgVal }};--head-font:{{ headFont }};--body-font:{{ bodyFont }};--head-weight:{{ headWeight }};--body-weight:{{ bodyWeight }};--head-transform:{{ headTransform }};--head-tracking:{{ headTracking }};background:transparent;min-height:100vh;font-family:var(--body-font,Inter,'Helvetica Neue',sans-serif);font-weight:var(--body-weight,400);color:#FBF8F3;overflow-x:clip">
-  <div data-preloader style="position:fixed;inset:0;z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;background:var(--accent,#66D1DE);transition:opacity .7s cubic-bezier(.6,.5,0,1),visibility .7s">
-    <div style="width:58px;height:58px;border:4px solid rgba(0,0,0,.22);border-top-color:#000;border-radius:50%;animation:ldspin .8s linear infinite"></div>
-    <img src="uploads/northhaus-logo-384.webp" alt="Northhaus" width="192" height="48" style="height:30px;width:auto;filter:brightness(0);animation:ldpulse 1.6s ease-in-out infinite">
-  </div>
   <canvas data-gl aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none"></canvas>
   <a data-skip href="#main">Skip to content</a>
   <div data-progress aria-hidden="true" style="position:fixed;top:0;left:0;right:0;height:2px;z-index:60;background:linear-gradient(90deg,var(--accent,#66D1DE),var(--accent,#66D1DE));transform-origin:0 50%;transform:scaleX(0);pointer-events:none"></div>
@@ -189,12 +191,12 @@
     <div data-hero-overlay style="position:absolute;inset:0;background:var(--hero-bg,#000);-webkit-mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) var(--ms,34%),#000 var(--me,72%));mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) var(--ms,34%),#000 var(--me,72%))"></div>
     <div data-hero-scrim style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 48% 48% at 50% 50%,#000 0%,rgba(0,0,0,.94) 52%,rgba(0,0,0,0) 80%)"></div>
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 3.5vw;pointer-events:none;z-index:2">
-      <div style="position:relative;z-index:1;font-size:12px;font-weight:600;letter-spacing:.22em;color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .1s">NORTHHAUS - UK DESIGN STUDIO</div>
-      <div data-vapor-wrap style="position:relative;width:100%;max-width:70vw;margin:2vw auto 0;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .22s">
+      <div style="position:relative;z-index:1;font-size:12px;font-weight:600;letter-spacing:.22em;color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .4s">NORTHHAUS - UK DESIGN STUDIO</div>
+      <div data-vapor-wrap style="position:relative;width:100%;max-width:70vw;margin:2vw auto 0;animation:heroRise .9s cubic-bezier(.6,.5,0,1) both .52s">
         <h1 data-vapor-src style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:7vw;line-height:1.02;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:0;text-wrap:balance;transition:opacity .25s linear"><span style="display:block;color:var(--accent,#2E6F68)">Redefining</span><span style="display:block">What&rsquo;s Possible<span style="color:var(--accent,#2E6F68)">.</span></span></h1>
         <canvas data-vapor aria-hidden="true" style="position:absolute;left:-28%;top:-150%;width:156%;height:400%;display:block;pointer-events:none;z-index:0"></canvas>
       </div>
-      <p style="position:relative;z-index:1;font-size:1.15vw;line-height:1.6;color:var(--accent,#2E6F68);max-width:38vw;margin:1.8vw auto 0;text-shadow:0 1px 16px rgba(0,0,0,.95);animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .34s;text-wrap:pretty">I build interfaces from the future - crafting websites, digital products, and immersive brand experiences where innovative design meets intelligent technology.</p>
+      <p style="position:relative;z-index:1;font-size:1.15vw;line-height:1.6;color:var(--accent,#2E6F68);max-width:38vw;margin:1.8vw auto 0;text-shadow:0 1px 16px rgba(0,0,0,.95);animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .64s;text-wrap:pretty">I build interfaces from the future - crafting websites, digital products, and immersive brand experiences where innovative design meets intelligent technology.</p>
     </div>
   <div data-peek-hint aria-hidden="true" style="position:absolute;left:50%;bottom:calc(32px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:3;flex-direction:column;align-items:center;gap:12px;pointer-events:none;transition:opacity .5s ease">
       <div data-peek-ring style="width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(251,248,243,.7);display:flex;align-items:center;justify-content:center;animation:peekPulse 2.4s ease-in-out infinite">
@@ -362,16 +364,11 @@ class Component extends DCLogic {
   componentDidMount() {
     this._initCTitles();
     this._initCounts();
-    const pl = document.querySelector('[data-preloader]');
-    if (pl) {
-      const t0 = performance.now();
-      const hide = () => {
-        const wait = Math.max(0, 700 - (performance.now() - t0));
-        setTimeout(() => { pl.style.opacity = '0'; pl.style.visibility = 'hidden'; }, wait);
-      };
-      if (document.readyState === 'complete') hide();
-      else window.addEventListener('load', hide, { once: true });
-      setTimeout(hide, 4000);
+    const intro = document.getElementById('intro');
+    if (intro) {
+      requestAnimationFrame(() => requestAnimationFrame(() => intro.setAttribute('data-go', '')));
+      intro.addEventListener('transitionend', () => intro.remove(), { once: true });
+      setTimeout(() => intro.remove(), 1500);
     }
     this._onScroll = () => {
       const sc = window.scrollY > 80;
