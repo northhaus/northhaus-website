@@ -32,20 +32,18 @@
 <style>x-dc{display:none!important}</style>
 <link rel="preload" as="script" href="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous">
 <link rel="preload" as="script" href="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="/uploads/SharpSansDisplay-900.woff2" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="/uploads/SharpSansDisplay-500.woff2" crossorigin="anonymous">
 <script src="/support.min.js" defer></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,1,0&display=block" rel="stylesheet">
 <style>
   html{scroll-behavior:smooth}
   html,body{max-width:100%}
-  body{margin:0;background:#000;color:#FBF8F3;font-family:Inter,'Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased}
+  body{margin:0;background:#000;color:#FBF8F3;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased}
   a{color:#FBF8F3;text-decoration:none}
   a:hover{color:var(--accent,#2E6F68)}
   @keyframes heroUp{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
@@ -172,11 +170,11 @@
       <a href="/contact#top" style="letter-spacing:.01em">Contact</a>
     </div>
     <a data-cta href="/contact#contact-form" style="display:inline-flex;align-items:center;background:linear-gradient(90deg,#FBF8F3 0 50%,var(--accent,#2E6F68) 50% 100%);background-size:200% 100%;background-position:100% 0;color:#FBF8F3;padding:.7vw 1.4vw;border-radius:0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:13px;transition:background-position .6s cubic-bezier(.6,.5,0,1),color .6s cubic-bezier(.6,.5,0,1)" style-hover="background-position:0 0;color:#000">Get Started Now</a>
-    <button data-burger data-open="{{ menuOpen }}" onClick="{{ openMenu }}" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="align-items:center;justify-content:center;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0"><span aria-hidden="true" style="font-family:'Material Symbols Rounded';font-size:34px;line-height:1">menu</span></button>
+    <button data-burger data-open="{{ menuOpen }}" onClick="{{ openMenu }}" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="align-items:center;justify-content:center;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
   </nav>
 
   <div data-menu data-open="{{ menuOpen }}" role="dialog" aria-modal="true" aria-label="Menu">
-    <button onClick="{{ closeMenu }}" aria-label="Close menu" style="position:absolute;top:20px;right:24px;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><span aria-hidden="true" style="font-family:'Material Symbols Rounded';font-size:34px;line-height:1">close</span></button>
+    <button onClick="{{ closeMenu }}" aria-label="Close menu" style="position:absolute;top:20px;right:24px;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
     <a href="#about" onClick="{{ closeMenu }}">About</a>
     <a href="/web-design#top" onClick="{{ closeMenu }}">Web Design</a>
     <a href="/graphic-design#top" onClick="{{ closeMenu }}">Graphic Design</a>
