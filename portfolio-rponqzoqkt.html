@@ -196,7 +196,7 @@
       <h2 data-cascade style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);text-transform:var(--head-transform,none);font-size:clamp(32px,5vw,64px);letter-spacing:var(--head-tracking,-.015em);margin:1vw 0 0;color:#FBF8F3;display:inline-block">The work<span style="color:var(--accent,#2E6F68)">.</span></h2>
     </div>
     <div style="max-width:1040px;margin:0 auto">
-      <div style="position:relative;width:100%;padding-top:{{ folio.spot.pad }};transition:padding-top .3s ease;border-radius:14px;overflow:hidden;background:linear-gradient(150deg,{{ folio.spot.tint }},#0d0e10);box-shadow:0 24px 60px rgba(0,0,0,.45)">
+      <div style="position:relative;width:100%;padding-top:{{ folio.spot.pad }};border-radius:14px;overflow:hidden;background:linear-gradient(150deg,{{ folio.spot.tint }},#0d0e10);box-shadow:0 24px 60px rgba(0,0,0,.45)">
         {{ folio.spotImg }}
         <sc-if value="{{ folio.spot.showPlay }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px">&#9654;</span></sc-if>
         <button onClick="{{ folio.prev }}" aria-label="Previous" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);width:48px;height:48px;border:1px solid rgba(255,255,255,.35);background:rgba(6,7,9,.35);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);color:#FBF8F3;border-radius:50%;font-size:22px;cursor:pointer;line-height:1">&#8249;</button>
@@ -1144,13 +1144,14 @@ class Component extends DCLogic {
     const SCR={l:'29.4%',t:'10.5%',w:'62.7%',h:'49.4%'};
     const onImgLoad=(e)=>{const el=e.target,src=el.getAttribute('src');if(!el.naturalWidth||!el.naturalHeight)return;const r=el.naturalHeight/el.naturalWidth;if(this.state.arMap[src]!==r)this.setState(s=>({arMap:Object.assign({},s.arMap,{[src]:r})}));};
     const spotAR=spot.img?this.state.arMap[spot.img]:null;
+    [ITEMS[(gSpot+1)%N],ITEMS[(gSpot+N-1)%N]].forEach(w=>{if(w&&w.img&&!(window.__pre||(window.__pre={}))[w.img]){const im=new Image();im.sizes='(max-width: 900px) 100vw, 70vw';im.srcset=w.srcSet;im.src=w.img;window.__pre[w.img]=im;}});
     const spotImg = spot.videoSrc
       ? React.createElement('div',{style:{position:'absolute',inset:0}},[
           React.createElement('img',{key:'m',src:spot.img,srcSet:spot.srcSet,sizes:'(max-width: 900px) 100vw, 70vw',alt:spot.alt,decoding:'async',onLoad:onImgLoad,style:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'contain',display:'block'}}),
           React.createElement('video',{key:'v',src:encodeURI(spot.videoSrc),autoPlay:true,loop:true,muted:true,playsInline:true,ref:(el)=>{if(el){el.muted=true;const p=el.play();if(p&&p.catch)p.catch(()=>{});}},style:{position:'absolute',left:SCR.l,top:SCR.t,width:SCR.w,height:SCR.h,objectFit:'contain',display:'block',background:'transparent'}})
         ])
       : (spot.img ? React.createElement('img',{src:spot.img,srcSet:spot.srcSet,sizes:'(max-width: 900px) 100vw, 70vw',alt:spot.alt,decoding:'async',onLoad:onImgLoad,style:{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'contain',display:'block'}}) : null);
-    const folioObj={ spot:{tint:spot.tint,title:spot.title,client:spot.client,tag:spot.tag,video:spot.video,showPlay:spot.video&&!spot.videoSrc,img:spot.img,alt:spot.alt,counter:(gSpot+1)+' / '+N, pad:(spotAR?(spotAR*100).toFixed(3)+'%':(spot.videoSrc?'70.7%':'62%'))}, spotImg:spotImg, spotHasImg:!!spot.img, spotThumbs:spotThumbs, prev:()=>this.setState(s=>({gSpot:(s.gSpot+N-1)%N})), next:()=>this.setState(s=>({gSpot:(s.gSpot+1)%N})) };
+    const folioObj={ spot:{tint:spot.tint,title:spot.title,client:spot.client,tag:spot.tag,video:spot.video,showPlay:spot.video&&!spot.videoSrc,img:spot.img,alt:spot.alt,counter:(gSpot+1)+' / '+N, pad:(spotAR?(spotAR*100).toFixed(3)+'%':'70.711%')}, spotImg:spotImg, spotHasImg:!!spot.img, spotThumbs:spotThumbs, prev:()=>this.setState(s=>({gSpot:(s.gSpot+N-1)%N})), next:()=>this.setState(s=>({gSpot:(s.gSpot+1)%N})) };
     return {
       accentVal: accent,
       folio: folioObj,
