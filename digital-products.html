@@ -286,7 +286,7 @@
               </div>
               <div style="flex:1;position:relative;overflow:hidden;background:#24262a;display:flex;align-items:center;justify-content:center;padding:2.2vw 0;box-sizing:border-box;min-height:0">
                 <div style="position:relative;height:100%;max-width:100%;aspect-ratio:{{ p.imgW }}/{{ p.imgH }}">
-                  <img src="{{ p.img }}" srcset="{{ p.srcset }}" sizes="(max-width: 900px) 90vw, 40vw" alt="{{ p.name }} screenshot" width="{{ p.imgW }}" height="{{ p.imgH }}" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:contain">
+                  <img src="{{ p.img }}" alt="{{ p.name }} screenshot" width="{{ p.imgW }}" height="{{ p.imgH }}" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:contain">
                   <div style="position:absolute;top:0;left:0;right:0;height:1.3%;min-height:2px;background:linear-gradient(90deg,#8ADCE6,#66D1DE)"></div>
                 </div>
               </div>
@@ -1193,7 +1193,7 @@ class Component extends DCLogic {
       barScale: i === selIdx ? 1 : 0,
       previewOp: i === selIdx ? 1 : 0,
       previewZ: i === selIdx ? 2 : 1,
-      img: p.img, srcset: p.srcset || '', imgW: p.imgW, imgH: p.imgH,
+      img: p.img, imgW: p.imgW, imgH: p.imgH,
       select: () => this.setState({ product: i })
     }));
     const sp = PRODUCTS[selIdx];
