@@ -30,8 +30,8 @@
 ]}
 </script>
 <style>x-dc{display:none!important}</style>
-<link rel="preload" as="script" href="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous">
-<link rel="preload" as="script" href="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous">
+<link rel="preload" as="script" href="/vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous">
+<link rel="preload" as="script" href="/vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous">
 <link rel="preload" as="font" type="font/woff2" href="/uploads/SharpSansDisplay-900.woff2" crossorigin="anonymous">
 <link rel="preload" as="font" type="font/woff2" href="/uploads/SharpSansDisplay-500.woff2" crossorigin="anonymous">
 <script src="/support.min.js" defer></script>
@@ -738,7 +738,7 @@ class Component extends DCLogic {
     if (window.THREE) return Promise.resolve();
     if (!window.__threeP) window.__threeP = new Promise((res, rej) => {
       const s = document.createElement('script');
-      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+      s.src = '/vendor/three.min.js';
       s.async = true; s.onload = res; s.onerror = rej;
       document.head.appendChild(s);
     });
