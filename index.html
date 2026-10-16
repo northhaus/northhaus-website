@@ -46,7 +46,6 @@
 <div id="intro" aria-hidden="true"></div>
 <x-dc>
 <helmet>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
   html{scroll-behavior:smooth}
   html,body{max-width:100%}
@@ -158,7 +157,7 @@
 </style>
 </helmet>
 <div id="site" style="--accent:{{ accentVal }};--mq:{{ mqVal }};--hero-bg:{{ heroBgVal }};--head-font:{{ headFont }};--body-font:{{ bodyFont }};--head-weight:{{ headWeight }};--body-weight:{{ bodyWeight }};--head-transform:{{ headTransform }};--head-tracking:{{ headTracking }};background:transparent;min-height:100vh;font-family:var(--body-font,Inter,'Helvetica Neue',sans-serif);font-weight:var(--body-weight,400);color:#FBF8F3;overflow-x:clip">
-  <canvas data-gl aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none"></canvas>
+  <canvas data-gl aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0;transition:opacity 1s ease"></canvas>
   <a data-skip href="#main">Skip to content</a>
   <div data-progress aria-hidden="true" style="position:fixed;top:0;left:0;right:0;height:2px;z-index:60;background:linear-gradient(90deg,var(--accent,#66D1DE),var(--accent,#66D1DE));transform-origin:0 50%;transform:scaleX(0);pointer-events:none"></div>
 
@@ -208,8 +207,8 @@
 
   <div data-pin-track style="position:relative;height:270vh">
   <section id="about" data-screen-label="Mission" style="display:grid;grid-template-columns:1fr 1.4fr;gap:5vw;align-items:center;padding:7vw 8vw;scroll-margin-top:90px;position:sticky;top:0;min-height:100vh">
-    <div data-macbook-wrap data-reveal="zoom" style="height:34vw;border-radius:.87vw;overflow:hidden;position:relative;cursor:grab">
-      <canvas data-macbook style="width:100%;height:100%;display:block"></canvas>
+    <div data-macbook-wrap data-reveal="zoom" style="height:34vw;border-radius:.87vw;overflow:hidden;position:relative;cursor:grab;background:url('/uploads/macbook-poster.webp') center/auto 100% no-repeat">
+      <canvas data-macbook style="width:100%;height:100%;display:block;opacity:0;transition:opacity .4s ease"></canvas>
       <div data-macbook-hint style="position:absolute;left:1.2vw;bottom:1.2vw;display:flex;align-items:center;gap:.5em;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:#FBF8F3;opacity:.6;pointer-events:none;transition:opacity .6s cubic-bezier(.6,.5,0,1)"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent,#66D1DE)"></span>Drag to spin</div>
     </div>
     <div data-reveal="up">
@@ -689,7 +688,9 @@ class Component extends DCLogic {
       }, { threshold: 0.4 });
       this._mbIO.observe(wrap);
       const t0 = performance.now();
+      let running = false, shown = false;
       const loop = () => {
+        if (!running) return;
         this._mbRaf = requestAnimationFrame(loop);
         const t = (performance.now() - t0) * 0.001;
         st.open += (st.targetOpen - st.open) * 0.09;
@@ -702,17 +703,40 @@ class Component extends DCLogic {
         laptop.rotation.x = st.rx;
         laptop.position.y = Math.sin(t * 0.8) * 0.12;
         renderer.render(scene, camera);
+        if (!shown) {
+          shown = true; canvas.style.opacity = '1';
+          if (/[?&]poster\b/.test(location.search)) { const a = document.createElement('a'); a.download = 'macbook-poster.png'; a.href = canvas.toDataURL('image/png'); a.click(); }
+        }
       };
-      loop();
+      this._mbVis = new IntersectionObserver((es) => {
+        const v = es[0].isIntersecting;
+        if (v && !running) { running = true; loop(); }
+        else if (!v && running) { running = false; cancelAnimationFrame(this._mbRaf); }
+      });
+      this._mbVis.observe(wrap);
     };
-    if (window.THREE) start();
-    else {
-      let tries = 0;
-      this._mbPoll = setInterval(() => {
-        if (window.THREE) { clearInterval(this._mbPoll); start(); }
-        else if (++tries > 120) clearInterval(this._mbPoll);
-      }, 50);
-    }
+    this._whenIdle(() => {
+      this._mbLoadIO = new IntersectionObserver((es) => {
+        if (!es.some((e) => e.isIntersecting)) return;
+        this._mbLoadIO.disconnect();
+        this._loadThree().then(start).catch(() => {});
+      }, { rootMargin: '600px 0px' });
+      this._mbLoadIO.observe(canvas.parentElement);
+    });
+  }
+  _loadThree() {
+    if (window.THREE) return Promise.resolve();
+    if (!window.__threeP) window.__threeP = new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+      s.async = true; s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+    return window.__threeP;
+  }
+  _whenIdle(fn) {
+    const go = () => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 2500 }) : setTimeout(fn, 300));
+    if (document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
   }
   _initGL() {
     const canvas = document.querySelector('[data-gl]');
@@ -753,7 +777,13 @@ class Component extends DCLogic {
         g.fillStyle = '#fff'; g.fill();
         return new THREE.CanvasTexture(cv);
       })();
-      scene.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 2.4 * (0.75 + INT * 0.45), map: dotTex, alphaTest: 0.5, vertexColors: true, transparent: true, opacity: Math.min(1, 0.85 * (0.7 + INT * 0.4)), blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true })));
+      const pMat = new THREE.PointsMaterial({ size: 2.4 * (0.75 + INT * 0.45), map: dotTex, alphaTest: 0.5, vertexColors: true, transparent: true, opacity: Math.min(1, 0.85 * (0.7 + INT * 0.4)), blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true });
+      const uT = { value: 0 };
+      pMat.onBeforeCompile = (sh) => {
+        sh.uniforms.uT = uT;
+        sh.vertexShader = 'uniform float uT;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\ntransformed.y = -90.0 + (sin(position.x * 0.011 + uT * 0.9) * 9.0 + cos(position.z * 0.017 + uT * 0.6) * 7.0) * ' + Number(INT).toFixed(4) + ';');
+      };
+      scene.add(new THREE.Points(geo, pMat));
       const wire = (g, op) => new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: new THREE.Color(accent), wireframe: true, transparent: true, opacity: op || 0.16 }));
       const kind = this.props.bgObject ?? 'Torus';
       let obj = null;
@@ -818,36 +848,38 @@ class Component extends DCLogic {
       window.addEventListener('pointermove', this._glMove, { passive: true });
       this._glResize = () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); };
       window.addEventListener('resize', this._glResize);
-      const pos = geo.attributes.position.array;
       const t0 = performance.now();
-      let smoothP = 0;
+      let smoothP = 0, running = false, shown = false;
       const render = () => {
+        if (!running) return;
         this._glRaf = requestAnimationFrame(render);
         const t = (performance.now() - t0) * 0.001 * (0.6 + INT * 0.6);
         const max = document.documentElement.scrollHeight - innerHeight;
         const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
         smoothP += (progress - smoothP) * 0.06;
-        for (let i = 0; i < count; i++) {
-          const px = pos[i * 3], pz = pos[i * 3 + 2];
-          pos[i * 3 + 1] = -90 + (Math.sin(px * 0.011 + t * 0.9) * 9 + Math.cos(pz * 0.017 + t * 0.6) * 7) * INT;
-        }
-        geo.attributes.position.needsUpdate = true;
+        uT.value = t;
         const base = samplePath(smoothP);
         camera.position.set(base.x + ptr.nx * 18 * INT, base.y + ptr.ny * 10 * INT, base.z);
         camera.lookAt(0, 20, base.z - 600);
         if (obj) { obj.rotation.x = t * 0.12; obj.rotation.y = t * 0.17; obj.position.y = objBaseY + Math.sin(t * 0.5) * 14 * INT; }
         renderer.render(scene, camera);
+        if (!shown) { shown = true; canvas.style.opacity = '1'; }
       };
-      render();
+      const setRun = (on) => {
+        if (on && !running) { running = true; render(); }
+        else if (!on && running) { running = false; cancelAnimationFrame(this._glRaf); }
+      };
+      const hero = document.querySelector('[data-hero]');
+      if (hero) {
+        const th = []; for (let i = 0; i <= 20; i++) th.push(i / 20);
+        this._glVis = new IntersectionObserver((es) => {
+          const r = es[0].boundingClientRect;
+          setRun(!(es[0].isIntersecting && r.top <= 1 && r.bottom >= innerHeight - 1));
+        }, { threshold: th });
+        this._glVis.observe(hero);
+      } else setRun(true);
     };
-    if (window.THREE) start();
-    else {
-      let tries = 0;
-      this._glPoll = setInterval(() => {
-        if (window.THREE) { clearInterval(this._glPoll); start(); }
-        else if (++tries > 120) clearInterval(this._glPoll);
-      }, 50);
-    }
+    this._whenIdle(() => this._loadThree().then(start).catch(() => {}));
   }
   _initCounts() {
     this._cn = [...document.querySelectorAll('[data-count]')].map((el) => {
@@ -1239,12 +1271,16 @@ class Component extends DCLogic {
     if (this._mbMove) window.removeEventListener('mousemove', this._mbMove);
     if (this._mbUp) window.removeEventListener('mouseup', this._mbUp);
     if (this._mbResize) window.removeEventListener('resize', this._mbResize);
+    if (this._mbVis) this._mbVis.disconnect();
+    if (this._mbLoadIO) this._mbLoadIO.disconnect();
+    if (this._mbIO) this._mbIO.disconnect();
+    if (this._glVis) this._glVis.disconnect();
   }
   componentDidUpdate(prev) {
     this._syncCTitles();
     if (prev.bgIntensity !== this.props.bgIntensity || prev.bgObject !== this.props.bgObject || prev.accent !== this.props.accent) {
       if (this._glRaf) cancelAnimationFrame(this._glRaf);
-      if (this._glPoll) clearInterval(this._glPoll);
+      if (this._glVis) this._glVis.disconnect();
       if (this._glMove) window.removeEventListener('pointermove', this._glMove);
       if (this._glResize) window.removeEventListener('resize', this._glResize);
       this._initGL();
