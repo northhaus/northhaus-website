@@ -62,8 +62,11 @@
   @font-face{font-family:'SharpSansDisplay';src:url('uploads/SharpSansDisplay-700.woff2') format('woff2');font-weight:700;font-display:swap}
   @font-face{font-family:'SharpSansDisplay';src:url('uploads/SharpSansDisplay-900.woff2') format('woff2');font-weight:900;font-display:swap}
   /* accessibility */
-  [data-skip]{position:fixed;left:12px;top:-70px;z-index:200;background:var(--accent,#66D1DE);color:#000;padding:10px 16px;font-weight:700;text-decoration:none;border-radius:6px;transition:top .2s ease}
-  [data-skip]:focus{top:12px}
+  [data-skip]{position:fixed;left:12px;top:12px;transform:translateY(-90px);z-index:200;background:var(--accent,#66D1DE);color:#000;padding:10px 16px;font-weight:700;text-decoration:none;border-radius:6px;transition:transform .2s ease}
+  [data-skip]:focus{transform:none}
+  [data-fill]{position:relative;isolation:isolate;overflow:hidden}
+  [data-fill]::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--fill);transform:translateX(-101%);transition:transform .6s cubic-bezier(.6,.5,0,1)}
+  [data-fill]:hover::before{transform:none}
   #site a:focus-visible,#site button:focus-visible{outline:2px solid var(--accent,#66D1DE);outline-offset:3px;border-radius:2px}
   /* mobile menu */
   #site [data-burger]{display:none}
@@ -161,7 +164,7 @@
   <a data-skip href="#main">Skip to content</a>
   <div data-progress aria-hidden="true" style="position:fixed;top:0;left:0;right:0;height:2px;z-index:60;background:linear-gradient(90deg,var(--accent,#66D1DE),var(--accent,#66D1DE));transform-origin:0 50%;transform:scaleX(0);pointer-events:none"></div>
 
-  <nav data-screen-label="Nav" aria-label="Primary" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1.6vw 3.5vw;padding:{{ nav.pad }};background:transparent;background:{{ nav.bg }};backdrop-filter:{{ nav.blur }};-webkit-backdrop-filter:{{ nav.blur }};box-shadow:{{ nav.shadow }};transition:all .6s cubic-bezier(.6,.5,0,1)">
+  <nav data-screen-label="Nav" aria-label="Primary" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1.6vw 3.5vw;padding:{{ nav.pad }};background:transparent;background:{{ nav.bg }};backdrop-filter:{{ nav.blur }};-webkit-backdrop-filter:{{ nav.blur }};box-shadow:{{ nav.shadow }};transition:background-color .6s cubic-bezier(.6,.5,0,1),box-shadow .6s cubic-bezier(.6,.5,0,1),backdrop-filter .6s cubic-bezier(.6,.5,0,1),padding .6s cubic-bezier(.6,.5,0,1)">
     <a href="#top" style="display:flex;align-items:center"><img src="uploads/northhaus-logo-384.webp" alt="Northhaus" width="192" height="48" style="height:48px;width:auto"></a>
     <div data-navlinks style="flex:1;display:flex;align-items:center;justify-content:center;gap:2.2vw;font-size:14px;font-weight:500">
       <a href="#about" style="letter-spacing:.01em">About</a>
@@ -170,7 +173,7 @@
       <a href="/digital-products#top" style="letter-spacing:.01em">Digital Products</a>
       <a href="/contact#top" style="letter-spacing:.01em">Contact</a>
     </div>
-    <a data-cta href="/contact#contact-form" style="display:inline-flex;align-items:center;background:linear-gradient(90deg,#FBF8F3 0 50%,var(--accent,#2E6F68) 50% 100%);background-size:200% 100%;background-position:100% 0;color:#FBF8F3;padding:.7vw 1.4vw;border-radius:0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:13px;transition:background-position .6s cubic-bezier(.6,.5,0,1),color .6s cubic-bezier(.6,.5,0,1)" style-hover="background-position:0 0;color:#000">Get Started Now</a>
+    <a data-cta data-fill href="/contact#contact-form" style="--fill:#FBF8F3;display:inline-flex;align-items:center;background:var(--accent,#2E6F68);color:#FBF8F3;padding:.7vw 1.4vw;border-radius:0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:13px;transition:color .6s cubic-bezier(.6,.5,0,1)" style-hover="color:#000">Get Started Now</a>
     <button data-burger data-open="{{ menuOpen }}" onClick="{{ openMenu }}" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="align-items:center;justify-content:center;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
   </nav>
 
@@ -310,7 +313,7 @@
     <div data-reveal="up">
       <h2 style="font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;font-size:clamp(46px,8.6vw,176px);text-transform:uppercase;letter-spacing:.02em;line-height:.98;margin:0 auto;max-width:90vw;color:#000;text-wrap:balance">Let&rsquo;s Build Something Bold<span style="color:#FBF8F3">.</span></h2>
       <div style="margin-top:3.4vw">
-        <a href="/contact#contact-form" style="display:inline-flex;align-items:center;background:linear-gradient(90deg,var(--accent,#2E6F68) 0 50%,#000 50% 100%);background-size:200% 100%;background-position:100% 0;color:#FBF8F3;padding:1.2vw 3vw;border-radius:0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:15px;transition:background-position .6s cubic-bezier(.6,.5,0,1),color .6s cubic-bezier(.6,.5,0,1)" style-hover="background-position:0 0;color:#000">Get Started Now</a>
+        <a data-fill href="/contact#contact-form" style="--fill:var(--accent,#2E6F68);display:inline-flex;align-items:center;background:#000;color:#FBF8F3;padding:1.2vw 3vw;border-radius:0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:15px;transition:color .6s cubic-bezier(.6,.5,0,1)" style-hover="color:#000">Get Started Now</a>
       </div>
     </div>
   </section>
@@ -347,14 +350,14 @@
           <a href="https://www.instagram.com/northhaus.io" target="_blank" rel="noopener" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Instagram</a>
         </div>
       </div>
-      <button onClick="{{ toTop }}" aria-label="Scroll to top" style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#FBF8F3;font-size:18px;cursor:pointer;transition:all .6s cubic-bezier(.6,.5,0,1)" style-hover="background:var(--accent,#2E6F68);border-color:var(--accent,#2E6F68)">&uarr;</button>
+      <button onClick="{{ toTop }}" aria-label="Scroll to top" style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#FBF8F3;font-size:18px;cursor:pointer;transition:background-color .6s cubic-bezier(.6,.5,0,1),border-color .6s cubic-bezier(.6,.5,0,1)" style-hover="background:var(--accent,#2E6F68);border-color:var(--accent,#2E6F68)">&uarr;</button>
     </div>
     <div style="margin-top:3.5vw;padding-top:1.5vw;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;font-size:12px;color:#6f6f73">
       <span style="display:flex;gap:1.4vw;flex-wrap:wrap;align-items:center;color:#FBF8F3"><span>&copy; 2026 Northhaus. All rights reserved.</span><a href="/privacy" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Privacy</a><a href="/terms" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Terms</a></span>
       <span style="color:var(--accent,#2E6F68)">UK Design Studio</span>
     </div>
   </footer>
-  <div data-cursor-dot style="position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--accent,#2E6F68);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s ease,width .25s cubic-bezier(.6,.5,0,1),height .25s cubic-bezier(.6,.5,0,1);will-change:transform,left,top"></div>
+  <div data-cursor-dot style="position:fixed;top:-13px;left:-13px;width:26px;height:26px;pointer-events:none;z-index:9999;opacity:0;transition:opacity .3s ease;will-change:transform"><div data-cursor-ring style="width:100%;height:100%;border-radius:50%;box-sizing:border-box;background:var(--accent,#2E6F68);transform:scale(.385);transition:transform .25s cubic-bezier(.6,.5,0,1)"></div></div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;typeface&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Sharp Sans (Black / Medium)&quot;,&quot;options&quot;:[&quot;Current&quot;,&quot;Swiss Grotesk (Haas Unica)&quot;,&quot;Sharp Sans (Black / Medium)&quot;],&quot;section&quot;:&quot;Typography&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#66D1DE&quot;,&quot;options&quot;:[&quot;#2E6F68&quot;,&quot;#66D1DE&quot;,&quot;#3AA6A0&quot;,&quot;#1F4E49&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroGradient&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Solid Black&quot;,&quot;options&quot;:[&quot;Solid Black&quot;,&quot;Black → Grey&quot;,&quot;Black → Teal&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgObject&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;None&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;Torus&quot;,&quot;Orbit Rings&quot;,&quot;Floating Cubes&quot;,&quot;Torus Knot&quot;,&quot;Icosahedron&quot;,&quot;Neural Net&quot;,&quot;Node Sphere&quot;,&quot;Data Grid&quot;,&quot;Northhaus Mark&quot;],&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2.5,&quot;min&quot;:0.4,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;x&quot;,&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;marqueeSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:22,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;countUp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroVaporize&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;vaporizeSpread&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:5,&quot;min&quot;:1,&quot;max&quot;:10,&quot;step&quot;:0.5,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;vaporizeDuration&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2,&quot;min&quot;:0.8,&quot;max&quot;:4,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;vaporizeHold&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4,&quot;min&quot;:1.5,&quot;max&quot;:12,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
@@ -403,8 +406,8 @@ class Component extends DCLogic {
     const _revealShow = (t, io) => {
       t.style.opacity = '1';
       t.style.transform = 'none';
-      t.style.filter = 'none';
       t.style.clipPath = 'inset(0 0 0 0)';
+      setTimeout(() => { t.style.willChange = 'auto'; }, 1500 + (+t.dataset.delay || 0));
       io.unobserve(t);
     };
     this._io = new IntersectionObserver((es) => {
@@ -416,15 +419,14 @@ class Component extends DCLogic {
     document.querySelectorAll('[data-reveal]').forEach((el) => {
       const kind = el.dataset.reveal;
       el.style.opacity = '0';
-      el.style.willChange = 'opacity, transform, filter, clip-path';
+      el.style.willChange = kind === 'zoom' ? 'opacity, transform, clip-path' : 'opacity, transform';
       if (kind === 'zoom') {
         el.style.transform = 'scale(1.08)';
         el.style.clipPath = 'inset(0 0 100% 0)';
         el.style.transition = 'opacity 1.1s ' + ease + ', transform 1.3s ' + ease + ', clip-path 1.2s ' + ease;
       } else {
         el.style.transform = 'translateY(30px)';
-        el.style.filter = 'blur(9px)';
-        el.style.transition = 'opacity .95s ' + ease + ', transform 1s ' + ease + ', filter .95s ' + ease;
+        el.style.transition = 'opacity .95s ' + ease + ', transform 1s ' + ease;
       }
       el.style.transitionDelay = (el.dataset.delay || 0) + 'ms';
       (kind === 'zoom' ? this._ioZoom : this._io).observe(el);
@@ -434,22 +436,25 @@ class Component extends DCLogic {
     this._initVapor();
     const dot = document.querySelector('[data-cursor-dot]');
     if (dot && !window.matchMedia('(pointer: coarse)').matches) {
-      let tx = window.innerWidth / 2, ty = window.innerHeight / 2, cx = tx, cy = ty, shown = false;
+      let tx = window.innerWidth / 2, ty = window.innerHeight / 2, cx = tx, cy = ty, shown = false, hot = false;
+      const ring = dot.firstElementChild;
       this._onMove = (e) => {
         tx = e.clientX; ty = e.clientY;
         if (!shown) { shown = true; dot.style.opacity = '1'; }
-        const int = e.target.closest && e.target.closest('a,button');
-        dot.style.width = int ? '26px' : '10px';
-        dot.style.height = int ? '26px' : '10px';
-        dot.style.background = int ? 'transparent' : 'var(--accent,#2E6F68)';
-        dot.style.border = int ? '1.5px solid var(--accent,#2E6F68)' : 'none';
+        const int = !!(e.target.closest && e.target.closest('a,button'));
+        if (int !== hot && ring) {
+          hot = int;
+          ring.style.transform = int ? 'scale(1)' : 'scale(.385)';
+          ring.style.background = int ? 'transparent' : 'var(--accent,#2E6F68)';
+          ring.style.border = int ? '1.5px solid var(--accent,#2E6F68)' : 'none';
+        }
       };
       this._onLeave = () => { dot.style.opacity = '0'; };
       window.addEventListener('mousemove', this._onMove, { passive: true });
       document.addEventListener('mouseleave', this._onLeave);
       const loop = () => {
         cx += (tx - cx) * 0.2; cy += (ty - cy) * 0.2;
-        dot.style.left = cx + 'px'; dot.style.top = cy + 'px';
+        dot.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
         this._craf = requestAnimationFrame(loop);
       };
       this._craf = requestAnimationFrame(loop);
@@ -1106,8 +1111,12 @@ class Component extends DCLogic {
       }
     };
 
+    let vVis = true;
+    this._vIO = new IntersectionObserver((es) => { vVis = es[0].isIntersecting; });
+    this._vIO.observe(wrap);
     const loop = (now) => {
       this._vraf = requestAnimationFrame(loop);
+      if (!vVis || document.hidden) { t0 += now - last; last = now; return; }
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
       if (!ps.length || !buf32) return;
@@ -1276,6 +1285,7 @@ class Component extends DCLogic {
     if (this._mbLoadIO) this._mbLoadIO.disconnect();
     if (this._mbIO) this._mbIO.disconnect();
     if (this._glVis) this._glVis.disconnect();
+    if (this._vIO) this._vIO.disconnect();
   }
   componentDidUpdate(prev) {
     this._syncCTitles();
