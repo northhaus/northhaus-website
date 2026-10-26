@@ -95,6 +95,7 @@
     html{scroll-behavior:auto}
   }
   /* responsive - tablet & down */
+  #top br[data-mbr]{display:none}
   @media (max-width:900px){
     #site nav[data-screen-label]{padding:14px 20px !important}
     #site [data-navlinks]{display:none !important}
@@ -104,9 +105,13 @@
     #site [data-hero-scrim]{background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0) 14%,rgba(0,0,0,.5) 26%,rgba(0,0,0,.78) 40%,rgba(0,0,0,.78) 64%,rgba(0,0,0,.5) 78%,rgba(0,0,0,0) 90%) !important}
     #site #top pre{font-size:clamp(9px,3vw,13px) !important;line-height:1.7 !important;overflow:hidden !important}
     #site #top pre:nth-child(n+4){display:none !important}
-    #top h1{font-size:clamp(30px,9vw,60px) !important;max-width:90vw !important;margin-top:18px !important}
-    #top [data-vapor-wrap]{max-width:90vw !important;margin-top:26px !important}
-    #top [data-hero-ctas]{flex-direction:column;width:fit-content;align-items:stretch;margin-left:auto;margin-right:auto}
+    #top h1{font-size:clamp(36px,10.4vw,64px) !important;max-width:90vw !important;margin-top:18px !important}
+    #top [data-vapor-wrap]{max-width:90vw !important;margin-top:44px !important}
+    #top [data-hero-ctas]{flex-direction:column;width:fit-content;align-items:stretch;margin-left:auto;margin-right:auto;margin-top:60px !important}
+    #top br[data-mbr]{display:inline}
+    #top [data-eyebrow]{display:flex;flex-direction:column;align-items:center;gap:6px}
+    #top [data-eb-brand]{color:var(--accent,#66D1DE)}
+    #top [data-eb-sep]{display:none}
     #top p{font-size:clamp(15px,4.2vw,19px) !important;max-width:86vw !important;margin-top:20px !important}
     #site [data-pin-track]{height:auto !important}
     #about{grid-template-columns:1fr !important;gap:34px !important;padding:96px 24px 48px !important;min-height:0 !important;position:static !important}
@@ -199,9 +204,9 @@
     <div data-hero-overlay style="position:absolute;inset:0;background:var(--hero-bg,#000);-webkit-mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) var(--ms,34%),#000 var(--me,72%));mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) var(--ms,34%),#000 var(--me,72%))"></div>
     <div data-hero-scrim style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 48% 48% at 50% 50%,#000 0%,rgba(0,0,0,.94) 52%,rgba(0,0,0,0) 80%)"></div>
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 3.5vw;pointer-events:none;z-index:2">
-      <div style="position:relative;z-index:1;font-size:12px;font-weight:600;letter-spacing:.22em;color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .4s">NORTHHAUS &middot; UK WEB AND BRAND STUDIO</div>
+      <div style="position:relative;z-index:1;font-size:12px;font-weight:600;letter-spacing:.22em;color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .4s" data-eyebrow><span data-eb-brand>NORTHHAUS</span><span data-eb-sep> &middot; </span><span>UK WEB AND BRAND STUDIO</span></div>
       <div data-vapor-wrap style="position:relative;width:100%;max-width:70vw;margin:3.2vw auto 0;animation:heroRise .9s cubic-bezier(.6,.5,0,1) both .52s">
-        <h1 data-vapor-src style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:7vw;line-height:1.02;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:0;text-wrap:balance;transition:opacity .25s linear"><span style="display:block;color:var(--accent,#2E6F68)">Your website,</span><span style="display:block">quoted up front<span style="color:var(--accent,#2E6F68)">.</span></span></h1>
+        <h1 data-vapor-src style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:7vw;line-height:1.02;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:0;text-wrap:balance;transition:opacity .25s linear"><span style="display:block;color:var(--accent,#2E6F68)">Your website,</span><span style="display:block">quoted <br data-mbr>up front<span style="color:var(--accent,#2E6F68)">.</span></span></h1>
         <canvas data-vapor aria-hidden="true" style="position:absolute;left:-28%;top:-150%;width:156%;height:400%;display:block;pointer-events:none;z-index:0"></canvas>
       </div>
       <div data-hero-ctas style="position:relative;z-index:1;display:flex;justify-content:center;gap:16px;margin-top:max(3.4vw,44px)">
