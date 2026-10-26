@@ -109,6 +109,8 @@
     #top [data-vapor-wrap]{max-width:90vw !important;margin-top:44px !important}
     #top [data-hero-ctas]{flex-direction:column;width:fit-content;align-items:stretch;margin-left:auto;margin-right:auto;margin-top:60px !important}
     #top br[data-mbr]{display:inline}
+    #top [data-mi]{display:inline !important}
+    #top [data-hero-stack]{justify-content:flex-start !important;padding-top:104px !important}
     #top [data-eyebrow]{display:flex;flex-direction:column;align-items:center;gap:6px}
     #top [data-eb-brand]{color:var(--accent,#66D1DE)}
     #top [data-eb-sep]{display:none}
@@ -203,7 +205,7 @@
     {{ codeLayer }}
     <div data-hero-overlay style="position:absolute;inset:0;background:var(--hero-bg,#000);-webkit-mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) var(--ms,34%),#000 var(--me,72%));mask-image:radial-gradient(circle var(--rr,210px) at var(--mx,-9999px) var(--my,-9999px),rgba(0,0,0,var(--ma,0)) var(--ms,34%),#000 var(--me,72%))"></div>
     <div data-hero-scrim style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 48% 48% at 50% 50%,#000 0%,rgba(0,0,0,.94) 52%,rgba(0,0,0,0) 80%)"></div>
-    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 3.5vw;pointer-events:none;z-index:2">
+    <div data-hero-stack style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 3.5vw;pointer-events:none;z-index:2">
       <div style="position:relative;z-index:1;font-size:12px;font-weight:600;letter-spacing:.22em;color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both .4s" data-eyebrow><span data-eb-brand>NORTHHAUS</span><span data-eb-sep> &middot; </span><span>UK WEB AND BRAND STUDIO</span></div>
       <div data-vapor-wrap style="position:relative;width:100%;max-width:70vw;margin:3.2vw auto 0;animation:heroRise .9s cubic-bezier(.6,.5,0,1) both .52s">
         <h1 data-vapor-src style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:7vw;line-height:1.02;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:0;text-wrap:balance;transition:opacity .25s linear"><span style="display:block;color:var(--accent,#2E6F68)">Your website,</span><span style="display:block">quoted <br data-mbr>up front<span style="color:var(--accent,#2E6F68)">.</span></span></h1>
@@ -993,8 +995,8 @@ class Component extends DCLogic {
     let mode = 'hold', t0 = performance.now(), prog = 0, fade = 0, last = t0, dirty = true;
     const vaporTexts = [
       h1.innerHTML,
-      '<span style="display:block;color:var(--accent,#2E6F68)">Custom-coded.</span><span style="display:block">No templates<span style="color:var(--accent,#2E6F68)">.</span></span>',
-      '<span style="display:block;color:var(--accent,#2E6F68)">Planners</span><span style="display:block">from &pound;1.99<span style="color:var(--accent,#2E6F68)">.</span></span>'
+      '<span data-mi style="display:block;color:var(--accent,#2E6F68)">Custom-<br data-mbr>coded.</span> <span data-mi style="display:block">No <br data-mbr>templates<span style="color:var(--accent,#2E6F68)">.</span></span>',
+      '<span style="display:block;color:var(--accent,#2E6F68)">Planners</span><span style="display:block">from <br data-mbr>&pound;1.99<span style="color:var(--accent,#2E6F68)">.</span></span>'
     ];
     let vIdx = 0;
 
