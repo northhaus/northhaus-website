@@ -87,7 +87,9 @@
   #site [data-menu][data-open="true"]{opacity:1;visibility:visible;transform:none}
   #site [data-menu] a{font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(30px,8.5vw,50px);line-height:1.18;color:#FBF8F3}
   #site [data-menu] a:active{color:var(--accent,#66D1DE)}
-  @media (min-width:901px){#site [data-menu],#site [data-burger]{display:none !important}}
+  @media (min-width:1024px){#site [data-menu],#site [data-burger]{display:none !important}}
+  @media (min-width:1024px) and (max-width:1199px){#site [data-navlinks]{gap:14px !important;font-size:13px !important}}
+  @media (max-width:1023px){#site [data-navlinks]{display:none !important}#site [data-cta]{display:none !important}#site [data-burger]{display:inline-flex !important}#site nav[data-screen-label]{padding:14px 20px !important}}
   @media (hover:none){#site [data-glitch-over]{display:none !important}#top{cursor:auto !important}#top [data-wire]{-webkit-mask-image:none !important;mask-image:none !important}#top [data-hero-hint]{display:none !important}}
   @media (prefers-reduced-motion:reduce){
     *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
@@ -199,6 +201,7 @@
     <div data-navlinks style="flex:1;display:flex;align-items:center;justify-content:center;gap:2.2vw;font-size:14px;font-weight:500">
       <a href="/#about" style="letter-spacing:.01em">About</a>
       <a href="#top" style="letter-spacing:.01em;color:var(--accent,#2E6F68)">Web Design</a>
+      <a href="/site-plan#top" style="letter-spacing:.01em">Site Plan</a>
       <a href="/graphic-design#top" style="letter-spacing:.01em">Graphic Design</a>
       <a href="/digital-products#top" style="letter-spacing:.01em">Digital Products</a>
       <a href="/audits-and-brand-kits#top" style="letter-spacing:.01em">Audits &amp; Kits</a>
@@ -212,6 +215,7 @@
     <button onClick="{{ closeMenu }}" aria-label="Close menu" style="position:absolute;top:20px;right:24px;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
     <a href="/#about" onClick="{{ closeMenu }}">About</a>
     <a href="#top" onClick="{{ closeMenu }}">Web Design</a>
+    <a href="/site-plan#top" onClick="{{ closeMenu }}">Site Plan</a>
     <a href="/graphic-design#top" onClick="{{ closeMenu }}">Graphic Design</a>
     <a href="/digital-products#top" onClick="{{ closeMenu }}">Digital Products</a>
     <a href="/audits-and-brand-kits#top" onClick="{{ closeMenu }}">Audits &amp; Kits</a>
@@ -226,6 +230,7 @@
       <h1 data-glitch style="position:relative;display:inline-block;font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:clamp(44px,4.8vw,124px);line-height:.98;text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.02em);margin:0;pointer-events:auto;cursor:none;animation:heroRise .9s cubic-bezier(.6,.5,0,1) both 0.52s"><span data-gw style="position:relative;display:inline-block;color:var(--accent,#66D1DE)">Web<span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#66D1DE);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl></span></span></span><br><span data-gw style="position:relative;display:inline-block">Design<span style="color:var(--accent,#66D1DE)">.</span><span data-glitch-over aria-hidden="true" style="position:absolute;left:-.06em;top:0;width:calc(100% + .12em);height:100%;padding:0 .06em;box-sizing:border-box;background:var(--accent,#66D1DE);color:#000;clip-path:polygon(0 50%,100% 50%,100% 50%,0 50%);transition:clip-path .44s cubic-bezier(.6,.5,0,1);pointer-events:none;white-space:nowrap"><span data-gl></span></span></span></h1>
       <p style="font-size:clamp(15px,1.1vw,27px);line-height:1.6;color:var(--accent,#66D1DE);max-width:26vw;margin:1.6vw 0 0;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both 0.76s;text-wrap:pretty">Custom-coded websites for UK businesses, with no templates. Each one works on mobile, tablet and desktop, and ships with structured data and metadata on every page.</p>
       <div style="margin-top:1.4vw;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(13px,.95vw,18px);color:#FBF8F3;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both 0.82s">Websites from &pound;1,990, on a fixed quote.</div>
+      <p style="margin:.8vw 0 0;font-size:clamp(13px,.9vw,16px);line-height:1.6;color:#b9b9bd;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both 0.85s">Prefer a monthly plan? <a href="/site-plan#top" style="display:inline-flex;align-items:center;gap:.5vw;font-weight:600;color:#FBF8F3;border-bottom:2px solid var(--accent,#2E6F68);padding-bottom:2px;transition:color .6s cubic-bezier(.6,.5,0,1)">See the Site Plan <span style="color:var(--accent,#2E6F68)">&rarr;</span></a></p>
       <div data-hero-hint style="margin-top:2.4vw;display:inline-flex;align-items:center;gap:.6em;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:#FBF8F3;opacity:.55;animation:heroUp .9s cubic-bezier(.6,.5,0,1) both 0.88s"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent,#66D1DE)"></span><span data-hint-hover>Hover the screen to explore</span><span data-hint-touch style="display:none">Tap the screen to explore</span></div>
     </div>
     <div data-mb style="position:relative;z-index:2;width:min(60vw,1700px);justify-self:center;aspect-ratio:2011/1167;animation:heroUp 1s cubic-bezier(.6,.5,0,1) both .34s">
@@ -473,6 +478,7 @@
           <a href="/" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Home</a>
           <a href="/#about" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">About</a>
           <a href="#top" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Web Design</a>
+          <a href="/site-plan" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Site Plan</a>
           <a href="/graphic-design#top" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Graphic Design</a>
           <a href="/digital-products#top" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Digital Products</a>
           <a href="/audits-and-brand-kits" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Audits &amp; Brand Kits</a>

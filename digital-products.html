@@ -82,7 +82,9 @@
   #site [data-menu][data-open="true"]{opacity:1;visibility:visible;transform:none}
   #site [data-menu] a{font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(30px,8.5vw,50px);line-height:1.18;color:#FBF8F3}
   #site [data-menu] a:active{color:var(--accent,#66D1DE)}
-  @media (min-width:901px){#site [data-menu],#site [data-burger]{display:none !important}}
+  @media (min-width:1024px){#site [data-menu],#site [data-burger]{display:none !important}}
+  @media (min-width:1024px) and (max-width:1199px){#site [data-navlinks]{gap:14px !important;font-size:13px !important}}
+  @media (max-width:1023px){#site [data-navlinks]{display:none !important}#site [data-cta]{display:none !important}#site [data-burger]{display:inline-flex !important}#site nav[data-screen-label]{padding:14px 20px !important}}
   @media (hover:none){#site [data-glitch-over]{display:none !important}#top{cursor:auto !important}#top [data-wire]{display:none !important}#top [data-hero-hint]{display:none !important}#top [data-hero-hint]{display:none !important}}
   @media (prefers-reduced-motion:reduce){
     *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
@@ -211,6 +213,7 @@
     <div data-navlinks style="flex:1;display:flex;align-items:center;justify-content:center;gap:2.2vw;font-size:14px;font-weight:500">
       <a href="/#about" style="letter-spacing:.01em">About</a>
       <a href="/web-design#top" style="letter-spacing:.01em">Web Design</a>
+      <a href="/site-plan#top" style="letter-spacing:.01em">Site Plan</a>
       <a href="/graphic-design#top" style="letter-spacing:.01em">Graphic Design</a>
       <a href="#top" style="letter-spacing:.01em;color:var(--accent,#2E6F68)">Digital Products</a>
       <a href="/audits-and-brand-kits#top" style="letter-spacing:.01em">Audits &amp; Kits</a>
@@ -224,6 +227,7 @@
     <button onClick="{{ closeMenu }}" aria-label="Close menu" style="position:absolute;top:20px;right:24px;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
     <a href="/#about" onClick="{{ closeMenu }}">About</a>
     <a href="/web-design#top" onClick="{{ closeMenu }}">Web Design</a>
+    <a href="/site-plan#top" onClick="{{ closeMenu }}">Site Plan</a>
     <a href="/graphic-design#top" onClick="{{ closeMenu }}">Graphic Design</a>
     <a href="#top" onClick="{{ closeMenu }}">Digital Products</a>
     <a href="/audits-and-brand-kits#top" onClick="{{ closeMenu }}">Audits &amp; Kits</a>
@@ -369,6 +373,7 @@
           <a href="/" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Home</a>
           <a href="/#about" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">About</a>
           <a href="/web-design#top" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Web Design</a>
+          <a href="/site-plan" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Site Plan</a>
           <a href="/graphic-design#top" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Graphic Design</a>
           <a href="#top" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Digital Products</a>
           <a href="/audits-and-brand-kits" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Audits &amp; Brand Kits</a>

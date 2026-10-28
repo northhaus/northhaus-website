@@ -13,6 +13,18 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.northhaus.io/site-plan</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.northhaus.io/audits-and-brand-kits</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.northhaus.io/graphic-design</loc>
     <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
