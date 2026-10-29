@@ -206,7 +206,7 @@
 
   <main id="main" tabindex="-1" style="display:block;outline:none">
   <header id="top" data-hero data-screen-label="Hero" style="position:relative;height:100vh;min-height:640px;overflow:hidden;background:#000;cursor:none">
-    {{ codeLayer }}
+    <div data-code-host aria-hidden="true" style="position:absolute;inset:0;display:flex;gap:2.4vw;padding:7vw 3vw 3vw;overflow:hidden;pointer-events:none"></div>
     <div data-hero-overlay style="position:absolute;inset:0;background:var(--hero-bg,#000);-webkit-mask-image:radial-gradient(circle 210px at var(--mx,-9999px) var(--my,-9999px),transparent 34%,#000 72%);mask-image:radial-gradient(circle 210px at var(--mx,-9999px) var(--my,-9999px),transparent 34%,#000 72%)"></div>
     <div data-hero-scrim style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 48% 48% at 50% 50%,#000 0%,rgba(0,0,0,.94) 52%,rgba(0,0,0,0) 80%)"></div>
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 3.5vw;pointer-events:none;z-index:2">
@@ -338,6 +338,70 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;typeface&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Sharp Sans (Black / Medium)&quot;,&quot;options&quot;:[&quot;Current&quot;,&quot;Swiss Grotesk (Haas Unica)&quot;,&quot;Sharp Sans (Black / Medium)&quot;],&quot;section&quot;:&quot;Typography&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#66D1DE&quot;,&quot;options&quot;:[&quot;#2E6F68&quot;,&quot;#66D1DE&quot;,&quot;#3AA6A0&quot;,&quot;#1F4E49&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroGradient&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Solid Black&quot;,&quot;options&quot;:[&quot;Solid Black&quot;,&quot;Black → Grey&quot;,&quot;Black → Teal&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgObject&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;None&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;Torus&quot;,&quot;Orbit Rings&quot;,&quot;Floating Cubes&quot;,&quot;Torus Knot&quot;,&quot;Icosahedron&quot;,&quot;Neural Net&quot;,&quot;Node Sphere&quot;,&quot;Data Grid&quot;,&quot;Northhaus Mark&quot;],&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2.5,&quot;min&quot;:0.4,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;x&quot;,&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;marqueeSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:22,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;countUp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroGlitch&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroHoverText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { hov: -1, panel: 0, scrolled: false, counts: [0, 0, 0, 0], counted: false, menu: false, formStatus: '', formMsg: '' };
+  _fillCode() {
+    const host = document.querySelector('[data-code-host]');
+    if (!host) return;
+    const accent = this.props.accent ?? '#2E6F68';
+    const tk = (s) => '<span style="color:' + accent + '">' + s + '</span>';
+    const snippetA = [
+      'const ' + tk('studio') + ' = new ' + tk('Northhaus') + '({',
+      '  discipline: [' + tk("'web'") + ', ' + tk("'brand'") + ', ' + tk("'product'") + '],',
+      '  years: ' + tk('21') + ',',
+      '  location: ' + tk("'United Kingdom'") + ',',
+      '});',
+      '',
+      tk('export') + ' function ' + tk('build') + '(interface) {',
+      '  const ui = ' + tk('craft') + '(interface, {',
+      '    performance: ' + tk("'high'") + ',',
+      '    fundamentals: ' + tk('true') + ',',
+      '    easing: ' + tk("'cubic-bezier(.6,.5,0,1)'") + ',',
+      '  });',
+      '  ' + tk('return') + ' ship(ui);',
+      '}',
+      '',
+      tk('async') + ' function ' + tk('render') + '() {',
+      '  ' + tk('await') + ' load(fonts, assets);',
+      '  const scene = ' + tk('mount') + '(' + tk("'#root'") + ');',
+      '  scene.' + tk('animate') + '({ fade: ' + tk('true') + ', scale: ' + tk('1.045') + ' });',
+      '  ' + tk('return') + ' scene;',
+      '}',
+      '',
+      tk('while') + ' (possible) {',
+      '  ' + tk('redefine') + '(whats.possible);',
+      '}'
+    ].join('\n');
+    const snippetB = [
+      tk('type') + ' Brand = {',
+      '  name: string;',
+      '  voice: ' + tk("'sharp'") + ' | ' + tk("'solid'") + ';',
+      '  system: ' + tk('true') + ';',
+      '};',
+      '',
+      'function ' + tk('identity') + '(brand: Brand) {',
+      '  ' + tk('return') + ' {',
+      '    logo: ' + tk('mark') + '(brand.name),',
+      '    palette: [' + tk("'#000'") + ', ' + tk("'#66D1DE'") + '],',
+      '    type: ' + tk("'SharpSans'") + ',',
+      '  };',
+      '}',
+      '',
+      'const planner = ' + tk('createTool') + '({',
+      '  layout: ' + tk("'clean'") + ',',
+      '  overwhelm: ' + tk('false') + ',',
+      '  export: ' + tk("'html'") + ',',
+      '});',
+      '',
+      tk('for') + ' (const day ' + tk('of') + ' week) {',
+      '  planner.' + tk('organise') + '(day);',
+      '}'
+    ].join('\n');
+    let html = '';
+    for (let i = 0; i < 7; i++) {
+      const body = (i % 2) ? snippetB : snippetA;
+      html += '<pre style="flex:1 1 0;min-width:0;margin:0;margin-top:' + ((i % 3) * 4) + 'vw;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.82vw;line-height:1.85;color:#FBF8F3;white-space:pre">' + [body, body, body].join('\n\n') + '</pre>';
+    }
+    host.innerHTML = html;
+  }
   _bindEvents() {
     const get = (path) => path.split('.').reduce((o, k) => (o == null ? o : o[k]), this.renderVals());
     const run = (el, type, e) => {
@@ -357,6 +421,7 @@ class Component extends DCLogic {
   }
   componentDidMount() {
     this._bindEvents();
+    this._fillCode();
     const intro = document.getElementById('intro');
     if (intro) {
       requestAnimationFrame(() => requestAnimationFrame(() => intro.setAttribute('data-go', '')));
