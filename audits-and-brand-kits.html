@@ -43,8 +43,7 @@
   @media (prefers-reduced-motion:reduce){#intro{display:none}}
 </style>
   <script defer src="/_vercel/insights/script.js"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRE9ZPKMT5"></script>
-  <script src="/ga.js"></script>
+  <script src="/consent.js" defer></script>
 </head>
 <body>
 <div id="intro" aria-hidden="true"></div>
@@ -239,19 +238,19 @@
       <a href="/contact#top" style="letter-spacing:.01em">Contact</a>
     </div>
     <a data-cta data-fill href="/contact#contact-form" style="--fill:#FBF8F3;display:inline-flex;align-items:center;background:var(--accent,#2E6F68);color:#FBF8F3;padding:.7vw 1.4vw;border-radius:0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:13px;transition:color .6s cubic-bezier(.6,.5,0,1)" style-hover="color:#000">Get Started Now</a>
-    <button data-burger data-open="{{ menuOpen }}" onClick="{{ openMenu }}" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="align-items:center;justify-content:center;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+    <button data-burger data-open="{{ menuOpen }}" data-on-click="openMenu" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="align-items:center;justify-content:center;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
   </nav>
 
   <div data-menu data-open="{{ menuOpen }}" role="dialog" aria-modal="true" aria-label="Menu">
-    <button onClick="{{ closeMenu }}" aria-label="Close menu" style="position:absolute;top:20px;right:24px;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
-    <a href="/#about" onClick="{{ closeMenu }}">About</a>
-    <a href="/web-design#top" onClick="{{ closeMenu }}">Web Design</a>
-    <a href="/site-plan#top" onClick="{{ closeMenu }}">Site Plan</a>
-    <a href="/graphic-design#top" onClick="{{ closeMenu }}">Graphic Design</a>
-    <a href="/digital-products#top" onClick="{{ closeMenu }}">Digital Products</a>
-    <a href="#top" onClick="{{ closeMenu }}">Audits &amp; Kits</a>
-    <a href="/contact#top" onClick="{{ closeMenu }}">Contact</a>
-    <a href="/contact#contact-form" onClick="{{ closeMenu }}" style="margin-top:14px;font-size:clamp(13px,3.6vw,15px) !important;letter-spacing:.06em;color:var(--accent,#66D1DE)">Get Started Now</a>
+    <button data-on-click="closeMenu" aria-label="Close menu" style="position:absolute;top:20px;right:24px;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    <a href="/#about" data-on-click="closeMenu">About</a>
+    <a href="/web-design#top" data-on-click="closeMenu">Web Design</a>
+    <a href="/site-plan#top" data-on-click="closeMenu">Site Plan</a>
+    <a href="/graphic-design#top" data-on-click="closeMenu">Graphic Design</a>
+    <a href="/digital-products#top" data-on-click="closeMenu">Digital Products</a>
+    <a href="#top" data-on-click="closeMenu">Audits &amp; Kits</a>
+    <a href="/contact#top" data-on-click="closeMenu">Contact</a>
+    <a href="/contact#contact-form" data-on-click="closeMenu" style="margin-top:14px;font-size:clamp(13px,3.6vw,15px) !important;letter-spacing:.06em;color:var(--accent,#66D1DE)">Get Started Now</a>
   </div>
 
   <main id="main" tabindex="-1" style="display:block;outline:none">
@@ -444,7 +443,7 @@
           <a href="https://www.tiktok.com/@northhaus.io" target="_blank" rel="noopener" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">TikTok</a>
         </div>
       </div>
-      <button onClick="{{ toTop }}" aria-label="Scroll to top" style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#FBF8F3;font-size:18px;cursor:pointer;transition:background-color .6s cubic-bezier(.6,.5,0,1),border-color .6s cubic-bezier(.6,.5,0,1)" style-hover="background:var(--accent,#2E6F68);border-color:var(--accent,#2E6F68)">&uarr;</button>
+      <button data-on-click="toTop" aria-label="Scroll to top" style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#FBF8F3;font-size:18px;cursor:pointer;transition:background-color .6s cubic-bezier(.6,.5,0,1),border-color .6s cubic-bezier(.6,.5,0,1)" style-hover="background:var(--accent,#2E6F68);border-color:var(--accent,#2E6F68)">&uarr;</button>
     </div>
     <div style="margin-top:3.5vw;padding-top:1.5vw;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;font-size:12px;color:#6f6f73">
       <span style="display:flex;gap:1.4vw;flex-wrap:wrap;align-items:center;color:#FBF8F3"><span>&copy; 2026 Northhaus. All rights reserved.</span><a href="/privacy" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Privacy</a><a href="/terms" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Terms</a></span>
@@ -458,7 +457,25 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;typeface&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Sharp Sans (Black / Medium)&quot;,&quot;options&quot;:[&quot;Current&quot;,&quot;Swiss Grotesk (Haas Unica)&quot;,&quot;Sharp Sans (Black / Medium)&quot;],&quot;section&quot;:&quot;Typography&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#66D1DE&quot;,&quot;options&quot;:[&quot;#2E6F68&quot;,&quot;#66D1DE&quot;,&quot;#3AA6A0&quot;,&quot;#1F4E49&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroGradient&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Solid Black&quot;,&quot;options&quot;:[&quot;Solid Black&quot;,&quot;Black → Grey&quot;,&quot;Black → Teal&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgObject&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;None&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;Torus&quot;,&quot;Orbit Rings&quot;,&quot;Floating Cubes&quot;,&quot;Torus Knot&quot;,&quot;Icosahedron&quot;,&quot;Neural Net&quot;,&quot;Node Sphere&quot;,&quot;Data Grid&quot;,&quot;Northhaus Mark&quot;],&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2.5,&quot;min&quot;:0.4,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;x&quot;,&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;marqueeSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:22,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;countUp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroGlitch&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroHoverText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { hov: -1, sHov: -1, panel: 0, scrolled: false, counts: [0, 0, 0, 0], counted: false, menu: false, product: 0 };
+  _bindEvents() {
+    const get = (path) => path.split('.').reduce((o, k) => (o == null ? o : o[k]), this.renderVals());
+    const run = (el, type, e) => {
+      const fn = get(el.getAttribute('data-on-' + type) || '');
+      if (typeof fn !== 'function') return;
+      fn({ nativeEvent: e, type: e.type, target: e.target, currentTarget: el, relatedTarget: e.relatedTarget, preventDefault: () => e.preventDefault(), stopPropagation: () => e.stopPropagation() });
+    };
+    const near = (e, type) => (e.target && e.target.closest ? e.target.closest('[data-on-' + type + ']') : null);
+    this._evClick = (e) => { const el = near(e, 'click'); if (el) run(el, 'click', e); };
+    this._evSubmit = (e) => { const el = near(e, 'submit'); if (el) run(el, 'submit', e); };
+    this._evOver = (e) => { const el = near(e, 'mouseenter'); if (el && !(e.relatedTarget && el.contains(e.relatedTarget))) run(el, 'mouseenter', e); };
+    this._evOut = (e) => { const el = near(e, 'mouseleave'); if (el && !(e.relatedTarget && el.contains(e.relatedTarget))) run(el, 'mouseleave', e); };
+    document.addEventListener('click', this._evClick);
+    document.addEventListener('submit', this._evSubmit);
+    document.addEventListener('mouseover', this._evOver);
+    document.addEventListener('mouseout', this._evOut);
+  }
   componentDidMount() {
+    this._bindEvents();
     const vid = document.querySelector('#work video');
     if (vid) { vid.loop = true; vid.muted = true; vid.playsInline = true; const p = vid.play(); if (p && p.catch) p.catch(() => {}); }
     const intro = document.getElementById('intro');

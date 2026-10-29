@@ -42,8 +42,7 @@
   @media (prefers-reduced-motion:reduce){#intro{display:none}}
 </style>
   <script defer src="/_vercel/insights/script.js"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRE9ZPKMT5"></script>
-  <script src="/ga.js"></script>
+  <script src="/consent.js" defer></script>
 </head>
 <body>
 <div id="intro" aria-hidden="true"></div>
@@ -189,19 +188,19 @@
       <a href="/contact#top" style="letter-spacing:.01em">Contact</a>
     </div>
     <a data-cta data-fill href="/contact#contact-form" style="--fill:#FBF8F3;display:inline-flex;align-items:center;background:var(--accent,#2E6F68);color:#FBF8F3;padding:.7vw 1.4vw;border-radius:0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:13px;transition:color .6s cubic-bezier(.6,.5,0,1)" style-hover="color:#000">Get a fixed quote</a>
-    <button data-burger data-open="{{ menuOpen }}" onClick="{{ openMenu }}" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="align-items:center;justify-content:center;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+    <button data-burger data-open="{{ menuOpen }}" data-on-click="openMenu" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="align-items:center;justify-content:center;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
   </nav>
 
   <div data-menu data-open="{{ menuOpen }}" role="dialog" aria-modal="true" aria-label="Menu">
-    <button onClick="{{ closeMenu }}" aria-label="Close menu" style="position:absolute;top:20px;right:24px;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
-    <a href="#about" onClick="{{ closeMenu }}">About</a>
-    <a href="/web-design#top" onClick="{{ closeMenu }}">Web Design</a>
-    <a href="/site-plan#top" onClick="{{ closeMenu }}">Site Plan</a>
-    <a href="/graphic-design#top" onClick="{{ closeMenu }}">Graphic Design</a>
-    <a href="/digital-products#top" onClick="{{ closeMenu }}">Digital Products</a>
-    <a href="/audits-and-brand-kits#top" onClick="{{ closeMenu }}">Audits &amp; Kits</a>
-    <a href="/contact#top" onClick="{{ closeMenu }}">Contact</a>
-    <a href="/contact#contact-form" onClick="{{ closeMenu }}" style="margin-top:14px;font-size:clamp(13px,3.6vw,15px) !important;letter-spacing:.06em;color:var(--accent,#66D1DE)">Get a fixed quote</a>
+    <button data-on-click="closeMenu" aria-label="Close menu" style="position:absolute;top:20px;right:24px;width:46px;height:46px;border:none;background:transparent;color:#FBF8F3;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    <a href="#about" data-on-click="closeMenu">About</a>
+    <a href="/web-design#top" data-on-click="closeMenu">Web Design</a>
+    <a href="/site-plan#top" data-on-click="closeMenu">Site Plan</a>
+    <a href="/graphic-design#top" data-on-click="closeMenu">Graphic Design</a>
+    <a href="/digital-products#top" data-on-click="closeMenu">Digital Products</a>
+    <a href="/audits-and-brand-kits#top" data-on-click="closeMenu">Audits &amp; Kits</a>
+    <a href="/contact#top" data-on-click="closeMenu">Contact</a>
+    <a href="/contact#contact-form" data-on-click="closeMenu" style="margin-top:14px;font-size:clamp(13px,3.6vw,15px) !important;letter-spacing:.06em;color:var(--accent,#66D1DE)">Get a fixed quote</a>
   </div>
 
   <main id="main" tabindex="-1" style="display:block;outline:none">
@@ -261,7 +260,7 @@
       <h2 data-cascade style="font-family:var(--head-font,Outfit,Inter,sans-serif);font-weight:var(--head-weight,600);font-size:clamp(32px,5vw,64px);text-transform:var(--head-transform,none);letter-spacing:var(--head-tracking,-.015em);margin:1.2vw 0 0;color:#FBF8F3;display:inline-block">What we do<span style="color:var(--accent,#2E6F68)">.</span></h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw">
-      <a href="/web-design#top" data-reveal="up" data-delay="0" onMouseEnter="{{ c0.enter }}" onMouseLeave="{{ c0.leave }}" style="display:block;background:#121316;background:{{ c0.bg }};border-radius:.87vw;overflow:hidden;transition:background .6s cubic-bezier(.6,.5,0,1)">
+      <a href="/web-design#top" data-reveal="up" data-delay="0" data-on-mouseenter="c0.enter" data-on-mouseleave="c0.leave" style="display:block;background:#121316;background:{{ c0.bg }};border-radius:.87vw;overflow:hidden;transition:background .6s cubic-bezier(.6,.5,0,1)">
         <div style="aspect-ratio:4/3;overflow:hidden;position:relative">
           <div style="position:absolute;inset:0;transform:scale(1);transform:{{ c0.scale }};transition:transform .6s cubic-bezier(.6,.5,0,1)">
             <div style="position:absolute;inset:0;background:var(--accent,#2E6F68);display:grid;place-items:center"><img data-svc-icon loading="lazy" decoding="async" src="uploads/web-design-icon.webp" width="192" height="192" alt="" aria-hidden="true" style="width:5vw;height:5vw;object-fit:contain;transform:{{ c0.iconT }};transition:transform .5s cubic-bezier(.6,.5,0,1)"></div>
@@ -277,7 +276,7 @@
           <div style="margin-top:.9vw;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(12px,.8vw,15px);color:var(--accent,#66D1DE)">Fixed quote, from &pound;1,990</div>
         </div>
       </a>
-      <a href="/graphic-design#top" data-reveal="up" data-delay="120" onMouseEnter="{{ c1.enter }}" onMouseLeave="{{ c1.leave }}" style="display:block;background:#121316;background:{{ c1.bg }};border-radius:.87vw;overflow:hidden;transition:background .6s cubic-bezier(.6,.5,0,1)">
+      <a href="/graphic-design#top" data-reveal="up" data-delay="120" data-on-mouseenter="c1.enter" data-on-mouseleave="c1.leave" style="display:block;background:#121316;background:{{ c1.bg }};border-radius:.87vw;overflow:hidden;transition:background .6s cubic-bezier(.6,.5,0,1)">
         <div style="aspect-ratio:4/3;overflow:hidden;position:relative">
           <div style="position:absolute;inset:0;transform:scale(1);transform:{{ c1.scale }};transition:transform .6s cubic-bezier(.6,.5,0,1)">
             <div style="position:absolute;inset:0;background:var(--accent,#2E6F68);display:grid;place-items:center"><img data-svc-icon loading="lazy" decoding="async" src="uploads/graphic-design-icon.webp" width="192" height="192" alt="" aria-hidden="true" style="width:5vw;height:5vw;object-fit:contain;transform:{{ c1.iconT }};transition:transform .5s cubic-bezier(.6,.5,0,1)"></div>
@@ -292,7 +291,7 @@
           <p style="font-size:.95vw;line-height:1.55;color:{{ c1.desc }};transition:color .6s cubic-bezier(.6,.5,0,1);margin:0;text-wrap:pretty">Logos, identity systems and print, set up for screen and for professional printing. A logo typically takes one to two weeks.</p>
         </div>
       </a>
-      <a href="/digital-products#top" data-reveal="up" data-delay="240" onMouseEnter="{{ c2.enter }}" onMouseLeave="{{ c2.leave }}" style="display:block;background:#121316;background:{{ c2.bg }};border-radius:.87vw;overflow:hidden;transition:background .6s cubic-bezier(.6,.5,0,1)">
+      <a href="/digital-products#top" data-reveal="up" data-delay="240" data-on-mouseenter="c2.enter" data-on-mouseleave="c2.leave" style="display:block;background:#121316;background:{{ c2.bg }};border-radius:.87vw;overflow:hidden;transition:background .6s cubic-bezier(.6,.5,0,1)">
         <div style="aspect-ratio:4/3;overflow:hidden;position:relative">
           <div style="position:absolute;inset:0;transform:scale(1);transform:{{ c2.scale }};transition:transform .6s cubic-bezier(.6,.5,0,1)">
             <div style="position:absolute;inset:0;background:var(--accent,#2E6F68);display:grid;place-items:center"><img data-svc-icon loading="lazy" decoding="async" src="uploads/digital-product-icon.webp" width="192" height="192" alt="" aria-hidden="true" style="width:5vw;height:5vw;object-fit:contain;transform:{{ c2.iconT }};transition:transform .5s cubic-bezier(.6,.5,0,1)"></div>
@@ -332,7 +331,7 @@
     </div>
   </section>
 
-  <section data-screen-label="Testimonial" style="padding:6vw 3.5vw 7vw">
+  <section data-screen-label="Testimonials" style="padding:6vw 3.5vw 7vw">
     <figure data-reveal="up" style="max-width:980px;margin:0 auto;text-align:center">
       <div style="font-size:12px;font-weight:600;letter-spacing:.22em;color:var(--accent,#66D1DE)">CLIENT WORDS</div>
       <blockquote style="margin:2vw 0 0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:300;font-size:clamp(20px,1.9vw,36px);line-height:1.45;letter-spacing:0;color:#FBF8F3;text-wrap:pretty">&ldquo;We were absolutely blown away by our new website. It looks incredibly professional and has received fantastic feedback from everyone who has seen it. They went above and beyond, suggesting clever ideas like a secure members&rsquo; area for events, items for sale and member communication. It was exactly what we wanted!&rdquo;</blockquote>
@@ -341,6 +340,12 @@
         <span style="font-size:14px;color:var(--accent,#66D1DE)">Hon. Secretary, CSSC (Rosyth)</span>
       </figcaption>
       <a data-fill href="https://www.csscrosyth.co.uk/" target="_blank" rel="noopener" style="--fill:var(--accent,#66D1DE);display:inline-flex;align-items:center;justify-content:center;margin-top:max(2.2vw,28px);background:transparent;color:var(--accent,#66D1DE);box-shadow:inset 0 0 0 2px var(--accent,#66D1DE);padding:clamp(13px,1vw,20px) clamp(24px,2.4vw,44px);font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:14px;transition:color .6s cubic-bezier(.6,.5,0,1)" style-hover="color:#000">See the CSSC Rosyth site</a>
+    </figure>
+    <figure data-reveal="up" style="max-width:980px;margin:max(5vw,56px) auto 0;padding-top:max(5vw,56px);border-top:1px solid rgba(255,255,255,.12);text-align:center">
+      <blockquote style="margin:2vw 0 0;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:300;font-size:clamp(20px,1.9vw,36px);line-height:1.45;letter-spacing:0;color:#FBF8F3;text-wrap:pretty">&ldquo;Having a professional website has made such a huge difference to our business. The whole process was professional, easy and enjoyable.&rdquo;</blockquote>
+      <figcaption style="margin-top:2.2vw;display:flex;flex-direction:column;gap:6px;align-items:center">
+        <span style="font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:15px;color:#FBF8F3">Flowers House</span>
+      </figcaption>
     </figure>
   </section>
 
@@ -392,7 +397,7 @@
           <a href="https://www.tiktok.com/@northhaus.io" target="_blank" rel="noopener" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">TikTok</a>
         </div>
       </div>
-      <button onClick="{{ toTop }}" aria-label="Scroll to top" style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#FBF8F3;font-size:18px;cursor:pointer;transition:background-color .6s cubic-bezier(.6,.5,0,1),border-color .6s cubic-bezier(.6,.5,0,1)" style-hover="background:var(--accent,#2E6F68);border-color:var(--accent,#2E6F68)">&uarr;</button>
+      <button data-on-click="toTop" aria-label="Scroll to top" style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#FBF8F3;font-size:18px;cursor:pointer;transition:background-color .6s cubic-bezier(.6,.5,0,1),border-color .6s cubic-bezier(.6,.5,0,1)" style-hover="background:var(--accent,#2E6F68);border-color:var(--accent,#2E6F68)">&uarr;</button>
     </div>
     <div style="margin-top:3.5vw;padding-top:1.5vw;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;font-size:12px;color:#6f6f73">
       <span style="display:flex;gap:1.4vw;flex-wrap:wrap;align-items:center;color:#FBF8F3"><span>&copy; 2026 Northhaus. All rights reserved.</span><a href="/privacy" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Privacy</a><a href="/terms" style="color:#FBF8F3" style-hover="color:var(--accent,#2E6F68)">Terms</a></span>
@@ -405,7 +410,25 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;typeface&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Sharp Sans (Black / Medium)&quot;,&quot;options&quot;:[&quot;Current&quot;,&quot;Swiss Grotesk (Haas Unica)&quot;,&quot;Sharp Sans (Black / Medium)&quot;],&quot;section&quot;:&quot;Typography&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#66D1DE&quot;,&quot;options&quot;:[&quot;#2E6F68&quot;,&quot;#66D1DE&quot;,&quot;#3AA6A0&quot;,&quot;#1F4E49&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroGradient&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Solid Black&quot;,&quot;options&quot;:[&quot;Solid Black&quot;,&quot;Black → Grey&quot;,&quot;Black → Teal&quot;],&quot;section&quot;:&quot;Theme&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgObject&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;None&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;Torus&quot;,&quot;Orbit Rings&quot;,&quot;Floating Cubes&quot;,&quot;Torus Knot&quot;,&quot;Icosahedron&quot;,&quot;Neural Net&quot;,&quot;Node Sphere&quot;,&quot;Data Grid&quot;,&quot;Northhaus Mark&quot;],&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2.5,&quot;min&quot;:0.4,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;x&quot;,&quot;section&quot;:&quot;Background&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;marqueeSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:22,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;countUp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroVaporize&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;boolean&quot;},&quot;vaporizeSpread&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:5,&quot;min&quot;:1,&quot;max&quot;:10,&quot;step&quot;:0.5,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;vaporizeDuration&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2,&quot;min&quot;:0.8,&quot;max&quot;:4,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;vaporizeHold&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4,&quot;min&quot;:1.5,&quot;max&quot;:12,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
 class Component extends DCLogic {
   state = { hov: -1, panel: 0, scrolled: false, counts: [0, 0, 0, 0], counted: false, menu: false };
+  _bindEvents() {
+    const get = (path) => path.split('.').reduce((o, k) => (o == null ? o : o[k]), this.renderVals());
+    const run = (el, type, e) => {
+      const fn = get(el.getAttribute('data-on-' + type) || '');
+      if (typeof fn !== 'function') return;
+      fn({ nativeEvent: e, type: e.type, target: e.target, currentTarget: el, relatedTarget: e.relatedTarget, preventDefault: () => e.preventDefault(), stopPropagation: () => e.stopPropagation() });
+    };
+    const near = (e, type) => (e.target && e.target.closest ? e.target.closest('[data-on-' + type + ']') : null);
+    this._evClick = (e) => { const el = near(e, 'click'); if (el) run(el, 'click', e); };
+    this._evSubmit = (e) => { const el = near(e, 'submit'); if (el) run(el, 'submit', e); };
+    this._evOver = (e) => { const el = near(e, 'mouseenter'); if (el && !(e.relatedTarget && el.contains(e.relatedTarget))) run(el, 'mouseenter', e); };
+    this._evOut = (e) => { const el = near(e, 'mouseleave'); if (el && !(e.relatedTarget && el.contains(e.relatedTarget))) run(el, 'mouseleave', e); };
+    document.addEventListener('click', this._evClick);
+    document.addEventListener('submit', this._evSubmit);
+    document.addEventListener('mouseover', this._evOver);
+    document.addEventListener('mouseout', this._evOut);
+  }
   componentDidMount() {
+    this._bindEvents();
     this._initCTitles();
     this._initCounts();
     const intro = document.getElementById('intro');
