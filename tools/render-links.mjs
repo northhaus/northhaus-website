@@ -60,15 +60,15 @@ ${img ? `<link rel="preload" as="image" imagesrcset="${srcset}" imagesizes="(min
 ${fonts}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:#000}
-body{margin:0;background:#000;color:#FBF8F3;font-family:'SharpSansDisplay','Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-wrap:break-word}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:#000;color:#FBF8F3;font-family:'SharpSansDisplay','Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-wrap:break-word}
 a{color:#FBF8F3;text-decoration:none}
 a:hover{color:#66D1DE}
 :focus-visible{outline:3px solid #FBF8F3;outline-offset:4px;box-shadow:0 0 0 4px #000}
 .nh-skip{position:absolute;left:12px;top:12px;z-index:10;padding:12px 18px;background:#66D1DE;color:#000;font-weight:700;transform:translateY(-200%)}
 .nh-skip:focus{transform:none;color:#000}
-.nh-page{position:relative;min-height:100vh;overflow:hidden}
+.nh-page{order:1;flex:1 0 auto;position:relative;overflow:hidden}
 .nh-glow{position:absolute;left:50%;top:-220px;width:760px;max-width:160vw;height:560px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(102,209,222,.16),rgba(102,209,222,.06) 55%,rgba(0,0,0,0));pointer-events:none}
-main{position:relative;max-width:560px;margin:0 auto;padding:calc(28px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:28px}
+main{position:relative;max-width:560px;margin:0 auto;padding:calc(28px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) 28px max(20px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:28px}
 main:focus{outline:none}
 .nh-head{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding-top:4px}
 .nh-logo{display:inline-flex;padding:4px}
@@ -112,18 +112,18 @@ h1,h2{margin:0}
 .nh-plan :focus-visible{outline:3px solid #000;outline-offset:3px;box-shadow:0 0 0 3px #66D1DE,0 0 0 9px #FBF8F3}
 .nh-more{display:flex;justify-content:center}
 .nh-more .nh-text-link{font-size:16px}
+.nh-footer{order:3;padding:20px max(20px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
 .nh-foot{text-align:center;font-size:12px;color:#9a9893;letter-spacing:.04em;margin:0}
-/* Cookie notice (consent.js) — restyled for this page only; behaviour unchanged */
-[role="region"][aria-label="Cookie notice"]{left:max(12px,env(safe-area-inset-left,0px)) !important;bottom:calc(12px + env(safe-area-inset-bottom,0px)) !important;width:calc(100% - 24px) !important;max-width:380px !important;padding:16px !important;background:#0a0b0c !important;color:#FBF8F3 !important;border:1px solid rgba(102,209,222,.55) !important;border-radius:12px !important;box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 30px -10px rgba(102,209,222,.35) !important;font-size:14px !important}
+/* Cookie notice (consent.js): shown in normal flow above the footer on this page. Behaviour unchanged. */
+[role="region"][aria-label="Cookie notice"]{order:2;position:static !important;left:auto !important;right:auto !important;bottom:auto !important;z-index:auto !important;width:auto !important;max-width:520px !important;margin:0 max(20px,env(safe-area-inset-right,0px)) 0 max(20px,env(safe-area-inset-left,0px)) !important;align-self:stretch;padding:16px !important;background:#0a0b0c !important;color:#FBF8F3 !important;border:1px solid rgba(102,209,222,.55) !important;border-radius:12px !important;box-shadow:none !important;font-size:14px !important;overflow-wrap:break-word;opacity:1 !important;transform:none !important;transition:none !important}
+@media (min-width:560px){[role="region"][aria-label="Cookie notice"]{align-self:center;width:calc(100% - 40px) !important;margin:0 auto !important}}
 [role="region"][aria-label="Cookie notice"] p{color:#FBF8F3 !important;margin:0 0 14px !important}
-[role="region"][aria-label="Cookie notice"] a{color:#66D1DE !important;text-decoration:underline !important;text-underline-offset:2px}
-[role="region"][aria-label="Cookie notice"] button{min-height:48px !important}
+[role="region"][aria-label="Cookie notice"] a{color:#66D1DE !important;text-decoration:underline !important;text-underline-offset:2px;display:inline-block;padding:4px 0}
+[role="region"][aria-label="Cookie notice"] > div{flex-wrap:wrap !important}
+[role="region"][aria-label="Cookie notice"] button{flex:1 1 120px !important;min-height:48px !important;height:auto !important;padding:10px 18px !important;line-height:1.2 !important;white-space:normal !important}
 [role="region"][aria-label="Cookie notice"] button:first-child{background:transparent !important;color:#FBF8F3 !important;box-shadow:inset 0 0 0 2px #FBF8F3 !important}
 [role="region"][aria-label="Cookie notice"] button:last-child{background:#66D1DE !important;color:#000 !important}
 [role="region"][aria-label="Cookie notice"] :focus-visible{outline:3px solid #FBF8F3 !important;outline-offset:3px !important}
-body:has([aria-label="Cookie notice"]) main{padding-bottom:calc(220px + env(safe-area-inset-bottom,0px))}
-@media (min-width:640px){[role="region"][aria-label="Cookie notice"]{left:16px !important;bottom:calc(16px + env(safe-area-inset-bottom,0px)) !important}}
-@media (min-width:1000px){body:has([aria-label="Cookie notice"]) main{padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms !important}}
 @media (forced-colors:active){.nh-btn,.nh-item{border:2px solid ButtonText}}
 </style>
@@ -168,9 +168,9 @@ ${productItems}
       <a class="nh-text-link" href="${esc(d.site.url)}">${esc(d.site.label)} <span class="nh-teal" aria-hidden="true">&rarr;</span></a>
     </nav>
 
-    <footer><p class="nh-foot">${esc(d.footer)}</p></footer>
   </main>
 </div>
+<footer class="nh-footer"><p class="nh-foot">${esc(d.footer)}</p></footer>
 </body>
 </html>
 `;
