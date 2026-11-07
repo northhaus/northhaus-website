@@ -3,10 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
 <title>Northhaus Links - Planners, Digital Products &amp; Websites</title>
 <meta name="description" content="Northhaus planners, digital products and the Site Plan, in one place. Digital tools. Thoughtful websites.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://www.northhaus.io/links">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Northhaus">
 <meta property="og:locale" content="en_GB">
@@ -21,163 +24,201 @@
 <meta name="twitter:title" content="Northhaus Links - Planners, Digital Products &amp; Websites">
 <meta name="twitter:description" content="Northhaus planners, digital products and the Site Plan, in one place.">
 <meta name="twitter:image" content="https://www.northhaus.io/uploads/og-home.jpg">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<style>x-dc{display:none!important}</style>
-<link rel="preload" as="script" href="/vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous">
-<link rel="preload" as="script" href="/vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/SharpSansDisplay-900.woff2" crossorigin="anonymous">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/SharpSansDisplay-500.woff2" crossorigin="anonymous">
-<script src="/support.v2.min.js" defer></script>
+<link rel="preload" as="image" imagesrcset="/uploads/christmas-planner-640.webp 640w, /uploads/christmas-planner-1120.webp 1120w" imagesizes="(min-width:600px) 560px, calc(100vw - 40px)" href="/uploads/christmas-planner-1120.webp">
+<style>
+@font-face{font-family:'SharpSansDisplay';src:url('/assets/fonts/SharpSansDisplay-300.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'SharpSansDisplay';src:url('/assets/fonts/SharpSansDisplay-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'SharpSansDisplay';src:url('/assets/fonts/SharpSansDisplay-600.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'SharpSansDisplay';src:url('/assets/fonts/SharpSansDisplay-700.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'SharpSansDisplay';src:url('/assets/fonts/SharpSansDisplay-900.woff2') format('woff2');font-weight:900;font-display:swap}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:#000}
+body{margin:0;background:#000;color:#FBF8F3;font-family:'SharpSansDisplay','Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-wrap:break-word}
+a{color:#FBF8F3;text-decoration:none}
+a:hover{color:#66D1DE}
+:focus-visible{outline:3px solid #FBF8F3;outline-offset:4px;box-shadow:0 0 0 4px #000}
+.nh-skip{position:absolute;left:12px;top:12px;z-index:10;padding:12px 18px;background:#66D1DE;color:#000;font-weight:700;transform:translateY(-200%)}
+.nh-skip:focus{transform:none;color:#000}
+.nh-page{position:relative;min-height:100vh;overflow:hidden}
+.nh-glow{position:absolute;left:50%;top:-220px;width:760px;max-width:160vw;height:560px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(102,209,222,.16),rgba(102,209,222,.06) 55%,rgba(0,0,0,0));pointer-events:none}
+main{position:relative;max-width:560px;margin:0 auto;padding:calc(28px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:28px}
+main:focus{outline:none}
+.nh-head{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding-top:4px}
+.nh-logo{display:inline-flex;padding:4px}
+.nh-logo img{height:40px;width:auto;display:block}
+.nh-tagline{margin:0;font-size:16px;font-weight:500;letter-spacing:.01em}
+.nh-feat{border:1px solid rgba(102,209,222,.45);border-radius:14px;overflow:hidden;background:#07090a;box-shadow:0 0 0 1px rgba(102,209,222,.06),0 18px 60px -24px rgba(102,209,222,.35)}
+.nh-feat img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#0d1314}
+.nh-feat-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:12px}
+.nh-eyebrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.nh-teal{color:#66D1DE}
+h1,h2{margin:0}
+.nh-title{font-weight:900;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(24px,6.4vw,32px);line-height:1.05;text-wrap:balance}
+.nh-desc{margin:0;font-size:16px;line-height:1.55;color:#d9d6d0;text-wrap:pretty}
+.nh-btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:12px 20px;text-align:center;font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:15px;line-height:1.2;transition:background-color .3s ease,color .3s ease}
+.nh-btn--primary{margin-top:6px;background:#66D1DE;color:#000}
+.nh-btn--primary:hover,.nh-btn--primary:active{background:#FBF8F3;color:#000}
+.nh-btn--outline{box-shadow:inset 0 0 0 2px #66D1DE;color:#66D1DE}
+.nh-btn--outline:hover,.nh-btn--outline:active{background:#66D1DE;color:#000}
+.nh-btn--outline:focus-visible{box-shadow:inset 0 0 0 2px #66D1DE,0 0 0 4px #000}
+.nh-products{display:flex;flex-direction:column;gap:14px}
+.nh-label{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#66D1DE}
+.nh-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.nh-item{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;min-height:64px;padding:16px 18px;border:1px solid rgba(251,248,243,.16);border-radius:12px;background:#0a0b0c;transition:border-color .3s ease,background-color .3s ease}
+.nh-item:hover{border-color:rgba(102,209,222,.6);color:#FBF8F3}
+.nh-item:active{background:#0f1a1b;border-color:#66D1DE}
+.nh-item-body{display:flex;flex-direction:column;gap:4px;min-width:0}
+.nh-item-top{display:flex;align-items:baseline;gap:4px 10px;flex-wrap:wrap}
+.nh-item-title{font-size:17px;font-weight:700;line-height:1.25}
+.nh-item-meta{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#66D1DE}
+.nh-item-desc{font-size:14px;line-height:1.45;color:#bdbab4;text-wrap:pretty}
+.nh-arrow{font-size:20px;color:#66D1DE}
+.nh-text-link{align-self:center;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 8px;font-size:15px;font-weight:600;border-bottom:2px solid #66D1DE;text-align:center}
+.nh-plan{border-radius:14px;background:#66D1DE;color:#000;padding:24px 22px;display:flex;flex-direction:column;gap:12px}
+.nh-plan .nh-eyebrow,.nh-plan .nh-title{color:#000}
+.nh-plan .nh-title{font-size:clamp(24px,6.4vw,30px)}
+.nh-plan p{margin:0;color:#000;text-wrap:pretty}
+.nh-plan-desc{font-size:16px;line-height:1.55}
+.nh-plan-detail{font-size:14px;line-height:1.5}
+.nh-btn--dark{margin-top:6px;background:#000;color:#FBF8F3}
+.nh-btn--dark:hover,.nh-btn--dark:active{background:#FBF8F3;color:#000}
+.nh-plan :focus-visible{outline:3px solid #000;outline-offset:3px;box-shadow:0 0 0 3px #66D1DE,0 0 0 9px #FBF8F3}
+.nh-more{display:flex;justify-content:center}
+.nh-more .nh-text-link{font-size:16px}
+.nh-foot{text-align:center;font-size:12px;color:#9a9893;letter-spacing:.04em;margin:0}
+/* Cookie notice (consent.js) — restyled for this page only; behaviour unchanged */
+[role="region"][aria-label="Cookie notice"]{left:max(12px,env(safe-area-inset-left,0px)) !important;bottom:calc(12px + env(safe-area-inset-bottom,0px)) !important;width:calc(100% - 24px) !important;max-width:380px !important;padding:16px !important;background:#0a0b0c !important;color:#FBF8F3 !important;border:1px solid rgba(102,209,222,.55) !important;border-radius:12px !important;box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 30px -10px rgba(102,209,222,.35) !important;font-size:14px !important}
+[role="region"][aria-label="Cookie notice"] p{color:#FBF8F3 !important;margin:0 0 14px !important}
+[role="region"][aria-label="Cookie notice"] a{color:#66D1DE !important;text-decoration:underline !important;text-underline-offset:2px}
+[role="region"][aria-label="Cookie notice"] button{min-height:48px !important}
+[role="region"][aria-label="Cookie notice"] button:first-child{background:transparent !important;color:#FBF8F3 !important;box-shadow:inset 0 0 0 2px #FBF8F3 !important}
+[role="region"][aria-label="Cookie notice"] button:last-child{background:#66D1DE !important;color:#000 !important}
+[role="region"][aria-label="Cookie notice"] :focus-visible{outline:3px solid #FBF8F3 !important;outline-offset:3px !important}
+body:has([aria-label="Cookie notice"]) main{padding-bottom:calc(220px + env(safe-area-inset-bottom,0px))}
+@media (min-width:640px){[role="region"][aria-label="Cookie notice"]{left:16px !important;bottom:calc(16px + env(safe-area-inset-bottom,0px)) !important}}
+@media (min-width:1000px){body:has([aria-label="Cookie notice"]) main{padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms !important}}
+@media (forced-colors:active){.nh-btn,.nh-item{border:2px solid ButtonText}}
+</style>
 <script defer src="/_vercel/insights/script.js"></script>
 <script src="/consent.js" defer></script>
 </head>
 <body>
-<x-dc>
-<helmet>
-<style>
-  @font-face{font-family:'SharpSansDisplay';src:url('/assets/fonts/SharpSansDisplay-300.woff2') format('woff2');font-weight:300;font-display:swap}
-  @font-face{font-family:'SharpSansDisplay';src:url('/assets/fonts/SharpSansDisplay-500.woff2') format('woff2');font-weight:500;font-display:swap}
-  @font-face{font-family:'SharpSansDisplay';src:url('/assets/fonts/SharpSansDisplay-600.woff2') format('woff2');font-weight:600;font-display:swap}
-  @font-face{font-family:'SharpSansDisplay';src:url('/assets/fonts/SharpSansDisplay-700.woff2') format('woff2');font-weight:700;font-display:swap}
-  @font-face{font-family:'SharpSansDisplay';src:url('/assets/fonts/SharpSansDisplay-900.woff2') format('woff2');font-weight:900;font-display:swap}
-  html,body{max-width:100%}
-  body{margin:0;background:#000;color:#FBF8F3;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
-  a{color:#FBF8F3;text-decoration:none}
-  a:hover{color:#66D1DE}
-  #links a:focus-visible{outline:2px solid #66D1DE;outline-offset:3px}
-  @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms !important}}
-</style>
-</helmet>
-<div id="links" style="position:relative;min-height:100vh;background:#000;color:#FBF8F3;font-family:'SharpSansDisplay','Helvetica Neue',sans-serif;overflow-x:clip">
-  <sc-if value="{{ glow }}" hint-placeholder-val="{{ true }}">
-    <div aria-hidden="true" style="position:absolute;left:50%;top:-220px;width:760px;max-width:160vw;height:560px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(102,209,222,.16),rgba(102,209,222,.06) 55%,rgba(0,0,0,0));pointer-events:none"></div>
-  </sc-if>
-  <main style="position:relative;max-width:560px;margin:0 auto;box-sizing:border-box;padding:calc(28px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:28px">
-
-    <header style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding-top:4px">
-      <a href="https://www.northhaus.io/" aria-label="Northhaus home" style="display:inline-flex;padding:4px"><img src="/uploads/northhaus-logo-384.webp" alt="Northhaus" width="192" height="48" fetchpriority="high" style="height:40px;width:auto;display:block"></a>
-      <p style="margin:0;font-size:16px;font-weight:500;letter-spacing:.01em;color:#FBF8F3">Digital tools. Thoughtful websites.</p>
+<a class="nh-skip" href="#main">Skip to content</a>
+<div class="nh-page">
+  <div class="nh-glow" aria-hidden="true"></div>
+  <main id="main" tabindex="-1">
+    <header class="nh-head">
+      <a class="nh-logo" href="https://www.northhaus.io/" aria-label="Northhaus home"><img src="/uploads/northhaus-logo-384.webp" alt="Northhaus" width="192" height="48"></a>
+      <p class="nh-tagline">Digital tools. Thoughtful websites.</p>
     </header>
 
-    <section aria-labelledby="featured-title" style="border:1px solid rgba(102,209,222,.45);border-radius:14px;overflow:hidden;background:#07090a;box-shadow:0 0 0 1px rgba(102,209,222,.06),0 18px 60px -24px rgba(102,209,222,.35)">
-      <img src="/uploads/christmas-planner-1120.webp" srcset="/uploads/christmas-planner-640.webp 640w, /uploads/christmas-planner-1120.webp 1120w" sizes="(min-width:600px) 560px, calc(100vw - 40px)" alt="{{ featured.imageAlt }}" width="1120" height="630" decoding="async" fetchpriority="high" style="display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#0d1314">
-      <div style="padding:22px 22px 24px;display:flex;flex-direction:column;gap:12px">
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase">
-          <span style="color:#66D1DE">Seasonal pick</span>
-          <sc-if value="{{ showPrices }}" hint-placeholder-val="{{ true }}"><span style="color:#FBF8F3">{{ featured.price }}</span></sc-if>
-        </div>
-        <h1 id="featured-title" style="margin:0;font-weight:900;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(24px,6.4vw,32px);line-height:1.05;text-wrap:balance">{{ featured.title }}</h1>
-        <p style="margin:0;font-size:16px;line-height:1.55;color:#d9d6d0;text-wrap:pretty">{{ featured.description }}</p>
-        <a href="{{ featured.url }}" aria-label="{{ featured.ctaLabel }}" style="margin-top:6px;display:flex;align-items:center;justify-content:center;min-height:56px;background:#66D1DE;color:#000;font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:15px;transition:background .3s ease" style-hover="background:#FBF8F3;color:#000" style-active="background:#FBF8F3;color:#000">{{ featured.cta }}</a>
+    <section class="nh-feat" aria-labelledby="featured-title">
+      <img src="/uploads/christmas-planner-1120.webp" srcset="/uploads/christmas-planner-640.webp 640w, /uploads/christmas-planner-1120.webp 1120w" sizes="(min-width:600px) 560px, calc(100vw - 40px)" alt="Christmas &amp; New Year Planner cover, showing the planner dashboard on a laptop" width="1120" height="630" fetchpriority="high" decoding="async">
+      <div class="nh-feat-body">
+        <p class="nh-eyebrow"><span class="nh-teal">Seasonal pick</span><span>£4.99</span></p>
+        <h1 id="featured-title" class="nh-title">Christmas &amp; New Year Planner</h1>
+        <p class="nh-desc">Gifts, budget, time off, Christmas dinner, shopping and New Year’s Eve in one planner that works offline. No account, no subscription.</p>
+        <a class="nh-btn nh-btn--primary" href="https://northhaus.gumroad.com/l/cwzvyr" aria-label="View planner: Christmas &amp; New Year Planner, £4.99">View planner</a>
       </div>
     </section>
 
-    <section aria-labelledby="products-title" style="display:flex;flex-direction:column;gap:14px">
-      <h2 id="products-title" style="margin:0;font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#66D1DE">Planners &amp; digital products</h2>
-      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
-        <sc-for list="{{ products }}" as="p" hint-placeholder-count="6">
-          <li>
-            <a href="{{ p.url }}" aria-label="{{ p.ariaLabel }}" style="display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;min-height:64px;box-sizing:border-box;padding:16px 18px;border:1px solid rgba(251,248,243,.16);border-radius:12px;background:#0a0b0c;transition:border-color .3s ease,background .3s ease" style-hover="border-color:rgba(102,209,222,.6);color:#FBF8F3" style-active="background:#0f1a1b;border-color:#66D1DE">
-              <span style="display:flex;flex-direction:column;gap:4px;min-width:0">
-                <span style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
-                  <span style="font-size:17px;font-weight:700;line-height:1.25;color:#FBF8F3">{{ p.title }}</span>
-                  <span style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#66D1DE">{{ p.meta }}</span>
-                </span>
-                <span style="font-size:14px;line-height:1.45;color:#bdbab4;text-wrap:pretty">{{ p.description }}</span>
-              </span>
-              <span aria-hidden="true" style="font-size:20px;color:#66D1DE">&rarr;</span>
-            </a>
-          </li>
-        </sc-for>
+    <section class="nh-products" aria-labelledby="products-title">
+      <h2 id="products-title" class="nh-label">Planners &amp; digital products</h2>
+      <ul class="nh-list">
+      <li>
+        <a class="nh-item" href="https://northhaus.gumroad.com/l/klhwa" aria-label="Wedding Planner, planner, £4.99">
+          <span class="nh-item-body">
+            <span class="nh-item-top"><span class="nh-item-title">Wedding Planner</span><span class="nh-item-meta">Planner · £4.99</span></span>
+            <span class="nh-item-desc">Suppliers, budget, guests, RSVPs and deposits in one place.</span>
+          </span>
+          <span class="nh-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a class="nh-item" href="https://northhaus.gumroad.com/l/lmykzn" aria-label="Budget Tracker, planner, £4.99">
+          <span class="nh-item-body">
+            <span class="nh-item-top"><span class="nh-item-title">Budget Tracker</span><span class="nh-item-meta">Planner · £4.99</span></span>
+            <span class="nh-item-desc">Track monthly bills, debt and investments in one place.</span>
+          </span>
+          <span class="nh-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a class="nh-item" href="https://northhaus.gumroad.com/l/uzflqx" aria-label="Freelancer Admin Kit, bundle, £9.99">
+          <span class="nh-item-body">
+            <span class="nh-item-top"><span class="nh-item-title">Freelancer Admin Kit</span><span class="nh-item-meta">Bundle · £9.99</span></span>
+            <span class="nh-item-desc">An invoice maker, client onboarding pack and tax tracker for UK freelancers.</span>
+          </span>
+          <span class="nh-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a class="nh-item" href="https://northhaus.gumroad.com/l/zchman" aria-label="Coach Corner, tool, £7.99">
+          <span class="nh-item-body">
+            <span class="nh-item-top"><span class="nh-item-title">Coach Corner</span><span class="nh-item-meta">Tool · £7.99</span></span>
+            <span class="nh-item-desc">Client manager for martial arts coaches and personal trainers: fight plans, weight cuts and sparring notes.</span>
+          </span>
+          <span class="nh-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a class="nh-item" href="https://northhaus.gumroad.com/l/imzmre" aria-label="Fit Phrase, tool, £4.99">
+          <span class="nh-item-body">
+            <span class="nh-item-top"><span class="nh-item-title">Fit Phrase</span><span class="nh-item-meta">Tool · £4.99</span></span>
+            <span class="nh-item-desc">Turns words into workouts, with an exercise for every letter.</span>
+          </span>
+          <span class="nh-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a class="nh-item" href="https://northhaus.gumroad.com/l/ttohou" aria-label="Divorce Organiser, planner">
+          <span class="nh-item-body">
+            <span class="nh-item-top"><span class="nh-item-title">Divorce Organiser</span><span class="nh-item-meta">Planner</span></span>
+            <span class="nh-item-desc">Paperwork, finances, dates, contacts and costs in one private place.</span>
+          </span>
+          <span class="nh-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a class="nh-item" href="https://northhaus.gumroad.com/l/rawanc" aria-label="Funeral Planner, planner">
+          <span class="nh-item-body">
+            <span class="nh-item-top"><span class="nh-item-title">Funeral Planner</span><span class="nh-item-meta">Planner</span></span>
+            <span class="nh-item-desc">Registering the death, arranging the funeral and finding the will, organised.</span>
+          </span>
+          <span class="nh-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a class="nh-item" href="https://northhaus.gumroad.com/l/xfoogo" aria-label="Landing Page Audit + Redesign Starter, audit, £149">
+          <span class="nh-item-body">
+            <span class="nh-item-top"><span class="nh-item-title">Landing Page Audit + Redesign Starter</span><span class="nh-item-meta">Audit · £149</span></span>
+            <span class="nh-item-desc">An expert-reviewed audit of your landing page, plus a new hero and copy pack.</span>
+          </span>
+          <span class="nh-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
       </ul>
-      <a href="{{ shop.url }}" style="display:flex;align-items:center;justify-content:center;min-height:56px;box-shadow:inset 0 0 0 2px #66D1DE;color:#66D1DE;font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:15px;transition:background .3s ease,color .3s ease" style-hover="background:#66D1DE;color:#000" style-active="background:#66D1DE;color:#000">{{ shop.label }}</a>
-      <a href="{{ productsPage.url }}" style="align-self:center;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 8px;font-size:15px;font-weight:600;border-bottom:2px solid #66D1DE">{{ productsPage.label }} <span aria-hidden="true" style="color:#66D1DE">&rarr;</span></a>
+      <a class="nh-btn nh-btn--outline" href="https://northhaus.gumroad.com/">Browse all products</a>
+      <a class="nh-text-link" href="https://www.northhaus.io/digital-products">See our digital products page <span class="nh-teal" aria-hidden="true">&rarr;</span></a>
     </section>
 
-    <section aria-labelledby="siteplan-title" style="border-radius:14px;background:#66D1DE;color:#000;padding:24px 22px;display:flex;flex-direction:column;gap:12px">
-      <div style="font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#000">Website service</div>
-      <h2 id="siteplan-title" style="margin:0;font-weight:900;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(24px,6.4vw,30px);line-height:1.05;color:#000">{{ sitePlan.title }}</h2>
-      <p style="margin:0;font-size:16px;line-height:1.55;color:#000;text-wrap:pretty">{{ sitePlan.description }}</p>
-      <p style="margin:0;font-size:14px;line-height:1.5;color:#000;text-wrap:pretty">{{ sitePlan.detail }}</p>
-      <a href="{{ sitePlan.url }}" style="margin-top:6px;display:flex;align-items:center;justify-content:center;min-height:56px;background:#000;color:#FBF8F3;font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:15px;transition:background .3s ease,color .3s ease" style-hover="background:#FBF8F3;color:#000" style-active="background:#FBF8F3;color:#000">{{ sitePlan.cta }}</a>
+    <section class="nh-plan" aria-labelledby="siteplan-title">
+      <p class="nh-eyebrow">Website service</p>
+      <h2 id="siteplan-title" class="nh-title">Site Plan</h2>
+      <p class="nh-plan-desc">Custom-coded websites. £0 upfront, then £39 a month. 12-month minimum.</p>
+      <p class="nh-plan-detail">Up to five pages. Hosting, your domain, backups and up to 30 minutes of changes a month are included.</p>
+      <a class="nh-btn nh-btn--dark" href="https://www.northhaus.io/site-plan">Explore Site Plan</a>
     </section>
 
-    <nav aria-label="More from Northhaus" style="display:flex;justify-content:center">
-      <a href="{{ site.url }}" style="display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 8px;font-size:16px;font-weight:600;border-bottom:2px solid #66D1DE">{{ site.label }} <span aria-hidden="true" style="color:#66D1DE">&rarr;</span></a>
+    <nav class="nh-more" aria-label="More from Northhaus">
+      <a class="nh-text-link" href="https://www.northhaus.io/">Visit Northhaus <span class="nh-teal" aria-hidden="true">&rarr;</span></a>
     </nav>
 
-    <footer style="text-align:center;font-size:12px;color:#9a9893;letter-spacing:.04em">&copy; 2026 Northhaus</footer>
+    <footer><p class="nh-foot">© 2026 Northhaus</p></footer>
   </main>
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;showPrices&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;glow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
-// ─── EDIT LINKS HERE ───────────────────────────────────────────────
-// Add/remove items, change `order`, or move `featured: true` to another item.
-// Prices are shown only if `price` is set.
-// Changing the featured item? Also update the featured <img src> in the template
-// (kept literal so the browser never requests an unfilled URL).
-const LINKS = [
-  { id: 'christmas', category: 'Planner', featured: true, order: 0,
-    title: 'Christmas & New Year Planner', price: '£4.99',
-    description: 'Gifts, budget, time off, Christmas dinner, shopping and New Year’s Eve in one planner that works offline. No account, no subscription.',
-    url: 'https://northhaus.gumroad.com/l/cwzvyr',
-    imageAlt: 'Northhaus UK Christmas & New Year Planner',
-    cta: 'View planner' },
-  { id: 'wedding', category: 'Planner', order: 1, title: 'Wedding Planner', price: '£4.99',
-    description: 'Suppliers, budget, guests, RSVPs and deposits in one place.',
-    url: 'https://northhaus.gumroad.com/l/klhwa' },
-  { id: 'budget', category: 'Planner', order: 2, title: 'Budget Tracker', price: '£4.99',
-    description: 'Track monthly bills, debt and investments in one place.',
-    url: 'https://northhaus.gumroad.com/l/lmykzn' },
-  { id: 'freelancer', category: 'Bundle', order: 3, title: 'Freelancer Admin Kit', price: '£9.99',
-    description: 'An invoice maker, client onboarding pack and tax tracker for UK freelancers.',
-    url: 'https://northhaus.gumroad.com/l/uzflqx' },
-  { id: 'coach', category: 'Tool', order: 4, title: 'Coach Corner', price: '£7.99',
-    description: 'Client manager for martial arts coaches and personal trainers: fight plans, weight cuts and sparring notes.',
-    url: 'https://northhaus.gumroad.com/l/zchman' },
-  { id: 'fitphrase', category: 'Tool', order: 5, title: 'Fit Phrase', price: '£4.99',
-    description: 'Turns words into workouts, with an exercise for every letter.',
-    url: 'https://northhaus.gumroad.com/l/imzmre' },
-  { id: 'divorce', category: 'Planner', order: 6, title: 'Divorce Organiser', price: null,
-    description: 'Paperwork, finances, dates, contacts and costs in one private place.',
-    url: 'https://northhaus.gumroad.com/l/ttohou' },
-  { id: 'funeral', category: 'Planner', order: 7, title: 'Funeral Planner', price: null,
-    description: 'Registering the death, arranging the funeral and finding the will, organised.',
-    url: 'https://northhaus.gumroad.com/l/rawanc' },
-  { id: 'audit', category: 'Audit', order: 8, title: 'Landing Page Audit + Redesign Starter', price: '£149',
-    description: 'An expert-reviewed audit of your landing page, plus a new hero and copy pack.',
-    url: 'https://northhaus.gumroad.com/l/xfoogo' },
-];
-const SHOP = { label: 'Browse all products', url: 'https://northhaus.gumroad.com/' };
-const PRODUCTS_PAGE = { label: 'See our digital products page', url: 'https://www.northhaus.io/digital-products' };
-const SITE_PLAN = {
-  title: 'Site Plan',
-  description: 'Custom-coded websites. £0 upfront, then £39 a month. 12-month minimum.',
-  detail: 'Up to five pages. Hosting, your domain, backups and up to 30 minutes of changes a month are included.',
-  cta: 'Explore Site Plan', url: 'https://www.northhaus.io/site-plan' };
-const SITE = { label: 'Visit Northhaus', url: 'https://www.northhaus.io/' };
-// ───────────────────────────────────────────────────────────────────
-
-class Component extends DCLogic {
-  renderVals() {
-    const showPrices = this.props.showPrices ?? true;
-    const sorted = [...LINKS].sort((a, b) => a.order - b.order);
-    const f = sorted.find(l => l.featured) || sorted[0];
-    const priced = (l) => showPrices && l.price ? `, ${l.price}` : '';
-    return {
-      showPrices,
-      glow: this.props.glow ?? true,
-      featured: { ...f, ctaLabel: `${f.cta || 'View'}: ${f.title}${priced(f)}` },
-      products: sorted.filter(l => l !== f).map(l => ({
-        ...l,
-        meta: showPrices && l.price ? `${l.category} · ${l.price}` : l.category,
-        ariaLabel: `${l.title}, ${l.category.toLowerCase()}${priced(l)}`,
-      })),
-      shop: SHOP, productsPage: PRODUCTS_PAGE, sitePlan: SITE_PLAN, site: SITE,
-    };
-  }
-}
-</script>
 </body>
 </html>
