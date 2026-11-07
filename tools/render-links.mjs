@@ -74,6 +74,7 @@ main:focus{outline:none}
 .nh-logo{display:inline-flex;padding:4px}
 .nh-logo img{height:40px;width:auto;display:block}
 .nh-tagline{margin:0;font-size:16px;font-weight:500;letter-spacing:.01em}
+.nh-note{margin:-8px 0 0;padding:12px 16px;border:1px solid rgba(102,209,222,.35);border-radius:10px;background:#0a0b0c;font-size:14px;line-height:1.5;color:#FBF8F3;text-align:center;text-wrap:pretty}
 .nh-feat{border:1px solid rgba(102,209,222,.45);border-radius:14px;overflow:hidden;background:#07090a;box-shadow:0 0 0 1px rgba(102,209,222,.06),0 18px 60px -24px rgba(102,209,222,.35)}
 .nh-feat img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#0d1314}
 .nh-feat-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:12px}
@@ -137,7 +138,9 @@ ${analytics ? '<script defer src="/_vercel/insights/script.js"></script>\n' : ''
       <a class="nh-logo" href="${esc(d.site.url)}" aria-label="Northhaus home"><img src="${esc(asset(P.logo.src))}" alt="${esc(P.logo.alt)}" width="${P.logo.width}" height="${P.logo.height}"></a>
       <p class="nh-tagline">${esc(P.tagline)}</p>
     </header>
-
+${P.inAppNote ? `
+    <p class="nh-note" role="note">${esc(P.inAppNote)}</p>
+` : ''}
     <section class="nh-feat" aria-labelledby="featured-title">
 ${img ? `      <img src="${esc(asset(largest))}" srcset="${srcset}" sizes="(min-width:600px) 560px, calc(100vw - 40px)" alt="${esc(img.alt)}" width="${img.width}" height="${img.height}" fetchpriority="high" decoding="async">\n` : ''}      <div class="nh-feat-body">
         <p class="nh-eyebrow"><span class="nh-teal">${esc(f.eyebrow || 'Featured')}</span>${f.price ? `<span>${esc(f.price)}</span>` : ''}</p>

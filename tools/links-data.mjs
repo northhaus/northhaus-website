@@ -11,6 +11,8 @@ export default {
     ogImage: 'https://www.northhaus.io/uploads/og-home.jpg',
     ogImageAlt: 'Northhaus, UK web and brand studio',
     tagline: 'Digital tools. Thoughtful websites.',
+    // Shown above the featured card. Set to null to hide.
+    inAppNote: 'Trouble opening a planner in TikTok? Tap the ⋯ menu at the top and choose ‘Open in browser’.',
     logo: { src: '/uploads/northhaus-logo-384.webp', width: 192, height: 48, alt: 'Northhaus' },
   },
 
